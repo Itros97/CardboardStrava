@@ -2,4 +2,5 @@
 .settings/*
 .gitattributes
 .project
-.git
+CardboardStrava.iml
+.idea
