@@ -5,7 +5,7 @@ public class TrainingSession {
 	private String title;
 	private String sport;
 	//distance in km
-	private double distante;
+	private double distance;
 	private GregorianCalendar dateOfStart;
 	private GregorianCalendar hourOfStart;
 	private double duration;
@@ -23,10 +23,10 @@ public class TrainingSession {
 		this.sport = sport;
 	}
 	public double getDistante() {
-		return distante;
+		return distance;
 	}
-	public void setDistante(double distante) {
-		this.distante = distante;
+	public void setDistance(double distance) {
+		this.distance = distance;
 	}
 	public GregorianCalendar getDateOfStart() {
 		return dateOfStart;
@@ -49,7 +49,7 @@ public class TrainingSession {
 	
 	@Override
 	public String toString() {
-		return "TrainingSession [title=" + title + ", sport=" + sport + ", distante=" + distante + ", dateOfStart="
+		return "TrainingSession [title=" + title + ", sport=" + sport + ", distante=" + distance + ", dateOfStart="
 				+ dateOfStart + ", hourOfStart=" + hourOfStart + ", duration=" + duration + "]";
 	}
 	
