@@ -3,3 +3,5 @@
 .gitattributes
 .project
 .git
+bin
+out
