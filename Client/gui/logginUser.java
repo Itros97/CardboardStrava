@@ -1,16 +1,10 @@
 package gui;
 
-import java.awt.BorderLayout;
 import java.awt.EventQueue;
-
 import javax.swing.JFrame;
-import javax.swing.JPanel;
-import javax.swing.border.EmptyBorder;
-import java.awt.FlowLayout;
 import javax.swing.JTextField;
 import javax.swing.JLabel;
 import javax.swing.JButton;
-import java.awt.CardLayout;
 import java.awt.Font;
 import javax.swing.SwingConstants;
 import javax.swing.JPasswordField;
@@ -39,7 +33,7 @@ public class logginUser extends JFrame {
      * Create the frame.
      */
     public logginUser() {
-        setTitle("logginMainFrame");
+        setTitle("loginMainFrame");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setBounds(100, 100, 500, 385);
         getContentPane().setLayout(null);
@@ -62,7 +56,7 @@ public class logginUser extends JFrame {
         lblNewLabel_1.setBounds(70, 170, 300, 30);
         getContentPane().add(lblNewLabel_1);
 
-        JButton btnNewButton = new JButton("Loggin");
+        JButton btnNewButton = new JButton("Login");
         btnNewButton.setBounds(190, 290, 88, 25);
         getContentPane().add(btnNewButton);
 
