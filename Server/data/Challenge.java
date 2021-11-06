@@ -1,7 +1,9 @@
 package data;
 import java.util.GregorianCalendar;
 
-public class Challenge {
+//
+
+public class Challenge{
 	private String name;
 	private GregorianCalendar dateOfStart;
 	private GregorianCalendar dateOfEnd;

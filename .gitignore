@@ -4,3 +4,5 @@
 .project
 CardboardStrava.iml
 .idea
+bin
+out
