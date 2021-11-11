@@ -9,7 +9,7 @@ import java.awt.Font;
 import javax.swing.SwingConstants;
 import javax.swing.JPasswordField;
 
-public class logginUser extends JFrame {
+public class LoginWindow extends JFrame {
     private JTextField txtInsertUser;
     private JPasswordField passwordField;
 
@@ -20,7 +20,7 @@ public class logginUser extends JFrame {
         EventQueue.invokeLater(new Runnable() {
             public void run() {
                 try {
-                    logginUser frame = new logginUser();
+                    LoginWindow frame = new LoginWindow();
                     frame.setVisible(true);
                 } catch (Exception e) {
                     e.printStackTrace();
@@ -32,8 +32,8 @@ public class logginUser extends JFrame {
     /**
      * Create the frame.
      */
-    public logginUser() {
-        setTitle("loginMainFrame");
+    public LoginWindow() {
+        setTitle("Login Window");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setBounds(100, 100, 500, 385);
         getContentPane().setLayout(null);

@@ -4,7 +4,7 @@ import java.awt.*;
 import javax.swing.*;
 import javax.swing.border.TitledBorder;
 
-public class RegisterUser extends JFrame {
+public class RegisterWindow extends JFrame {
     private JPanel panel1;
     private JButton registerButton;
     private JButton backButton;
@@ -21,8 +21,8 @@ public class RegisterUser extends JFrame {
     private JTextField textField1;
 
     public static void main(String[] args) {
-        JFrame frame = new JFrame("Register User");
-        frame.setContentPane(new RegisterUser().panel1);
+        JFrame frame = new JFrame("Register Window");
+        frame.setContentPane(new RegisterWindow().panel1);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.pack();
         frame.setVisible(true);
