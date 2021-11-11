@@ -17,7 +17,7 @@ public class home {
         // TODO: place custom component creation code here
     }
     public static void main(String[] args) {
-        JFrame frame = new JFrame("Register User");
+        JFrame frame = new JFrame("Home Page Strava");
         frame.setContentPane(new home().panelhome);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.pack();
