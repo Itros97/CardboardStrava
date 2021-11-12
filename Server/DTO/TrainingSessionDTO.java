@@ -1,13 +1,8 @@
-package data;
-import javax.jdo.annotations.PersistenceCapable;
-import javax.jdo.annotations.PrimaryKey;
+package DTO;
 import java.util.GregorianCalendar;
 
-@PersistenceCapable
-public class TrainingSession {
-	@PrimaryKey
+public class TrainingSessionDTO {
 	private String title;
-
 	private String sport;
 	//distance in km
 	private double distance;
