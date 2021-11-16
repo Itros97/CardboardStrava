@@ -1,13 +1,10 @@
-package data;
-import javax.jdo.annotations.PersistenceCapable;
-import javax.jdo.annotations.PrimaryKey;
+package DTO;
 import java.util.GregorianCalendar;
 
-@PersistenceCapable
-public class Challenge{
-	@PrimaryKey
-	private String name;
+//
 
+public class ChallengeDTO {
+	private String name;
 	private GregorianCalendar dateOfStart;
 	private GregorianCalendar dateOfEnd;
 	//objectiveDistance in km
