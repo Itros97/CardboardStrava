@@ -1,9 +1,10 @@
 package DTO;
+
 import java.util.GregorianCalendar;
+import java.io.Serializable;
 
-//
-
-public class ChallengeDTO {
+public class ChallengeDTO implements Serializable {
+	private static final long serialVersionUID = 1L;
 	private String name;
 	private GregorianCalendar dateOfStart;
 	private GregorianCalendar dateOfEnd;

@@ -1,6 +1,9 @@
 package DTO;
 
-public class ChallengeWithTimeDTO extends ChallengeDTO {
+import java.io.Serializable;
+
+public class ChallengeWithTimeDTO extends ChallengeDTO implements Serializable {
+    private static final long serialVersionUID = 1L;
     //objectiveTime in minutes
     private int objectiveTime;
 

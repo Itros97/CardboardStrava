@@ -1,9 +1,11 @@
 package DTO;
 
+import java.io.Serializable;
 import java.util.GregorianCalendar;
 
-public class ProfileDTO {
-	private String email;
+public class ProfileDTO implements Serializable {
+	private static final long serialVersionUID = 1L;
+	String email;
 	private String name;
 	private GregorianCalendar birthdate;
 	private double weightKg;
