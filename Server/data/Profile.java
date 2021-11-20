@@ -15,7 +15,6 @@ public class Profile {
 	private int heightCm;
 	private int maximumHeartRate;
 	private int reposeHeartRate;
-	private String password;
 	private String registerType;
 	
 	public String getEmail() {
@@ -60,25 +59,17 @@ public class Profile {
 	public void setReposeHeartRate(int reposeHeartRate) {
 		this.reposeHeartRate = reposeHeartRate;
 	}
-	public String getPassword() {
-		return password;
-	}
-	public void setPassword(String password) {
-		this.password = password;
-	}
 	public String getRegisterType() {
 		return registerType;
 	}
 	public void setRegisterType(String registerType) {
 		this.registerType = registerType;
 	}
+
 	@Override
 	public String toString() {
 		return "Profile [email=" + email + ", name=" + name + ", birthdate=" + birthdate + ", weightKg=" + weightKg
 				+ ", heightCm=" + heightCm + ", maximumHeartRate=" + maximumHeartRate + ", reposeHeartRate="
-				+ reposeHeartRate + ", password=" + password + ", registerType=" + registerType + "]";
+				+ reposeHeartRate +  ", registerType=" + registerType + "]";
 	}
-	
-	
-	
 }
