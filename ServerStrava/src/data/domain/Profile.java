@@ -6,7 +6,7 @@ public class Profile {
 
 	private String email;
 
-	private String name;
+	private String nickname;
 	private GregorianCalendar birthdate;
 	private String password;
 	private double weightKg;
@@ -15,9 +15,15 @@ public class Profile {
 	private int reposeHeartRate;
 	private String registerType;
 
+	public String getNickname() {
+		return nickname;
+	}
 
-	public String getPassword() {
-		return password;
+	public void setNickname(String nickname) {
+		this.nickname = nickname;
+	}
+	public boolean isPassword(String password) {
+		return this.password.equals(password);
 	}
 	public void setPassword(String password) {
 		this.password = password;
@@ -27,12 +33,6 @@ public class Profile {
 	}
 	public void setEmail(String email) {
 		this.email = email;
-	}
-	public String getName() {
-		return name;
-	}
-	public void setName(String name) {
-		this.name = name;
 	}
 	public GregorianCalendar getBirthdate() {
 		return birthdate;
@@ -73,7 +73,7 @@ public class Profile {
 
 	@Override
 	public String toString() {
-		return "Profile [email=" + email + ", name=" + name + ", birthdate=" + birthdate + ", weightKg=" + weightKg
+		return "Profile [email=" + email + ", name=" + nickname + ", birthdate=" + birthdate + ", weightKg=" + weightKg
 				+ ", heightCm=" + heightCm + ", maximumHeartRate=" + maximumHeartRate + ", reposeHeartRate="
 				+ reposeHeartRate +  ", registerType=" + registerType + "]";
 	}
