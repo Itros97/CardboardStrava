@@ -2,7 +2,9 @@ package data.DTO;
 
 import data.domain.Profile;
 
+
 public class ProfileAssembler {
+
     private static ProfileAssembler instance;
 
     private ProfileAssembler() { }
@@ -15,12 +17,11 @@ public class ProfileAssembler {
         return instance;
     }
 
-    public ProfileDTO profiletoDTO (Profile profile)
-    {
+    public ProfileDTO profileToDTO(Profile p1) {
         ProfileDTO dto = new ProfileDTO();
 
-        dto.setNickname(profile.getNickname());
-        dto.setEmail(profile.getEmail());
+        dto.setEmail(p1.getEmail());
+        dto.setNickname(p1.getNickname());
 
         return dto;
     }
