@@ -1,7 +1,10 @@
 package DTO;
+
+import java.io.Serializable;
 import java.util.GregorianCalendar;
 
-public class TrainingSessionDTO {
+public class TrainingSessionDTO implements Serializable {
+	private static final long serialVersionUID = 1L;
 	private String title;
 	private String sport;
 	//distance in km

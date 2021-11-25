@@ -1,17 +1,17 @@
 package DTO;
 
+import java.io.Serializable;
 import java.util.GregorianCalendar;
 
-public class ProfileDTO {
-
-	private String email;
+public class ProfileDTO implements Serializable {
+	private static final long serialVersionUID = 1L;
+	String email;
 	private String name;
 	private GregorianCalendar birthdate;
 	private double weightKg;
 	private int heightCm;
 	private int maximumHeartRate;
 	private int reposeHeartRate;
-	private String password;
 	private String registerType;
 	
 	public String getEmail() {
@@ -56,12 +56,6 @@ public class ProfileDTO {
 	public void setReposeHeartRate(int reposeHeartRate) {
 		this.reposeHeartRate = reposeHeartRate;
 	}
-	public String getPassword() {
-		return password;
-	}
-	public void setPassword(String password) {
-		this.password = password;
-	}
 	public String getRegisterType() {
 		return registerType;
 	}
@@ -72,7 +66,7 @@ public class ProfileDTO {
 	public String toString() {
 		return "Profile [email=" + email + ", name=" + name + ", birthdate=" + birthdate + ", weightKg=" + weightKg
 				+ ", heightCm=" + heightCm + ", maximumHeartRate=" + maximumHeartRate + ", reposeHeartRate="
-				+ reposeHeartRate + ", password=" + password + ", registerType=" + registerType + "]";
+				+ reposeHeartRate + ", registerType=" + registerType + "]";
 	}
 	
 	
