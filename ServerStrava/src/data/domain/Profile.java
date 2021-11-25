@@ -1,22 +1,27 @@
-package data;
+package data.domain;
 
-import javax.jdo.annotations.PersistenceCapable;
-import javax.jdo.annotations.PrimaryKey;
 import java.util.GregorianCalendar;
 
-@PersistenceCapable
 public class Profile {
-	@PrimaryKey
+
 	private String email;
 
 	private String name;
 	private GregorianCalendar birthdate;
+	private String password;
 	private double weightKg;
 	private int heightCm;
 	private int maximumHeartRate;
 	private int reposeHeartRate;
 	private String registerType;
-	
+
+
+	public String getPassword() {
+		return password;
+	}
+	public void setPassword(String password) {
+		this.password = password;
+	}
 	public String getEmail() {
 		return email;
 	}

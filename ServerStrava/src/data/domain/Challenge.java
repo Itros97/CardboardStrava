@@ -1,11 +1,12 @@
-package DTO;
+package data.domain;
 
 import java.util.GregorianCalendar;
-import java.io.Serializable;
 
-public class ChallengeDTO implements Serializable {
-	private static final long serialVersionUID = 1L;
+
+public class Challenge{
+
 	private String name;
+
 	private GregorianCalendar dateOfStart;
 	private GregorianCalendar dateOfEnd;
 	private String sport;

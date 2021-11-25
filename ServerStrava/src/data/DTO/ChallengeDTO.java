@@ -1,14 +1,11 @@
-package data;
+package data.DTO;
 
-import javax.jdo.annotations.PersistenceCapable;
-import javax.jdo.annotations.PrimaryKey;
+import java.io.Serializable;
 import java.util.GregorianCalendar;
 
-@PersistenceCapable
-public class Challenge{
-	@PrimaryKey
+public class ChallengeDTO implements Serializable {
+	private static final long serialVersionUID = 1L;
 	private String name;
-
 	private GregorianCalendar dateOfStart;
 	private GregorianCalendar dateOfEnd;
 	private String sport;
