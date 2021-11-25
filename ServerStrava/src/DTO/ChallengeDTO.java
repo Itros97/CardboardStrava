@@ -1,7 +1,7 @@
 package DTO;
 
-import java.util.GregorianCalendar;
 import java.io.Serializable;
+import java.util.GregorianCalendar;
 
 public class ChallengeDTO implements Serializable {
 	private static final long serialVersionUID = 1L;
