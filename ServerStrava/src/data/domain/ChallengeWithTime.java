@@ -1,9 +1,6 @@
-package data;
+package data.domain;
 
-import javax.jdo.annotations.PersistenceCapable;
-
-@PersistenceCapable
-public class ChallengeWithTime extends Challenge {
+public class ChallengeWithTime  {
     //objectiveTime in minutes
     private int objectiveTime;
 

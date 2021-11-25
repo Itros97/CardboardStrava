@@ -1,4 +1,4 @@
-package DTO;
+package data.DTO;
 
 public class ProfileAssembler {
 }

@@ -1,9 +1,6 @@
-package data;
+package data.domain;
 
-import javax.jdo.annotations.PersistenceCapable;
-
-@PersistenceCapable
-public class ChallengeWithDistance extends Challenge {
+public class ChallengeWithDistance {
     //objectiveDistance in km
     private double objectiveDistance;
 

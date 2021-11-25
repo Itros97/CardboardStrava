@@ -1,9 +1,9 @@
-package data;
+package data.DTO;
 
-import javax.jdo.annotations.PersistenceCapable;
+import java.io.Serializable;
 
-@PersistenceCapable
-public class PasswordProfile extends Profile {
+public class PasswordProfileDTO extends ProfileDTO implements Serializable {
+    private static final long serialVersionUID = 1L;
     private String password;
 
     public String getPassword() {

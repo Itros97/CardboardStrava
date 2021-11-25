@@ -1,4 +1,4 @@
-package façade;
+package remote;
 
 public interface IRemoteFaçade {
 }
