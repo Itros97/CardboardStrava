@@ -3,12 +3,7 @@ package remote;
 import java.rmi.Remote;
 import java.util.Date;
 import java.util.List;
-import ServerStrava.src.data.DTO.ProfileDTO;
-import ServerStrava.src.data.DTO.PasswordProfileDTO;
-import ServerStrava.src.data.DTO.ChallengeDTO;
-import ServerStrava.src.data.DTO.ChallengeWithDistanceDTO;
-import ServerStrava.src.data.DTO.ChallengeWithTimeDTO;
-import ServerStrava.src.data.DTO.TrainingSessionDTO;
+import ServerStrava.src.data.DTO.*;
 import ServerStrava.src.data.domain.*;
 
 public interface IRemoteFaçade extends Remote {
