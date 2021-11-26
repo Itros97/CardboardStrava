@@ -6,6 +6,7 @@ import java.util.Date;
 import java.util.List;
 import data.DTO.*;
 import data.domain.*;
+import services.*;
 
 public class RemoteFaçade {
     private static final long serialVersionUID = 1L;
@@ -30,11 +31,6 @@ public class RemoteFaçade {
     public Profile loginUser(String email, String password) {
         System.out.println(" * RemoteFacade loginUser: " + email + " / " + password);
         return LoginAppService.getInstace().login(email, password);
-    }
-
-    public boolean registerUser(String GoogleOrFacebook, String email, String password) {
-        System.out.println(" * RemoteFacade registerUser: " + GoogleOrFacebook + " / " + email + " / " + password);
-        return RegisterAppService.getInstace().register(GoogleOrFacebook, email, password);
     }
 
     public boolean registerUser(String GoogleOrFacebook, String email, String password) {
