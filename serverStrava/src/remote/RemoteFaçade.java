@@ -10,17 +10,15 @@ import services.*;
 
 public class RemoteFaçade {
     private static final long serialVersionUID = 1L;
-    private static RemoteFacade instance;
-    public Profile state;
+    private static RemoteFaçade instance;
 
-    private RemoteFacade() throws RemoteException {
+    private RemoteFaçade() throws RemoteException {
     }
 
-    public Profile RemoteFacade {
-    getInstance() {
+    public static RemoteFaçade getInstance() {
         if (instance == null) {
             try {
-                instance = new RemoteFacade();
+                instance = new RemoteFaçade();
             } catch (Exception var1) {
                 System.err.println("# Error creating RemoteFacade: " + var1);
             }

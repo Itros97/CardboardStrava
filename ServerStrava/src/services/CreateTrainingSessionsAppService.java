@@ -3,5 +3,5 @@ package services;
 import data.domain.*;
 import gateway.*;
 
-public class RegisterAppService {
+public class CreateTrainingSessionsAppService {
 }
