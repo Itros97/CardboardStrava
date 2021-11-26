@@ -1,17 +1,17 @@
-package data;
+package data.DTO;
 
+import java.io.Serializable;
 import java.util.GregorianCalendar;
 
-public class Profile {
-
-	private String email;
-	private String name;
+public class ProfileDTO implements Serializable {
+	private static final long serialVersionUID = 1L;
+	String email;
+	private String nickname;
 	private GregorianCalendar birthdate;
 	private double weightKg;
 	private int heightCm;
 	private int maximumHeartRate;
 	private int reposeHeartRate;
-	private String password;
 	private String registerType;
 	
 	public String getEmail() {
@@ -20,11 +20,11 @@ public class Profile {
 	public void setEmail(String email) {
 		this.email = email;
 	}
-	public String getName() {
-		return name;
+	public String getNickname() {
+		return nickname;
 	}
-	public void setName(String name) {
-		this.name = name;
+	public void setNickname(String nickname) {
+		this.nickname = nickname;
 	}
 	public GregorianCalendar getBirthdate() {
 		return birthdate;
@@ -56,12 +56,6 @@ public class Profile {
 	public void setReposeHeartRate(int reposeHeartRate) {
 		this.reposeHeartRate = reposeHeartRate;
 	}
-	public String getPassword() {
-		return password;
-	}
-	public void setPassword(String password) {
-		this.password = password;
-	}
 	public String getRegisterType() {
 		return registerType;
 	}
@@ -70,9 +64,9 @@ public class Profile {
 	}
 	@Override
 	public String toString() {
-		return "Profile [email=" + email + ", name=" + name + ", birthdate=" + birthdate + ", weightKg=" + weightKg
+		return "Profile [email=" + email + ", nickname=" + nickname + ", birthdate=" + birthdate + ", weightKg=" + weightKg
 				+ ", heightCm=" + heightCm + ", maximumHeartRate=" + maximumHeartRate + ", reposeHeartRate="
-				+ reposeHeartRate + ", password=" + password + ", registerType=" + registerType + "]";
+				+ reposeHeartRate + ", registerType=" + registerType + "]";
 	}
 	
 	

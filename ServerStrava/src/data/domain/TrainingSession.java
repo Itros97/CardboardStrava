@@ -1,8 +1,12 @@
-package data;
+package data.domain;
+
 import java.util.GregorianCalendar;
 
+
 public class TrainingSession {
+
 	private String title;
+
 	private String sport;
 	//distance in km
 	private double distance;

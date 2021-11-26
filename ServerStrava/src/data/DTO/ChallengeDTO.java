@@ -1,16 +1,13 @@
-package data;
+package data.DTO;
+
+import java.io.Serializable;
 import java.util.GregorianCalendar;
 
-//
-
-public class Challenge{
+public class ChallengeDTO implements Serializable {
+	private static final long serialVersionUID = 1L;
 	private String name;
 	private GregorianCalendar dateOfStart;
 	private GregorianCalendar dateOfEnd;
-	//objectiveDistance in km
-	private double objectiveDistance;
-	//objectiveTime in minutes
-	private int objectiveTime;
 	private String sport;
 	
 	public String getName() {
@@ -31,18 +28,6 @@ public class Challenge{
 	public void setDateOfEnd(GregorianCalendar dateOfEnd) {
 		this.dateOfEnd = dateOfEnd;
 	}
-	public double getObjectiveDistance() {
-		return objectiveDistance;
-	}
-	public void setObjectiveDistance(double objectiveDistance) {
-		this.objectiveDistance = objectiveDistance;
-	}
-	public int getObjectiveTime() {
-		return objectiveTime;
-	}
-	public void setObjectiveTime(int objectiveTime) {
-		this.objectiveTime = objectiveTime;
-	}
 	public String getSport() {
 		return sport;
 	}
@@ -53,7 +38,6 @@ public class Challenge{
 	@Override
 	public String toString() {
 		return "Challenge [name=" + name + ", dateOfStart=" + dateOfStart + ", dateOfEnd=" + dateOfEnd
-				+ ", objectiveDistance=" + objectiveDistance + ", objectiveTime=" + objectiveTime + ", sport=" + sport
-				+ "]";
+				+ ", sport=" + sport + "]";
 	}
 }
