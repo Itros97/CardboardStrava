@@ -1,6 +1,6 @@
 package data.domain;
 
-public class ChallengeWithTime  {
+public class ChallengeWithTime extends Challenge {
     //objectiveTime in minutes
     private int objectiveTime;
 

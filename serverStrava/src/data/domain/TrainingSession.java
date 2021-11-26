@@ -2,7 +2,6 @@ package data.domain;
 
 import java.util.GregorianCalendar;
 
-
 public class TrainingSession {
 
 	private String title;
@@ -26,7 +25,7 @@ public class TrainingSession {
 	public void setSport(String sport) {
 		this.sport = sport;
 	}
-	public double getDistante() {
+	public double getDistance() {
 		return distance;
 	}
 	public void setDistance(double distance) {

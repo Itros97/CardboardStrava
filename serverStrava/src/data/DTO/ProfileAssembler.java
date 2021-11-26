@@ -2,7 +2,6 @@ package data.DTO;
 
 import data.domain.Profile;
 
-
 public class ProfileAssembler {
 
     private static ProfileAssembler instance;

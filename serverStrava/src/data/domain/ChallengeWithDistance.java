@@ -1,6 +1,6 @@
 package data.domain;
 
-public class ChallengeWithDistance {
+public class ChallengeWithDistance extends Challenge {
     //objectiveDistance in km
     private double objectiveDistance;
 
