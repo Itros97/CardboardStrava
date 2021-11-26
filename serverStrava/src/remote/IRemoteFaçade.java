@@ -3,8 +3,8 @@ package remote;
 import java.rmi.Remote;
 import java.util.Date;
 import java.util.List;
-import ServerStrava.src.data.DTO.*;
-import ServerStrava.src.data.domain.*;
+import data.DTO.*;
+import data.domain.*;
 
 public interface IRemoteFaçade extends Remote {
     Profile loginUser(String email, String password);

@@ -1,6 +1,6 @@
 package data.DTO;
 
-import data.domain.Profile;
+import data.domain.*;
 
 public class ProfileAssembler {
 

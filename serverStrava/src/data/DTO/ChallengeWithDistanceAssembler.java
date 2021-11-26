@@ -1,14 +1,13 @@
 package data.DTO;
 
-import data.domain.Challenge;
-import data.domain.ChallengeWithDistance;
+import data.domain.*;
 
 public class ChallengeWithDistanceAssembler {
     private static ChallengeWithDistanceAssembler instance;
 
     private ChallengeWithDistanceAssembler() { }
 
-    public staticChallengeWithDistanceAssembler getInstance() {
+    public static ChallengeWithDistanceAssembler getInstance() {
         if (instance == null) {
             instance = new ChallengeWithDistanceAssembler();
         }

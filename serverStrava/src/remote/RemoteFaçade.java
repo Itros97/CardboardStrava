@@ -4,19 +4,18 @@ import java.rmi.server.UnicastRemoteObject;
 import java.rmi.Remote;
 import java.util.Date;
 import java.util.List;
-import ServerStrava.src.data.DTO.*;
-import ServerStrava.src.data.domain.*;
+import data.DTO.*;
+import data.domain.*;
 
 public class RemoteFaçade {
     private static final long serialVersionUID = 1L;
     private static RemoteFacade instance;
-    public User state;
+    public Profile state;
 
     private RemoteFacade() throws RemoteException {
     }
 
-    public Profile RemoteFacade
-
+    public Profile RemoteFacade {
     getInstance() {
         if (instance == null) {
             try {

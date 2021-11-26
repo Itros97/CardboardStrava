@@ -2,7 +2,7 @@ package data.DTO;
 
 import java.io.Serializable;
 
-public class ChallengeWithDistanceDTO extends ChallengeDTO  implements Serializable {
+public class ChallengeWithDistanceDTO extends ChallengeDTO implements Serializable {
     private static final long serialVersionUID = 1L;
     //objectiveDistance in km
     private double objectiveDistance;

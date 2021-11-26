@@ -1,6 +1,6 @@
 package data.DTO;
 
-import data.domain.TrainingSession;
+import data.domain.*;
 
 public class TraininigSessionAssembler {
     private static TraininigSessionAssembler instance;

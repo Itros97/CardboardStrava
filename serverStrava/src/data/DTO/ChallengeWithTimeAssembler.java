@@ -1,14 +1,13 @@
 package data.DTO;
 
-import data.domain.Challenge;
-import data.domain.ChallengeWithTime;
+import data.domain.*;
 
 public class ChallengeWithTimeAssembler {
     private static ChallengeWithTimeAssembler instance;
 
     private ChallengeWithTimeAssembler() { }
 
-    public staticChallengeWithTimeAssembler getInstance() {
+    public static ChallengeWithTimeAssembler getInstance() {
         if (instance == null) {
             instance = new ChallengeWithTimeAssembler();
         }
