@@ -1,8 +1,6 @@
 package data.domain;
 
-
-
-public class PasswordProfile {
+public class PasswordProfile extends Profile {
     private String password;
 
     public String getPassword() {
