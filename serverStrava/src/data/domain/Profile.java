@@ -8,7 +8,6 @@ public class Profile {
 
 	private String nickname;
 	private GregorianCalendar birthdate;
-	private String password;
 	private double weightKg;
 	private int heightCm;
 	private int maximumHeartRate;
@@ -21,12 +20,6 @@ public class Profile {
 
 	public void setNickname(String nickname) {
 		this.nickname = nickname;
-	}
-	public boolean isPassword(String password) {
-		return this.password.equals(password);
-	}
-	public void setPassword(String password) {
-		this.password = password;
 	}
 	public String getEmail() {
 		return email;

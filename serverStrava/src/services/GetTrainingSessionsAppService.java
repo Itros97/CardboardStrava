@@ -4,6 +4,7 @@ import java.rmi.RemoteException;
 import java.util.List;
 import data.DTO.*;
 import data.domain.*;
+import data.dao.*;
 import gateway.*;
 
 public class GetTrainingSessionsAppService {
@@ -20,7 +21,7 @@ public class GetTrainingSessionsAppService {
         return instance;
     }
 
-    public List<TrainingSessionDTO> getTrainingSessions() {
+    public List<TrainingSession> getTrainingSessions() {
         //Get all the categories using DAO Pattern
         return TrainingSessionDAO.getInstance().getAll();
     }

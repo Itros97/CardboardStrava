@@ -1,25 +1,23 @@
 package data.DTO;
 
-import data.domain.Profile;
+import data.domain.*;
 
-import java.util.GregorianCalendar;
+public class PasswordProfileAssembler {
 
-public class ProfileAssembler {
+    private static PasswordProfileAssembler instance;
 
-    private static ProfileAssembler instance;
+    private PasswordProfileAssembler() { }
 
-    private ProfileAssembler() { }
-
-    public static ProfileAssembler getInstance() {
+    public static PasswordProfileAssembler getInstance() {
         if (instance == null) {
-            instance = new ProfileAssembler();
+            instance = new PasswordProfileAssembler();
         }
 
         return instance;
     }
 
-    public ProfileDTO profileToDTO(Profile p1) {
-        ProfileDTO dto = new ProfileDTO();
+    public PasswordProfileDTO passwordProfileToDTO(PasswordProfile p1) {
+        PasswordProfileDTO dto = new PasswordProfileDTO();
 
         dto.setEmail(p1.getEmail());
         dto.setNickname(p1.getNickname());
@@ -29,6 +27,7 @@ public class ProfileAssembler {
         dto.setMaximumHeartRate(p1.getMaximumHeartRate());
         dto.setReposeHeartRate(p1.getReposeHeartRate());
         dto.setRegisterType(p1.getRegisterType());
+        dto.setPassword(p1.getPassword());
 
         return dto;
     }

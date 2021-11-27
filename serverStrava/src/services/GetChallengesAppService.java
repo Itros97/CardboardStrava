@@ -4,6 +4,7 @@ import java.rmi.RemoteException;
 import java.util.List;
 import data.DTO.ChallengeDTO;
 import data.domain.*;
+import data.dao.*;
 import gateway.*;
 
 public class GetChallengesAppService {
@@ -20,7 +21,7 @@ public class GetChallengesAppService {
         return instance;
     }
 
-    public List<ChallengeDTO> getChallenges() {
+    public List<Challenge> getChallenges() {
         //Get all the categories using DAO Pattern
         return ChallengeDAO.getInstance().getAll();
     }

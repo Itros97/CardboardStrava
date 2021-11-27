@@ -5,6 +5,7 @@ import java.util.Calendar;
 
 import data.DTO.ChallengeDTO;
 import data.domain.*;
+import data.dao.*;
 import gateway.*;
 
 public class CreateChallengeAppService {

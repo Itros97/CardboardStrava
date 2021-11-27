@@ -40,12 +40,30 @@ public class RemoteFacade extends UnicastRemoteObject implements IRemoteFacade {
 
     public List<TrainingSessionDTO> getTrainingSessions() throws RemoteException {
         System.out.println(" * RemoteFacade getTrainingSessions: ");
-        return GetTrainingSessionsAppService.getInstance().getTrainingSessions();
+
+        //Get TrainingSessions using GetTrainingSessionsAppService
+        List<TrainingSession> ts = GetTrainingSessionsAppService.getInstance().getTrainingSessions();
+
+        if (ts != null) {
+            //Convert domain object to DTO
+            return TraininigSessionAssembler.getInstance().trainingSessionToDTO(ts);
+        } else {
+            throw new RemoteException("getTrainingSessions() fails!");
+        }
     }
 
     public List<ChallengeDTO> getChallenges() throws RemoteException {
         System.out.println(" * RemoteFacade getChallenges: ");
-        return GetChallengesAppService.getInstance().getChallenges();
+
+        //Get TrainingSessions using GetTrainingSessionsAppService
+        List<Challenge> ch = GetChallengesAppService.getInstance().getChallenges();
+
+        if (ch != null) {
+            //Convert domain object to DTO
+            return ChallengeAssembler.getInstance().challengeToDTO(ch);
+        } else {
+            throw new RemoteException("getChallenges() fails!");
+        }
     }
 
     public void createTrainingSession(TrainingSession ts) throws RemoteException {

@@ -2,6 +2,9 @@ package data.DTO;
 
 import data.domain.*;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class ChallengeWithDistanceAssembler {
     private static ChallengeWithDistanceAssembler instance;
 
@@ -15,7 +18,7 @@ public class ChallengeWithDistanceAssembler {
         return instance;
     }
 
-    public ChallengeWithDistanceDTO profileToDTO(ChallengeWithDistance ch1) {
+    public ChallengeWithDistanceDTO challengeWithDistanceToDTO(ChallengeWithDistance ch1) {
         ChallengeWithDistanceDTO dto = new ChallengeWithDistanceDTO();
 
         dto.setName(ch1.getName());
@@ -25,5 +28,15 @@ public class ChallengeWithDistanceAssembler {
         dto.setObjectiveDistance(ch1.getObjectiveDistance());
 
         return dto;
+    }
+
+    public List<ChallengeWithDistanceDTO> challengeWithDistanceToDTO(List<ChallengeWithDistance> chs) {
+        List<ChallengeWithDistanceDTO> dtos = new ArrayList<>();
+
+        for (ChallengeWithDistance ch : chs) {
+            dtos.add(this.challengeWithDistanceToDTO(ch));
+        }
+
+        return dtos;
     }
 }

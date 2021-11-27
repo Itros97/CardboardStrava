@@ -1,6 +1,7 @@
 package data.DTO;
 
 import data.domain.*;
+import data.DTO.*;
 
 public class TraininigSessionAssembler {
     private static TraininigSessionAssembler instance;
@@ -15,8 +16,8 @@ public class TraininigSessionAssembler {
         return instance;
     }
 
-    public TraininigSessionDTO TraininigSessionToDTO(TraininigSession ts1) {
-        TraininigSessionDTO dto = new PTraininigSessionDTO();
+    public TrainingSessionDTO trainingSessionToDTO(TrainingSession ts1) {
+        TrainingSessionDTO dto = new TrainingSessionDTO();
 
         dto.setTitle(ts1.getTitle());
         dto.setSport(ts1.getSport());

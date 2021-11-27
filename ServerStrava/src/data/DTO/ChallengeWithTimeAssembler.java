@@ -2,6 +2,9 @@ package data.DTO;
 
 import data.domain.*;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class ChallengeWithTimeAssembler {
     private static ChallengeWithTimeAssembler instance;
 
@@ -15,7 +18,7 @@ public class ChallengeWithTimeAssembler {
         return instance;
     }
 
-    public ChallengeWithTimeDTO profileToDTO(ChallengeWithTime ch1) {
+    public ChallengeWithTimeDTO challengeWithTimeToDTO(ChallengeWithTime ch1) {
         ChallengeWithTimeDTO dto = new ChallengeWithTimeDTO();
 
         dto.setName(ch1.getName());
@@ -25,5 +28,15 @@ public class ChallengeWithTimeAssembler {
         dto.setObjectiveTime(ch1.getObjectiveTime());
 
         return dto;
+    }
+
+    public List<ChallengeWithTimeDTO> challengeWithTimeToDTO(List<ChallengeWithTime> chs) {
+        List<ChallengeWithTimeDTO> dtos = new ArrayList<>();
+
+        for (ChallengeWithTime ch : chs) {
+            dtos.add(this.challengeWithTimeToDTO(ch));
+        }
+
+        return dtos;
     }
 }

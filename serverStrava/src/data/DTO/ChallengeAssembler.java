@@ -2,6 +2,9 @@ package data.DTO;
 
 import data.domain.*;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class ChallengeAssembler {
     private static ChallengeAssembler instance;
 
@@ -15,7 +18,7 @@ public class ChallengeAssembler {
         return instance;
     }
 
-    public ChallengeDTO profileToDTO(Challenge ch1) {
+    public ChallengeDTO challengeToDTO(Challenge ch1) {
         ChallengeDTO dto = new ChallengeDTO();
 
         dto.setName(ch1.getName());
@@ -24,5 +27,15 @@ public class ChallengeAssembler {
         dto.setSport(ch1.getSport());
 
         return dto;
+    }
+
+    public List<ChallengeDTO> challengeToDTO(List<Challenge> chs) {
+        List<ChallengeDTO> dtos = new ArrayList<>();
+
+        for (Challenge ch : chs) {
+            dtos.add(this.challengeToDTO(ch));
+        }
+
+        return dtos;
     }
 }

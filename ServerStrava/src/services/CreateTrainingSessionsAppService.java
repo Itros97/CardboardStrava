@@ -3,6 +3,7 @@ package services;
 import java.rmi.RemoteException;
 import data.DTO.TrainingSessionDTO;
 import data.domain.*;
+import data.dao.*;
 import gateway.*;
 
 public class CreateTrainingSessionsAppService {
