@@ -1,6 +1,7 @@
 package services;
 
-import data.domain.Profile;
+import data.domain.*;
+import gateway.*;
 
 public class LoginAppService {
 
