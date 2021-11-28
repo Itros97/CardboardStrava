@@ -1,18 +1,19 @@
 package gateway;
 
 //Son los import que aparecen en Auctions
-import remote.IRemoteFacade;
+import remote.IGoogle;
 import java.rmi.Naming;
+
 
 public class GoogleGateway {
     public static GoogleGateway instance;
-    private IRemoteFacade façade;
+    private IGoogle googleService;
 
     private GoogleGateway() {
         try {
             //¿Qué URL hay que poner?
             String URL = "";
-            this.façade = (IRemoteFacade) Naming.lookup(URL);
+            this.googleService = (IGoogle) Naming.lookup(URL);
         } catch (Exception e) {
             System.err.println("# Error locating remote façade: " + e);
         }
@@ -26,6 +27,25 @@ public class GoogleGateway {
         return instance;
     }
 
-    //Aqui iran los métodos
+    public void login() {
+        System.out.println("   - Login with Google Gateway");
+
+        try {
+            this.googleService.login();
+        } catch (Exception ex) {
+            System.out.println("   $ Login error: " + ex.getMessage());
+        }
+    }
+
+    public void register() {
+        System.out.println("   - Register with Google Gateway");
+
+        try {
+            this.googleService.register();
+        } catch (Exception ex) {
+            System.out.println("   $ Register error: " + ex.getMessage());
+        }
+    }
+
 
 }
