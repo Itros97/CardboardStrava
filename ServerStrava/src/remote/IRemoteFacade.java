@@ -9,7 +9,7 @@ import data.domain.*;
 public interface IRemoteFacade extends Remote {
     Profile loginUser(String email, String password) throws RemoteException;
 
-    Profile registerUser(String GoogleOrFacebook, String email, String password) throws RemoteException;
+    boolean registerUser(String GoogleOrFacebook, String email, String password) throws RemoteException;
 
     List<TrainingSessionDTO> getTrainingSessions() throws RemoteException;
 

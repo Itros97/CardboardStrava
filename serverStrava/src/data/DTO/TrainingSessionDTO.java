@@ -52,7 +52,7 @@ public class TrainingSessionDTO implements Serializable {
 	
 	@Override
 	public String toString() {
-		return "TrainingSession [title=" + title + ", sport=" + sport + ", distante=" + distance + ", dateOfStart="
+		return "TrainingSession [title=" + title + ", sport=" + sport + ", distance=" + distance + ", dateOfStart="
 				+ dateOfStart + ", hourOfStart=" + hourOfStart + ", duration=" + duration + "]";
 	}
 	
