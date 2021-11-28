@@ -6,7 +6,7 @@ import javax.jdo.Extent;
 import javax.jdo.PersistenceManager;
 import javax.jdo.Query;
 import javax.jdo.Transaction;
-import data.domain.*;
+import data.domain.ChallengeWithDistance;
 
 //This class implements Singleton and DAO patterns
 public class ChallengeWithDistanceDAO extends DataAccessObjectBase implements IDataAccessObject<ChallengeWithDistance> {

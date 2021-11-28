@@ -1,36 +1,19 @@
 package services;
 
 import data.domain.*;
-import data.dao.*;
+import gateway.*;
 
 public class RegisterAppService {
-<<<<<<< Updated upstream
-=======
-
-    //Instance for the Singleton Pattern
-    private static RegisterAppService instance;
-
-    private RegisterAppService() { }
-
-    public static RegisterAppService getInstance() {
-        if (instance == null) {
-            instance = new RegisterAppService();
-        }
-
-        return instance;
-    }
-
-    public PasswordProfile register(String googleOrFacebook, String email, String password) {
+    public boolean register(String googleOrFacebook, String email, String password) {
         //TODO: Get p1 using DAO and check
-        PasswordProfile p1 = PasswordProfileDAO.getInstance().find(email);
+        PasswordProfile p1 = new PasswordProfile();
+        p1.setEmail("thomas.e2001@gmail.com");
+        p1.setNickname("Thomas");
+        //Generate the hash of the password
+        String sha1 = org.apache.commons.codec.digest.DigestUtils.sha1Hex("$!9PhNz,");
+        p1.setPassword(sha1);
 
-        if (p1 == null) {
-            PasswordProfile p2 = new PasswordProfile();
-            p2.setEmail(email);
-            p2.setPassword(password);
-            return p2;
-        }
-        return null;
+        //Se completa el registro si no hay ningun usuario con el mismo mail
+        return !p1.getEmail().equals(email);
     }
->>>>>>> Stashed changes
 }

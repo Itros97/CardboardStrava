@@ -1,12 +1,13 @@
 package data.dao;
 
-import java.util.ArrayList;
-import java.util.List;
+import data.domain.Challenge;
+
 import javax.jdo.Extent;
 import javax.jdo.PersistenceManager;
 import javax.jdo.Query;
 import javax.jdo.Transaction;
-import data.domain.*;
+import java.util.ArrayList;
+import java.util.List;
 
 //This class implements Singleton and DAO patterns
 public class ChallengeDAO extends DataAccessObjectBase implements IDataAccessObject<Challenge> {
