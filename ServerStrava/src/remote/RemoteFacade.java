@@ -1,5 +1,6 @@
 package remote;
 
+import java.io.Serial;
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
 import java.util.List;
@@ -8,6 +9,7 @@ import data.domain.*;
 import services.*;
 
 public class RemoteFacade extends UnicastRemoteObject implements IRemoteFacade {
+    @Serial
     private static final long serialVersionUID = 1L;
 
     //Attribute for the Singleton pattern
@@ -30,12 +32,20 @@ public class RemoteFacade extends UnicastRemoteObject implements IRemoteFacade {
 
     public Profile loginUser(String email, String password) throws RemoteException {
         System.out.println(" * RemoteFacade loginUser: " + email + " / " + password);
+<<<<<<< Updated upstream
         return LoginAppService.getInstace().login(email, password);
+=======
+        return LoginAppService.getInstance().login(email, password);
+>>>>>>> Stashed changes
     }
 
     public Profile registerUser(String GoogleOrFacebook, String email, String password) throws RemoteException {
         System.out.println(" * RemoteFacade registerUser: " + GoogleOrFacebook + " / " + email + " / " + password);
+<<<<<<< Updated upstream
         return RegisterAppService.getInstace().register(GoogleOrFacebook, email, password);
+=======
+        return RegisterAppService.getInstance().register(GoogleOrFacebook, email, password);
+>>>>>>> Stashed changes
     }
 
     public List<TrainingSessionDTO> getTrainingSessions() throws RemoteException {

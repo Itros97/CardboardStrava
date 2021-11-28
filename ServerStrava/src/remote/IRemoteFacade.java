@@ -1,10 +1,14 @@
 package remote;
 
+import data.DTO.ChallengeDTO;
+import data.DTO.TrainingSessionDTO;
+import data.domain.Challenge;
+import data.domain.Profile;
+import data.domain.TrainingSession;
+
 import java.rmi.Remote;
 import java.rmi.RemoteException;
 import java.util.List;
-import data.DTO.*;
-import data.domain.*;
 
 public interface IRemoteFacade extends Remote {
     Profile loginUser(String email, String password) throws RemoteException;
