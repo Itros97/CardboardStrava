@@ -1,7 +1,9 @@
 package data.DTO;
 
-import data.domain.*;
-import data.DTO.*;
+import data.domain.TrainingSession;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class TraininigSessionAssembler {
     private static TraininigSessionAssembler instance;
@@ -29,5 +31,15 @@ public class TraininigSessionAssembler {
         dto.setDuration(ts1.getDuration());
 
         return dto;
+    }
+
+    public List<TrainingSessionDTO> trainingSessionToDTO(List<TrainingSession> tss) {
+        List<TrainingSessionDTO> dtos = new ArrayList<>();
+
+        for (TrainingSession ts : tss) {
+            dtos.add(this.trainingSessionToDTO(ts));
+        }
+
+        return dtos;
     }
 }
