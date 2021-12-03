@@ -8,11 +8,11 @@ import java.util.GregorianCalendar;
 
 public class ProfileFactory {
     public static Profile createProfile(String what) {
+        Date date = new Date();
+        GregorianCalendar gregorianCalendar = new GregorianCalendar();
+        gregorianCalendar.setTime(date);
         if (what.equals("password")) {
             PasswordProfile passwordP = new PasswordProfile();
-            Date date = new Date();
-            GregorianCalendar gregorianCalendar = new GregorianCalendar();
-            gregorianCalendar.setTime(date);
 
             passwordP.setEmail("user@gmail.com");
             passwordP.setPassword("password");
@@ -27,9 +27,6 @@ public class ProfileFactory {
             return passwordP;
         } else {
             Profile p = new Profile();
-            Date date = new Date();
-            GregorianCalendar gregorianCalendar = new GregorianCalendar();
-            gregorianCalendar.setTime(date);
 
             p.setEmail("user@gmail.com");
             p.setNickname("firstuser");
