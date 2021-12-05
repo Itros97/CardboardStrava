@@ -1,7 +1,7 @@
 package gateway;
 
 //Son los import que aparecen en Auctions
-import remote.IGoogle;
+
 import java.rmi.Naming;
 
 

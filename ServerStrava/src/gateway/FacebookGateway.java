@@ -1,7 +1,7 @@
 package gateway;
 
 //Son los import que aparecen en Auctions
-import remote.IFacebook;
+
 import java.rmi.Naming;
 
 public class FacebookGateway {
