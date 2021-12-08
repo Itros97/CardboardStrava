@@ -1,16 +1,12 @@
 package remote;
 
-import data.DTO.ChallengeAssembler;
-import data.DTO.ChallengeDTO;
-import data.DTO.TrainingSessionDTO;
-import data.DTO.TraininigSessionAssembler;
-import data.domain.Challenge;
-import data.domain.Profile;
-import data.domain.TrainingSession;
+import data.DTO.*;
+import data.domain.*;
 import services.*;
 
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
+import java.util.GregorianCalendar;
 import java.util.List;
 
 public class RemoteFacade extends UnicastRemoteObject implements IRemoteFacade {
@@ -79,8 +75,34 @@ public class RemoteFacade extends UnicastRemoteObject implements IRemoteFacade {
         CreateTrainingSessionsAppService.getInstance().createTrainingSession(ts);
     }
 
-    public void createChallenge(Challenge ch) throws RemoteException {
-        System.out.println(" * RemoteFacade createChallenge: " + ch);
-        CreateChallengeAppService.getInstance().createChallenge(ch);
+    public void createChallenge(String typeOfChallenge, String name, GregorianCalendar dateOfStart, GregorianCalendar dateOfEnd, String sport, double objectiveDistance, int objectiveTime) throws RemoteException {
+        ChallengeWithDistance chd = new ChallengeWithDistance();
+        ChallengeWithTime cht = new ChallengeWithTime();
+        Challenge ch = new Challenge();
+
+        if (typeOfChallenge.equals("distance")) {
+            chd.setName(name);
+            chd.setDateOfStart(dateOfStart);
+            chd.setDateOfEnd(dateOfEnd);
+            chd.setSport(sport);
+            chd.setObjectiveDistance(objectiveDistance);
+            System.out.println(" * RemoteFacade createChallengeWithDistance: " + chd);
+            CreateChallengeWithDistanceAppService.getInstance().createChallengeWithDistance(chd);
+        } else if (typeOfChallenge.equals("time")) {
+            cht.setName(name);
+            cht.setDateOfStart(dateOfStart);
+            cht.setDateOfEnd(dateOfEnd);
+            cht.setSport(sport);
+            cht.setObjectiveTime(objectiveTime);
+            System.out.println(" * RemoteFacade createChallengeWithTime: " + cht);
+            CreateChallengeWithTimeAppService.getInstance().createChallengeWithTime(cht);
+        } else {
+            ch.setName(name);
+            ch.setDateOfStart(dateOfStart);
+            ch.setDateOfEnd(dateOfEnd);
+            ch.setSport(sport);
+            System.out.println(" * RemoteFacade createChallenge: " + ch);
+            CreateChallengeAppService.getInstance().createChallenge(ch);
+        }
     }
 }

@@ -2,12 +2,12 @@ package remote;
 
 import data.DTO.ChallengeDTO;
 import data.DTO.TrainingSessionDTO;
-import data.domain.Challenge;
 import data.domain.Profile;
 import data.domain.TrainingSession;
 
 import java.rmi.Remote;
 import java.rmi.RemoteException;
+import java.util.GregorianCalendar;
 import java.util.List;
 
 public interface IRemoteFacade extends Remote {
@@ -21,5 +21,5 @@ public interface IRemoteFacade extends Remote {
 
     void createTrainingSession(TrainingSession ts) throws RemoteException;
 
-    void createChallenge(Challenge ch) throws RemoteException;
+    void createChallenge(String typeOfChallenge, String name, GregorianCalendar dateOfStart, GregorianCalendar dateOfEnd, String sport, double objectiveDistance, int objectiveTime) throws RemoteException;
 }

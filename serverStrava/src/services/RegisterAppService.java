@@ -1,7 +1,6 @@
 package services;
 
 import data.domain.*;
-import gateway.*;
 
 public class RegisterAppService {
     public boolean register(String googleOrFacebook, String email, String password) {

@@ -15,7 +15,7 @@ public class ChallengeDAO extends DataAccessObjectBase implements IDataAccessObj
 
     private ChallengeDAO() { }
 
-    public static ChallengeDAO getInstance() {
+        public static ChallengeDAO getInstance() {
         if (instance == null) {
             instance = new ChallengeDAO();
         }

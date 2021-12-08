@@ -1,12 +1,7 @@
 package services;
 
-import java.rmi.RemoteException;
-import java.util.Calendar;
-
-import data.DTO.ChallengeDTO;
-import data.domain.*;
-import data.dao.*;
-import gateway.*;
+import data.dao.ChallengeDAO;
+import data.domain.Challenge;
 
 public class CreateChallengeAppService {
     //Instance for Singleton Pattern
