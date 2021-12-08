@@ -1,12 +1,13 @@
 package data.dao;
 
-import java.util.ArrayList;
-import java.util.List;
+import data.domain.PasswordProfile;
+
 import javax.jdo.Extent;
 import javax.jdo.PersistenceManager;
 import javax.jdo.Query;
 import javax.jdo.Transaction;
-import data.domain.*;
+import java.util.ArrayList;
+import java.util.List;
 
 //This class implements Singleton and DAO patterns
 public class PasswordProfileDAO extends DataAccessObjectBase implements IDataAccessObject<PasswordProfile> {
@@ -72,7 +73,9 @@ public class PasswordProfileDAO extends DataAccessObjectBase implements IDataAcc
         try {
             tx.begin();
 
-            Query<?> query = pm.newQuery("SELECT FROM " + PasswordProfile.class.getEmail() + " WHERE email == " + email);
+            PasswordProfile pp = new PasswordProfile();
+
+            Query<?> query = pm.newQuery("SELECT FROM " + pp.getEmail() + " WHERE email == " + email);
             query.setUnique(true);
             result = (PasswordProfile) query.execute();
 

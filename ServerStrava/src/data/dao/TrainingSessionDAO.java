@@ -1,12 +1,13 @@
 package data.dao;
 
-import java.util.ArrayList;
-import java.util.List;
+import data.domain.TrainingSession;
+
 import javax.jdo.Extent;
 import javax.jdo.PersistenceManager;
 import javax.jdo.Query;
 import javax.jdo.Transaction;
-import data.domain.*;
+import java.util.ArrayList;
+import java.util.List;
 
 //This class implements Singleton and DAO patterns
 public class TrainingSessionDAO extends DataAccessObjectBase implements IDataAccessObject<TrainingSession> {
@@ -72,7 +73,10 @@ public class TrainingSessionDAO extends DataAccessObjectBase implements IDataAcc
         try {
             tx.begin();
 
-            Query<?> query = pm.newQuery("SELECT FROM " + TrainingSession.class.getTitle() + " WHERE title == " + title);
+            TrainingSession ts = new TrainingSession();
+            ts.setTitle(title);
+
+            Query<?> query = pm.newQuery("SELECT FROM " + ts.getTitle() + " WHERE title == " + title);
             query.setUnique(true);
             result = (TrainingSession) query.execute();
 

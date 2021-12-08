@@ -1,14 +1,13 @@
-package gateway;
+/*package gateway;
 
 //Son los import que aparecen en Auctions
-import remote.IFacebook;
 import java.rmi.Naming;
 
-public class FacebookGateway {
-    public static FacebookGateway instance;
+public class FacebookGatewayFALSO {
+    public static FacebookGatewayFALSO instance;
     private IFacebook facebookService;
 
-    private FacebookGateway() {
+    private FacebookGatewayFALSO() {
         try {
             //¿Qué URL hay que poner?
             String URL = "";
@@ -18,9 +17,9 @@ public class FacebookGateway {
         }
     }
 
-    public static FacebookGateway getInstance() {
+    public static FacebookGatewayFALSO getInstance() {
         if (instance == null) {
-            instance = new FacebookGateway();
+            instance = new FacebookGatewayFALSO();
         }
 
         return instance;
@@ -48,3 +47,4 @@ public class FacebookGateway {
 
 
 }
+*/
