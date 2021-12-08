@@ -14,6 +14,8 @@ public class Profile {
 	private int reposeHeartRate;
 	private String registerType;
 
+
+
 	public String getNickname() {
 		return nickname;
 	}

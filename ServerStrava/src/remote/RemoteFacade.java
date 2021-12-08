@@ -1,11 +1,17 @@
 package remote;
 
+import data.DTO.ChallengeAssembler;
+import data.DTO.ChallengeDTO;
+import data.DTO.TrainingSessionDTO;
+import data.DTO.TraininigSessionAssembler;
+import data.domain.Challenge;
+import data.domain.Profile;
+import data.domain.TrainingSession;
+import services.*;
+
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
 import java.util.List;
-import data.DTO.*;
-import data.domain.*;
-import services.*;
 
 public class RemoteFacade extends UnicastRemoteObject implements IRemoteFacade {
     private static final long serialVersionUID = 1L;
