@@ -1,12 +1,13 @@
 package data.dao;
 
-import java.util.ArrayList;
-import java.util.List;
+import data.domain.ChallengeWithDistance;
+
 import javax.jdo.Extent;
 import javax.jdo.PersistenceManager;
 import javax.jdo.Query;
 import javax.jdo.Transaction;
-import data.domain.ChallengeWithDistance;
+import java.util.ArrayList;
+import java.util.List;
 
 //This class implements Singleton and DAO patterns
 public class ChallengeWithDistanceDAO extends DataAccessObjectBase implements IDataAccessObject<ChallengeWithDistance> {
@@ -50,7 +51,7 @@ public class ChallengeWithDistanceDAO extends DataAccessObjectBase implements ID
 
             tx.commit();
         } catch (Exception ex) {
-            System.out.println("  $ Error retrieving all the Articles: " + ex.getMessage());
+            System.out.println("  $ Error retrieving all the Challenges: " + ex.getMessage());
         } finally {
             if (tx != null && tx.isActive()) {
                 tx.rollback();
@@ -78,7 +79,7 @@ public class ChallengeWithDistanceDAO extends DataAccessObjectBase implements ID
 
             tx.commit();
         } catch (Exception ex) {
-            System.out.println("  $ Error querying an Article: " + ex.getMessage());
+            System.out.println("  $ Error querying an Challenge: " + ex.getMessage());
         } finally {
             if (tx != null && tx.isActive()) {
                 tx.rollback();

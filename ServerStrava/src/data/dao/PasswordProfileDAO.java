@@ -51,7 +51,7 @@ public class PasswordProfileDAO extends DataAccessObjectBase implements IDataAcc
 
             tx.commit();
         } catch (Exception ex) {
-            System.out.println("  $ Error retrieving all the Articles: " + ex.getMessage());
+            System.out.println("  $ Error retrieving all the PasswordProfiles: " + ex.getMessage());
         } finally {
             if (tx != null && tx.isActive()) {
                 tx.rollback();
@@ -81,7 +81,7 @@ public class PasswordProfileDAO extends DataAccessObjectBase implements IDataAcc
 
             tx.commit();
         } catch (Exception ex) {
-            System.out.println("  $ Error querying an Article: " + ex.getMessage());
+            System.out.println("  $ Error querying an PasswordProfile: " + ex.getMessage());
         } finally {
             if (tx != null && tx.isActive()) {
                 tx.rollback();

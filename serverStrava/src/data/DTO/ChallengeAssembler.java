@@ -25,6 +25,7 @@ public class ChallengeAssembler {
         dto.setDateOfStart(ch1.getDateOfStart());
         dto.setDateOfEnd(ch1.getDateOfEnd());
         dto.setSport(ch1.getSport());
+        dto.setAccepted(ch1.isAccepted());
 
         return dto;
     }

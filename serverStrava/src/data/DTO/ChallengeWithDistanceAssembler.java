@@ -26,6 +26,7 @@ public class ChallengeWithDistanceAssembler {
         dto.setDateOfEnd(ch1.getDateOfEnd());
         dto.setSport(ch1.getSport());
         dto.setObjectiveDistance(ch1.getObjectiveDistance());
+        dto.setAccepted(ch1.isAccepted());
 
         return dto;
     }

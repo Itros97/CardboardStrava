@@ -51,7 +51,7 @@ public class TrainingSessionDAO extends DataAccessObjectBase implements IDataAcc
 
             tx.commit();
         } catch (Exception ex) {
-            System.out.println("  $ Error retrieving all the Articles: " + ex.getMessage());
+            System.out.println("  $ Error retrieving all the TrainingSessions: " + ex.getMessage());
         } finally {
             if (tx != null && tx.isActive()) {
                 tx.rollback();
@@ -82,7 +82,7 @@ public class TrainingSessionDAO extends DataAccessObjectBase implements IDataAcc
 
             tx.commit();
         } catch (Exception ex) {
-            System.out.println("  $ Error querying an Article: " + ex.getMessage());
+            System.out.println("  $ Error querying an TrainingSession: " + ex.getMessage());
         } finally {
             if (tx != null && tx.isActive()) {
                 tx.rollback();

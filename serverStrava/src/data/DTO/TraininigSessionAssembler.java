@@ -29,6 +29,7 @@ public class TraininigSessionAssembler {
         dto.setDateOfStart(ts1.getDateOfStart());
         dto.setHourOfStart(ts1.getHourOfStart());
         dto.setDuration(ts1.getDuration());
+        dto.setAccepted(ts1.isAccepted());
 
         return dto;
     }
