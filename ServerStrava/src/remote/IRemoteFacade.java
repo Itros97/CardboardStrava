@@ -3,7 +3,6 @@ package remote;
 import data.DTO.ChallengeDTO;
 import data.DTO.TrainingSessionDTO;
 import data.domain.Profile;
-import data.domain.TrainingSession;
 
 import java.rmi.Remote;
 import java.rmi.RemoteException;
@@ -15,11 +14,21 @@ public interface IRemoteFacade extends Remote {
 
     boolean registerUser(String GoogleOrFacebook, String email, String password) throws RemoteException;
 
+    void acceptTrainingSession(String title) throws RemoteException;
+
+    void acceptChallenge(String name) throws RemoteException;
+
     List<TrainingSessionDTO> getTrainingSessions() throws RemoteException;
+
+    List<TrainingSessionDTO> getAcceptedTrainingSessions() throws RemoteException;
 
     List<ChallengeDTO> getChallenges() throws RemoteException;
 
-    void createTrainingSession(TrainingSession ts) throws RemoteException;
+    List<ChallengeDTO> getUnfinishedChallenges() throws RemoteException;
+
+    List<ChallengeDTO> getAcceptedChallenges() throws RemoteException;
+
+    void createTrainingSession(String title, String sport, double distance, GregorianCalendar dateOfStart, GregorianCalendar hourOfStart, double duration) throws RemoteException;
 
     void createChallenge(String typeOfChallenge, String name, GregorianCalendar dateOfStart, GregorianCalendar dateOfEnd, String sport, double objectiveDistance, int objectiveTime) throws RemoteException;
 }

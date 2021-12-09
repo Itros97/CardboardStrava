@@ -1,11 +1,15 @@
 package remote;
 
-import data.DTO.*;
+import data.DTO.ChallengeAssembler;
+import data.DTO.ChallengeDTO;
+import data.DTO.TrainingSessionDTO;
+import data.DTO.TraininigSessionAssembler;
 import data.domain.*;
 import services.*;
 
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
+import java.time.LocalDate;
 import java.util.GregorianCalendar;
 import java.util.List;
 
@@ -42,6 +46,16 @@ public class RemoteFacade extends UnicastRemoteObject implements IRemoteFacade {
         return registerS.register(GoogleOrFacebook, email, password);
     }
 
+    public void acceptTrainingSession(String title) throws RemoteException {
+        System.out.println(" * RemoteFacade acceptTrainingSession: " + title);
+        AcceptTrainingSessionAppService.getInstance().accept(title);
+    }
+
+    public void acceptChallenge(String name) throws RemoteException {
+        System.out.println(" * RemoteFacade acceptChallenge: " + name);
+        AcceptChallengeAppService.getInstance().accept(name);
+    }
+
     public List<TrainingSessionDTO> getTrainingSessions() throws RemoteException {
         System.out.println(" * RemoteFacade getTrainingSessions: ");
 
@@ -56,10 +70,25 @@ public class RemoteFacade extends UnicastRemoteObject implements IRemoteFacade {
         }
     }
 
+    public List<TrainingSessionDTO> getAcceptedTrainingSessions() throws RemoteException {
+        System.out.println(" * RemoteFacade getAcceptedTrainingSessions: ");
+
+        //Get TrainingSessions using GetTrainingSessionsAppService
+        List<TrainingSession> ts = GetTrainingSessionsAppService.getInstance().getTrainingSessions();
+
+        ts.removeIf(t -> !t.isAccepted());
+
+        if (ts != null) {
+            //Convert domain object to DTO
+            return TraininigSessionAssembler.getInstance().trainingSessionToDTO(ts);
+        } else {
+            throw new RemoteException("getAcceptedTrainingSessions() fails!");
+        }
+    }
+
     public List<ChallengeDTO> getChallenges() throws RemoteException {
         System.out.println(" * RemoteFacade getChallenges: ");
 
-        //Get TrainingSessions using GetTrainingSessionsAppService
         List<Challenge> ch = GetChallengesAppService.getInstance().getChallenges();
 
         if (ch != null) {
@@ -70,7 +99,46 @@ public class RemoteFacade extends UnicastRemoteObject implements IRemoteFacade {
         }
     }
 
-    public void createTrainingSession(TrainingSession ts) throws RemoteException {
+    public List<ChallengeDTO> getUnfinishedChallenges() throws RemoteException {
+        System.out.println(" * RemoteFacade getUnfinishedChallenges: ");
+
+        List<Challenge> chs = GetChallengesAppService.getInstance().getChallenges();
+
+        LocalDate todaysDate = LocalDate.now();
+        if (chs != null) {
+            chs.removeIf(ch -> ch.getDateOfEnd().after(todaysDate));
+
+            //Convert domain object to DTO
+            return ChallengeAssembler.getInstance().challengeToDTO(chs);
+        } else {
+            throw new RemoteException("getUnfinishedChallenges() fails!");
+        }
+    }
+
+    public List<ChallengeDTO> getAcceptedChallenges() throws RemoteException {
+        System.out.println(" * RemoteFacade getChallenges: ");
+
+        List<Challenge> ch = GetChallengesAppService.getInstance().getChallenges();
+
+        ch.removeIf(c -> !c.isAccepted());
+
+        if (ch != null) {
+            //Convert domain object to DTO
+            return ChallengeAssembler.getInstance().challengeToDTO(ch);
+        } else {
+            throw new RemoteException("getChallenges() fails!");
+        }
+    }
+
+    public void createTrainingSession(String title, String sport, double distance, GregorianCalendar dateOfStart, GregorianCalendar hourOfStart, double duration) throws RemoteException {
+        TrainingSession ts = new TrainingSession();
+        ts.setTitle(title);
+        ts.setSport(sport);
+        ts.setDistance(distance);
+        ts.setDateOfStart(dateOfStart);
+        ts.setHourOfStart(hourOfStart);
+        ts.setDuration(duration);
+
         System.out.println(" * RemoteFacade createTrainingSession: " + ts);
         CreateTrainingSessionsAppService.getInstance().createTrainingSession(ts);
     }

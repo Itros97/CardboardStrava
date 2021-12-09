@@ -1,8 +1,11 @@
 package controller;
 
+import data.DTO.TrainingSessionDTO;
 import remote.ServiceLocator;
+
 import java.rmi.RemoteException;
-import data.DTO.*;
+import java.util.GregorianCalendar;
+import java.util.List;
 
 public class TrainingSessionController {
 
@@ -13,20 +16,38 @@ public class TrainingSessionController {
         this.serviceLocator = serviceLocator;
     }
 
-    public showTrainingSessions() {
-
+    public void acceptTrainingSession(String title) {
+        try {
+            this.serviceLocator.getService().acceptTrainingSession(title);
+        } catch (RemoteException e) {
+            System.out.println("# Error accepting training session: " + e);
+        }
     }
 
-    public recoverRegisteredActivities() {
-
+    public List<TrainingSessionDTO> getTrainingSessions() {
+        try {
+            return this.serviceLocator.getService().getTrainingSessions();
+        } catch (RemoteException e) {
+            System.out.println("# Error getting all training sessions: " + e);
+            return null;
+        }
     }
 
-    public returnInformation() {
-
+    public List<TrainingSessionDTO> getAcceptedTrainingSessions() {
+        try {
+            return this.serviceLocator.getService().getAcceptedTrainingSessions();
+        } catch (RemoteException e) {
+            System.out.println("# Error getting accepted training sessions: " + e);
+            return null;
+        }
     }
 
-    public createTrainingSession(ServiceLocator si, TrainingSession ts) {
-
+    public void createTrainingSession(String title, String sport, double distance, GregorianCalendar dateOfStart, GregorianCalendar hourOfStart, double duration) {
+        try {
+            this.serviceLocator.getService().createTrainingSession(title, sport, distance, dateOfStart, hourOfStart, duration);
+        } catch (RemoteException e) {
+            System.out.println("# Error creating a training session: " + e);
+        }
     }
 
 }
