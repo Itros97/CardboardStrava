@@ -1,5 +1,8 @@
 package data.domain;
 
+import javax.jdo.annotations.PersistenceCapable;
+
+@PersistenceCapable
 public class PasswordProfile extends Profile {
     private String password;
 

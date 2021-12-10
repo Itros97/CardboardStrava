@@ -1,55 +1,43 @@
-package remote;
+/*package remote;
 
-import java.io.BufferedReader;
-import java.io.InputStreamReader;
-import java.net.HttpURLConnection;
-import java.net.URL;
-import java.rmi.RemoteException;
-import java.rmi.server.UnicastRemoteObject;
+import java.io.DataInputStream;
+import java.io.DataOutputStream;
+import java.net.Socket;
 
-public class FacebookService extends UnicastRemoteObject implements IFacebook {
-    private static final long serialVersionUID = 1L;
+public class FacebookService extends Thread {
+    private DataInputStream in;
+    private DataOutputStream out;
+    private Socket tcpSocket;
 
-    protected static final String URL = "https://free.currconv.com/api/v7/convert?q=USD_EUR,GBP_EUR&compact=ultra&apiKey=d4f1b436d25d00b16f3f";
-
-    //Attribute for the Singleton pattern
-    public static FacebookService instance;
-
-    private FacebookService() throws RemoteException {
-        super();
-        connectToServer();
-    }
-
-    public static FacebookService getInstance() {
-        if (instance == null) {
-            try {
-                instance = new FacebookService();
-            } catch(Exception ex) {
-                System.err.println("  # Error initializing service(): " + ex.getMessage());
-            }
-        }
-
-        return instance;
-    }
-
-    private static final void connectToServer() {
-        System.out.println(" - Connecting to 'free.currconv.com'....");
-
+    public FacebookService(Socket socket) {
         try {
-            HttpURLConnection con = (HttpURLConnection) (new URL(URL).openConnection());
-            con.setRequestProperty("User-Agent", "Mozilla/5.0");
-            BufferedReader in = new BufferedReader(new InputStreamReader(con.getInputStream()));
+            this.tcpSocket = socket;
+            this.in = new DataInputStream(socket.getInputStream());
+            this.out = new DataOutputStream(socket.getOutputStream());
+            this.start();
+        } catch (Exception e) {
+            System.out.println("# FacebookService - TCPConnection IO error:" + e.getMessage());
+        }
+    }
 
-            String inputLine;
-            StringBuffer response = new StringBuffer();
+    public void run() {
+        //Facebook server
+        try {
+            //Read request from the client
+            String data = this.in.readUTF();
+            System.out.println("   - FacebookService - Received data from '" + tcpSocket.getInetAddress().getHostAddress() + ":" + tcpSocket.getPort() + "' -> '" + data + "'");
 
-            while ((inputLine = in.readLine()) != null) {
-                response.append(inputLine);
+            //Send response to the client
+            this.out.writeUTF(data.toUpperCase());
+            System.out.println("   - FacebookService - Sent data to '" + tcpSocket.getInetAddress().getHostAddress() + ":" + tcpSocket.getPort() + "' -> '" + data.toUpperCase() + "'");
+        } catch (Exception e) {
+            System.out.println("   # FacebookService error" + e.getMessage());
+        } finally {
+            try {
+                tcpSocket.close();
+            } catch (Exception e) {
+                System.out.println("   # FacebookService error:" + e.getMessage());
             }
-
-            con.disconnect();
-        } catch(Exception ex) {
-            System.out.println("  # Error connecting to server(): " + ex.getMessage());
         }
     }
 
@@ -100,4 +88,4 @@ public class FacebookService extends UnicastRemoteObject implements IFacebook {
             System.out.println("  # Register error: " + ex.getMessage());
         }
     }
-}
+}*/
