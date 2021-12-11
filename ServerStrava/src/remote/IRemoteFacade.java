@@ -2,7 +2,7 @@ package remote;
 
 import data.DTO.ChallengeDTO;
 import data.DTO.TrainingSessionDTO;
-import data.domain.Profile;
+import data.domain.PasswordProfile;
 
 import java.rmi.Remote;
 import java.rmi.RemoteException;
@@ -10,9 +10,9 @@ import java.util.GregorianCalendar;
 import java.util.List;
 
 public interface IRemoteFacade extends Remote {
-    Profile loginUser(String email, String password) throws RemoteException;
+    boolean loginUser(String googleOrFacebook, String email, String password) throws RemoteException;
 
-    boolean registerUser(String GoogleOrFacebook, String email, String password) throws RemoteException;
+    void registerUser(String GoogleOrFacebook, PasswordProfile pp) throws RemoteException;
 
     void acceptTrainingSession(String title) throws RemoteException;
 

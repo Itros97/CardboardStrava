@@ -1,18 +1,37 @@
 package services;
 
-import data.domain.*;
+import data.dao.PasswordProfileDAO;
+import data.domain.PasswordProfile;
+import gateway.GoogleGateway;
 
 public class RegisterAppService {
-    public boolean register(String googleOrFacebook, String email, String password) {
-        //TODO: Get p1 using DAO and check
-        PasswordProfile p1 = new PasswordProfile();
-        p1.setEmail("thomas.e2001@gmail.com");
-        p1.setNickname("Thomas");
-        //Generate the hash of the password
-        String sha1 = org.apache.commons.codec.digest.DigestUtils.sha1Hex("$!9PhNz,");
-        p1.setPassword(sha1);
+    //Instance for Singleton Pattern
+    private static RegisterAppService instance;
 
-        //Se completa el registro si no hay ningun usuario con el mismo mail
-        return !p1.getEmail().equals(email);
+    public RegisterAppService() { }
+
+    public static RegisterAppService getInstance() {
+        if (instance == null) {
+            instance = new RegisterAppService();
+        }
+
+        return instance;
+    }
+
+    public void register(String googleOrFacebook, PasswordProfile pp) {
+        if (googleOrFacebook.equals("google")) {
+            if (pp.getEmail() != null && pp.getPassword() != null) {
+                GoogleGateway.getInstance().register(pp);
+            }
+        } else if (googleOrFacebook.equals("facebook")) {
+            if (pp.getEmail() != null && pp.getPassword() != null) {
+                //FacebookGateway.getInstance().register(pp);
+            }
+        } else {
+            if (pp.getEmail() != null && pp.getPassword() != null) {
+                //Save the PasswordProfile in the DB using DAO Pattern
+                PasswordProfileDAO.getInstance().save(pp);
+            }
+        }
     }
 }

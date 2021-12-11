@@ -1,22 +1,45 @@
 package services;
 
-import data.domain.*;
+import data.dao.PasswordProfileDAO;
+import data.domain.PasswordProfile;
+import gateway.GoogleGateway;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class LoginAppService {
+    //Instance for Singleton Pattern
+    private static LoginAppService instance;
 
-    public PasswordProfile login(String email, String password) {
-        //TODO: Get p1 using DAO and check 		
-        PasswordProfile p1 = new PasswordProfile();
-        p1.setEmail("thomas.e2001@gmail.com");
-        p1.setNickname("Thomas");
-        //Generate the hash of the password
-        String sha1 = org.apache.commons.codec.digest.DigestUtils.sha1Hex("$!9PhNz,");
-        p1.setPassword(sha1);
+    public LoginAppService() { }
 
-        if (p1.getEmail().equals(email) && p1.getPassword().equals(password)) {
-            return p1;
-        } else {
-            return null;
+    public static LoginAppService getInstance() {
+        if (instance == null) {
+            instance = new LoginAppService();
         }
+
+        return instance;
+    }
+
+    public boolean login(String googleOrFacebook, String email, String password) {
+        if (googleOrFacebook.equals("google")) {
+            if (email != null) {
+                return GoogleGateway.getInstance().login(email, password);
+            }
+        } else if (googleOrFacebook.equals("facebook")) {
+            if (email != null) {
+                return GoogleGateway.getInstance().login(email, password);
+            }
+        } else {
+            List<PasswordProfile> profiles = new ArrayList<PasswordProfile>();
+            profiles = PasswordProfileDAO.getInstance().getAll();
+                for (PasswordProfile pro : profiles) {
+                    if (pro.getEmail().equals(email) && pro.getPassword().equals(password)) {
+                        //El token que tiene que devolverse
+                        return true;
+                    }
+                }
+        }
+        return false;
     }
 }

@@ -6,6 +6,7 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
+import java.util.GregorianCalendar;
 
 public class GoogleService extends UnicastRemoteObject implements IGoogle {
     private static final long serialVersionUID = 1L;
@@ -31,7 +32,7 @@ public class GoogleService extends UnicastRemoteObject implements IGoogle {
         super();
     }
 
-    public boolean login(String username, String password) throws RemoteException {
+    public boolean login(String email, String password) throws RemoteException {
         System.out.println(" - Logging in 'COLOCAR AQUI UN LINK'....");
 
         try {
@@ -58,7 +59,10 @@ public class GoogleService extends UnicastRemoteObject implements IGoogle {
         }
     }
 
-    public void register(String username) throws RemoteException {
+    public void register(String email, String nickname, GregorianCalendar birthdate,
+                         double weightKg, int heightCm, int maximumHeartRate,
+                         int reposeHeartRate
+    ) throws RemoteException {
         System.out.println(" - Registering in 'COLOCAR AQUI UN LINK'....");
 
         try {

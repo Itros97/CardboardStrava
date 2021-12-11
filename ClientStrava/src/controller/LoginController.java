@@ -13,9 +13,9 @@ public class LoginController {
         this.serviceLocator = serviceLocator;
     }
 
-    public boolean login(String email, String password) {
+    public boolean login(String googleOrFacebook, String email, String password) {
         try {
-            this.serviceLocator.getService().loginUser(email, password);
+            this.serviceLocator.getService().loginUser(googleOrFacebook, email, password);
             return true;
         } catch (RemoteException e) {
             System.out.println("# Error during login: " + e);
@@ -23,7 +23,7 @@ public class LoginController {
         }
     }
 
-    //Sin usar
+    //Por hacer
     /*public void logout() {
         try {
             this.serviceLocator.getService().logout(this.token);

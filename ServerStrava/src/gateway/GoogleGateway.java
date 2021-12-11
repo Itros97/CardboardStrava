@@ -1,5 +1,6 @@
 package gateway;
 
+import data.domain.PasswordProfile;
 import rmiremote.IGoogle;
 
 import java.rmi.Naming;
@@ -38,11 +39,11 @@ public class GoogleGateway {
         }
     }
 
-    public void register(String username) {
+    public void register(PasswordProfile pp) {
         System.out.println("   - Register with Google Gateway");
 
         try {
-            this.googleService.register(username);
+            this.googleService.register(pp.getEmail(), pp.getNickname(), pp.getBirthdate(), pp.getWeightKg(), pp.getHeightCm(), pp.getReposeHeartRate(), pp.getMaximumHeartRate());
         } catch (Exception ex) {
             System.out.println("   $ Register error: " + ex.getMessage());
         }

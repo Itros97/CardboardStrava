@@ -1,5 +1,6 @@
 package controller;
 
+import data.domain.PasswordProfile;
 import remote.ServiceLocator;
 
 import java.rmi.RemoteException;
@@ -14,9 +15,9 @@ public class RegisterController {
         this.serviceLocator = serviceLocator;
     }
 
-    public boolean register(String googleOrFacebook, String email, String password) {
+    public boolean register(String GoogleOrFacebook, PasswordProfile pp) {
         try {
-            this.serviceLocator.getService().registerUser(googleOrFacebook, email, password);
+            this.serviceLocator.getService().registerUser(GoogleOrFacebook, pp);
             return true;
         } catch (RemoteException e) {
             System.out.println("# Error during register: " + e);

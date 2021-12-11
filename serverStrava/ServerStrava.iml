@@ -12,5 +12,7 @@
     <orderEntry type="module" module-name="Google" />
     <orderEntry type="library" name="datanucleus-api-jdo-5.2.2" level="project" />
     <orderEntry type="library" name="commons-codec-1.15 (2)" level="project" />
+    <orderEntry type="library" name="Google" level="project" />
+    <orderEntry type="library" name="Google (2)" level="project" />
   </component>
 </module>

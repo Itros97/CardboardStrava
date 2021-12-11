@@ -34,16 +34,16 @@ public class RemoteFacade extends UnicastRemoteObject implements IRemoteFacade {
         return instance;
     }
 
-    public Profile loginUser(String email, String password) throws RemoteException {
+    public boolean loginUser(String googleOrFacebook, String email, String password) throws RemoteException {
         System.out.println(" * RemoteFacade loginUser: " + email + " / " + password);
         LoginAppService loginS = new LoginAppService();
-        return loginS.login(email, password);
+        return loginS.login(googleOrFacebook, email, password);
     }
 
-    public boolean registerUser(String GoogleOrFacebook, String email, String password) throws RemoteException {
-        System.out.println(" * RemoteFacade registerUser: " + GoogleOrFacebook + " / " + email + " / " + password);
+    public void registerUser(String GoogleOrFacebook, PasswordProfile pp) throws RemoteException {
+        System.out.println(" * RemoteFacade registerUser: " + GoogleOrFacebook + " / " + pp.getEmail() + " / " + pp.getPassword());
         RegisterAppService registerS = new RegisterAppService();
-        return registerS.register(GoogleOrFacebook, email, password);
+        registerS.register(GoogleOrFacebook, pp);
     }
 
     public void acceptTrainingSession(String title) throws RemoteException {
