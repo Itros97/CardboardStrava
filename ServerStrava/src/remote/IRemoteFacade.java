@@ -14,6 +14,8 @@ public interface IRemoteFacade extends Remote {
 
     void registerUser(PasswordProfile pp) throws RemoteException;
 
+    void logout(long token) throws RemoteException;
+
     void acceptTrainingSession(String title) throws RemoteException;
 
     void acceptChallenge(String name) throws RemoteException;

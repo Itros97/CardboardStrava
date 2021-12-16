@@ -11,10 +11,15 @@ import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
 import java.time.LocalDate;
 import java.util.GregorianCalendar;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class RemoteFacade extends UnicastRemoteObject implements IRemoteFacade {
     private static final long serialVersionUID = 1L;
+
+    //Data structure for manage Server State
+    public Map<Long, Profile> serverState = new HashMap<>();
 
     //Attribute for the Singleton pattern
     private static RemoteFacade instance;
@@ -34,6 +39,7 @@ public class RemoteFacade extends UnicastRemoteObject implements IRemoteFacade {
         return instance;
     }
 
+    //Hay que implementar aqui y en otras partes de la facade el token
     public boolean loginUser(String googleOrFacebook, String email, String password) throws RemoteException {
         System.out.println(" * RemoteFacade loginUser: " + email + " / " + password);
         LoginAppService loginS = new LoginAppService();
@@ -44,6 +50,18 @@ public class RemoteFacade extends UnicastRemoteObject implements IRemoteFacade {
         System.out.println(" * RemoteFacade registerUser: " + pp.getRegisterType() + " / " + pp.getEmail() + " / " + pp.getPassword());
         RegisterAppService registerS = new RegisterAppService();
         registerS.register(pp);
+    }
+
+    public void logout(long token) throws RemoteException {
+        System.out.println(" * RemoteFacade logout: " + token);
+
+        if (this.serverState.containsKey(token)) {
+            token = -1;
+            //Logout means remove the User from Server State
+            this.serverState.remove(token);
+        } else {
+            throw new RemoteException("Profile is not logged in!");
+        }
     }
 
     public void acceptTrainingSession(String title) throws RemoteException {

@@ -18,12 +18,12 @@ public class RegisterAppService {
         return instance;
     }
 
-    public void register(String googleOrFacebook, PasswordProfile pp) {
-        if (googleOrFacebook.equals("google")) {
+    public void register(PasswordProfile pp) {
+        if (pp.getRegisterType().equals("Google")) {
             if (pp.getEmail() != null && pp.getPassword() != null) {
                 GoogleGateway.getInstance().register(pp);
             }
-        } else if (googleOrFacebook.equals("facebook")) {
+        } else if (pp.getRegisterType().equals("Facebook")) {
             if (pp.getEmail() != null && pp.getPassword() != null) {
                 //FacebookGateway.getInstance().register(pp);
             }
