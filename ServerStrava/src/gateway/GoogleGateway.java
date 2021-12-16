@@ -43,7 +43,7 @@ public class GoogleGateway {
         System.out.println("   - Register with Google Gateway");
 
         try {
-            this.googleService.register(pp.getEmail(), pp.getNickname(), pp.getBirthdate(), pp.getWeightKg(), pp.getHeightCm(), pp.getReposeHeartRate(), pp.getMaximumHeartRate());
+            this.googleService.register(pp.getEmail(), pp.getNickname(), pp.getBirthdate(), pp.getWeightKg(), pp.getHeightCm(), pp.getReposeHeartRate(), pp.getMaximumHeartRate(), pp.getRegisterType());
         } catch (Exception ex) {
             System.out.println("   $ Register error: " + ex.getMessage());
         }

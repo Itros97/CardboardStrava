@@ -12,7 +12,7 @@ import java.util.List;
 public interface IRemoteFacade extends Remote {
     boolean loginUser(String googleOrFacebook, String email, String password) throws RemoteException;
 
-    void registerUser(String GoogleOrFacebook, PasswordProfile pp) throws RemoteException;
+    void registerUser(PasswordProfile pp) throws RemoteException;
 
     void acceptTrainingSession(String title) throws RemoteException;
 

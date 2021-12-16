@@ -61,7 +61,7 @@ public class GoogleService extends UnicastRemoteObject implements IGoogle {
 
     public void register(String email, String nickname, GregorianCalendar birthdate,
                          double weightKg, int heightCm, int maximumHeartRate,
-                         int reposeHeartRate
+                         int reposeHeartRate, String googleOrFacebook
     ) throws RemoteException {
         System.out.println(" - Registering in 'COLOCAR AQUI UN LINK'....");
 
