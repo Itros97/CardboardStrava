@@ -2,7 +2,7 @@ package controller;
 
 import java.rmi.RemoteException;
 
-import es.deusto.ingenieria.sd.auctions.client.remote.ServiceLocator;
+import remote.ServiceLocator;
 
 //This class implements Controller pattern.
 public class LoginController {
