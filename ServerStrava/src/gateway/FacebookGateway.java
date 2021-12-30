@@ -1,13 +1,14 @@
 package gateway;
 
-import data.domain.PasswordProfile;
-
 import java.io.DataOutputStream;
 import java.net.Socket;
 
 public class FacebookGateway {
 
     private static FacebookGateway instance;
+    //El puerto creo que esta bien escrito, pero no se si la IP se escribe asi
+    String serverIP = "127.0.0.1";
+    int serverPort = 8001;
 
     public static FacebookGateway getInstance() {
         if(instance == null) {
@@ -16,15 +17,6 @@ public class FacebookGateway {
 
         return instance;
     }
-
-    if (args.length < 3) {
-        System.err.println(" # Usage: TCPSocketClient [SERVER IP] [PORT] [MESSAGE]");
-        System.exit(1);
-    }
-    //args[0] = Server IP
-    String serverIP = args[0];
-    //args[1] = Server socket port
-    int serverPort = Integer.parseInt(args[1]);
 
     //Se pasan parametros a login y a register
     public boolean login(String email) {
