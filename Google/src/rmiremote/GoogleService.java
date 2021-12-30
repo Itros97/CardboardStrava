@@ -6,7 +6,6 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
-import java.util.GregorianCalendar;
 
 public class GoogleService extends UnicastRemoteObject implements IGoogle {
     private static final long serialVersionUID = 1L;
@@ -32,7 +31,7 @@ public class GoogleService extends UnicastRemoteObject implements IGoogle {
         super();
     }
 
-    public boolean login(String email, String password) throws RemoteException {
+    public boolean login(String email) throws RemoteException {
         System.out.println(" - Logging in 'COLOCAR AQUI UN LINK'....");
 
         try {
@@ -50,16 +49,14 @@ public class GoogleService extends UnicastRemoteObject implements IGoogle {
             con.disconnect();
             return true;
 
-            //inputLine = response.toString();
-            //USD_RATE = Float.parseFloat(inputLine.substring(inputLine.indexOf(":")+1, inputLine.indexOf(",")));
-            //GBP_RATE = Float.parseFloat(inputLine.substring(inputLine.lastIndexOf(":")+1, inputLine.indexOf("}")));
-        } catch(Exception ex) {
-            System.out.println("  # Error in the login(): " + ex.getMessage());
-            return false;
+            } catch(Exception ex) {
+                System.out.println("  # Error in the login(): " + ex.getMessage());
+                return false;
         }
     }
 
-    public void register(String email, String nickname, GregorianCalendar birthdate,
+    //ANTIGUO
+    /*public void register(String email, String nickname, GregorianCalendar birthdate,
                          double weightKg, int heightCm, int maximumHeartRate,
                          int reposeHeartRate, String googleOrFacebook
     ) throws RemoteException {
@@ -78,13 +75,9 @@ public class GoogleService extends UnicastRemoteObject implements IGoogle {
             }
 
             con.disconnect();
-
-            //inputLine = response.toString();
-            //USD_RATE = Float.parseFloat(inputLine.substring(inputLine.indexOf(":")+1, inputLine.indexOf(",")));
-            //GBP_RATE = Float.parseFloat(inputLine.substring(inputLine.lastIndexOf(":")+1, inputLine.indexOf("}")));
         } catch(Exception ex) {
             System.out.println("  # Error in the register(): " + ex.getMessage());
         }
-    }
+    }*/
 
 }

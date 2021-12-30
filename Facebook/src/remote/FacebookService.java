@@ -1,10 +1,10 @@
-/*package remote;
+package remote;
 
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.net.Socket;
 
-public class FacebookService extends Thread {
+public class FacebookService extends Thread implements IFacebook {
     private DataInputStream in;
     private DataOutputStream out;
     private Socket tcpSocket;
@@ -20,7 +20,7 @@ public class FacebookService extends Thread {
         }
     }
 
-    public void run() {
+    public boolean login(String email, String password) {
         //Facebook server
         try {
             //Read request from the client
@@ -39,53 +39,7 @@ public class FacebookService extends Thread {
                 System.out.println("   # FacebookService error:" + e.getMessage());
             }
         }
+        return false;
     }
 
-    public void login() throws RemoteException {
-        System.out.println(" - Trying to login in 'free.currconv.com'....");
-
-        try {
-            HttpURLConnection con = (HttpURLConnection) (new URL(URL).openConnection());
-            con.setRequestProperty("User-Agent", "Mozilla/5.0");
-            BufferedReader in = new BufferedReader(new InputStreamReader(con.getInputStream()));
-
-            String inputLine;
-            StringBuffer response = new StringBuffer();
-
-            while ((inputLine = in.readLine()) != null) {
-                response.append(inputLine);
-            }
-
-            con.disconnect();
-
-            inputLine = response.toString();
-            System.out.println(" - Login successful!");
-        } catch(Exception ex) {
-            System.out.println("  # Login error: " + ex.getMessage());
-        }
-    }
-
-    public void register() throws RemoteException {
-        System.out.println(" - Trying to register in 'free.currconv.com'....");
-
-        try {
-            HttpURLConnection con = (HttpURLConnection) (new URL(URL).openConnection());
-            con.setRequestProperty("User-Agent", "Mozilla/5.0");
-            BufferedReader in = new BufferedReader(new InputStreamReader(con.getInputStream()));
-
-            String inputLine;
-            StringBuffer response = new StringBuffer();
-
-            while ((inputLine = in.readLine()) != null) {
-                response.append(inputLine);
-            }
-
-            con.disconnect();
-
-            inputLine = response.toString();
-            System.out.println(" - Registered with success!");
-        } catch(Exception ex) {
-            System.out.println("  # Register error: " + ex.getMessage());
-        }
-    }
-}*/
+}

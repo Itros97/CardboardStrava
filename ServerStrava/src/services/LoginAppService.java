@@ -2,6 +2,7 @@ package services;
 
 import data.dao.PasswordProfileDAO;
 import data.domain.PasswordProfile;
+import gateway.FacebookGateway;
 import gateway.GoogleGateway;
 
 import java.util.ArrayList;
@@ -24,11 +25,11 @@ public class LoginAppService {
     public boolean login(String googleOrFacebook, String email, String password) {
         if (googleOrFacebook.equals("google")) {
             if (email != null) {
-                return GoogleGateway.getInstance().login(email, password);
+                return GoogleGateway.getInstance().login(email);
             }
         } else if (googleOrFacebook.equals("facebook")) {
             if (email != null) {
-                return GoogleGateway.getInstance().login(email, password);
+                return FacebookGateway.getInstance().login(email);
             }
         } else {
             List<PasswordProfile> profiles = new ArrayList<PasswordProfile>();

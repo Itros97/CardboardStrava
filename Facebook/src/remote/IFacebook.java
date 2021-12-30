@@ -1,11 +1,12 @@
-package rmiremote;
+package remote;
 
 import java.rmi.Remote;
 import java.rmi.RemoteException;
 
-public interface IGoogle extends Remote {
-    public boolean login(String email) throws RemoteException;
+public interface IFacebook extends Remote {
+    public boolean login(String email, String password) throws RemoteException;
     /*public void register(String email, String nickname, GregorianCalendar birthdate,
                          double weightKg, int heightCm, int maximumHeartRate,
                          int reposeHeartRate, String googleOrFacebook) throws RemoteException;
-*/}
+*/
+}
