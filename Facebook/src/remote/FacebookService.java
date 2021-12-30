@@ -4,7 +4,7 @@ import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.net.Socket;
 
-public class FacebookService extends Thread implements IFacebook {
+public class FacebookService extends Thread {
     private DataInputStream in;
     private DataOutputStream out;
     private Socket tcpSocket;
@@ -20,16 +20,15 @@ public class FacebookService extends Thread implements IFacebook {
         }
     }
 
-    public boolean login(String email, String password) {
+    public void login() {
         //Facebook server
         try {
             //Read request from the client
-            String data = this.in.readUTF();
-            System.out.println("   - FacebookService - Received data from '" + tcpSocket.getInetAddress().getHostAddress() + ":" + tcpSocket.getPort() + "' -> '" + data + "'");
+            String email = this.in.readUTF();
+            System.out.println("   - FacebookService - Received data from '" + tcpSocket.getInetAddress().getHostAddress() + ":" + tcpSocket.getPort() + "' -> '" + email + "'");
 
-            //Send response to the client
-            this.out.writeUTF(data.toUpperCase());
-            System.out.println("   - FacebookService - Sent data to '" + tcpSocket.getInetAddress().getHostAddress() + ":" + tcpSocket.getPort() + "' -> '" + data.toUpperCase() + "'");
+            //AQUI TIENE QUE IR LA CONEXION CON EL SERVICIO EXTERNO
+
         } catch (Exception e) {
             System.out.println("   # FacebookService error" + e.getMessage());
         } finally {
@@ -39,7 +38,6 @@ public class FacebookService extends Thread implements IFacebook {
                 System.out.println("   # FacebookService error:" + e.getMessage());
             }
         }
-        return false;
     }
 
 }

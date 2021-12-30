@@ -7,13 +7,13 @@
 
     <property name="server.port" value="8001"/>
 
-    <target name="1.compile" description="Builds the source code">
+    <target name="1.build" description="Builds the source code">
         <delete dir="${build.dir}"/>
         <mkdir dir="${build.dir}"/>
         <javac srcdir="${source.dir}" destdir="${build.dir}" classpath="${classpath}" deprecation="true" fork="true" includeAntRuntime="no"/>
     </target>
 
-    <target name="2.echo server" description="Runs the Server Socket">
+    <target name="2.server" description="Runs the Server Socket">
         <java classname="server.FacebookServer" classpath="${classpath}" fork="true">
             <arg value="${server.port}"/>
         </java>
