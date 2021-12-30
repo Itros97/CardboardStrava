@@ -27,7 +27,7 @@ public class GoogleGateway {
         return instance;
     }
 
-    //HAY QUE PASAR PARAMETROS A LOGIN Y A REGISTER
+    //Se pasan parametros a login y a register
     public boolean login(String username, String password) {
         System.out.println("   - Login with Google Gateway");
 
