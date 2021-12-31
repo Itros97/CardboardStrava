@@ -29,13 +29,19 @@ public class FacebookGateway {
              DataOutputStream out = new DataOutputStream(socket.getOutputStream())) {
             //Send email to the server
             out.writeUTF(email);
+            System.out.println("- EchoClient: Sent data to '" + socket.getInetAddress().getHostAddress() + ":" + socket.getPort() + "' -> '" + email + "'");
             //Send password to the server
             out.writeUTF(password);
+            System.out.println("- EchoClient: Sent data to '" + socket.getInetAddress().getHostAddress() + ":" + socket.getPort() + "' -> '" + password + "'");
+
+            //Read response (a boolean) from Facebook Server
+            boolean b = in.readBoolean();
+            System.out.println("- EchoClient: Received boolean from '" + socket.getInetAddress().getHostAddress() + ":" + socket.getPort() + "' -> '" + b + "'");
+            return b;
         } catch (Exception e) {
             System.out.println("   $ Socket Login error: " + e.getMessage());
             return false;
         }
-        return true;
     }
 
     //ANTIGUO

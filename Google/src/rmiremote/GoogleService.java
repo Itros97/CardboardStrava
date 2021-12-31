@@ -57,11 +57,10 @@ public class GoogleService extends UnicastRemoteObject implements IGoogle {
         for (String e : emails) {
             for (String p : passwords) {
                 if (e.equals(email) && p.equals(password)) {
-                    System.out.println("Login completed.");
+                    System.out.println("Login with Google Server completed.");
                     return true;
                 }
             }
-
         }
         return false;
     }
