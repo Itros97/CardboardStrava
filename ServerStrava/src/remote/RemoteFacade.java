@@ -43,7 +43,9 @@ public class RemoteFacade extends UnicastRemoteObject implements IRemoteFacade {
     public boolean loginUser(String googleOrFacebook, String email, String password) throws RemoteException {
         System.out.println(" * RemoteFacade loginUser: " + email + " / " + password);
         LoginAppService loginS = new LoginAppService();
-        return loginS.login(googleOrFacebook, email, password);
+        boolean token;
+        token = loginS.login(googleOrFacebook, email, password);
+        return token;
     }
 
     public void registerUser(PasswordProfile pp) throws RemoteException {
@@ -52,15 +54,15 @@ public class RemoteFacade extends UnicastRemoteObject implements IRemoteFacade {
         registerS.register(pp);
     }
 
-    public void logout(long token) throws RemoteException {
+    public boolean logout(boolean token) throws RemoteException {
         System.out.println(" * RemoteFacade logout: " + token);
 
-        if (this.serverState.containsKey(token)) {
-            token = -1;
-            //Logout means remove the User from Server State
-            this.serverState.remove(token);
+        if (token) {
+            token = false;
+            return token;
         } else {
-            throw new RemoteException("Profile is not logged in!");
+            System.out.println("Not logged in!");
+            return false;
         }
     }
 

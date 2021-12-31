@@ -36,7 +36,7 @@ public class LoginAppService {
             profiles = PasswordProfileDAO.getInstance().getAll();
                 for (PasswordProfile pro : profiles) {
                     if (pro.getEmail().equals(email) && pro.getPassword().equals(password)) {
-                        //El token que tiene que devolverse
+                        //El token que tiene que devolverse (es un boolean)
                         return true;
                     }
                 }

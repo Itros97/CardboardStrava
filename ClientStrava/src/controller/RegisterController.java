@@ -15,13 +15,11 @@ public class RegisterController {
         this.serviceLocator = serviceLocator;
     }
 
-    public boolean register(PasswordProfile pp) {
+    public void register(PasswordProfile pp) {
         try {
             this.serviceLocator.getService().registerUser(pp);
-            return true;
         } catch (RemoteException e) {
             System.out.println("# Error during register: " + e);
-            return false;
         }
     }
 }

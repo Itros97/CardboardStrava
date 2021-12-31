@@ -9,7 +9,7 @@ public class LoginController {
     //Reference to the Service Locator
     private ServiceLocator serviceLocator;
     //This attribute stores the token when login success
-    private long token = -1; //-1 = login has not been done or fails
+    private boolean token = false;
 
     public LoginController(ServiceLocator serviceLocator) {
         this.serviceLocator = serviceLocator;
@@ -17,26 +17,25 @@ public class LoginController {
 
     public boolean login(String googleOrFacebook, String email, String password) {
         try {
-            this.serviceLocator.getService().loginUser(googleOrFacebook, email, password);
-            this.token = 1;
-            return true;
+            token = this.serviceLocator.getService().loginUser(googleOrFacebook, email, password);
+            return token;
         } catch (RemoteException e) {
             System.out.println("# Error during login: " + e);
-            this.token = -1;
             return false;
         }
     }
 
-    public void logout() {
+    public boolean logout() {
         try {
-            this.token = -1;
-            this.serviceLocator.getService().logout(token);
+            token = this.serviceLocator.getService().logout(token);
+            return token;
         } catch (RemoteException e) {
             System.out.println("# Error during logout: " + e);
+            return false;
         }
     }
 
-    public long getToken() {
+    public boolean getToken() {
         return token;
     }
 }
