@@ -27,11 +27,11 @@ public class GoogleGateway {
     }
 
     //Se pasan parametros a login y a register
-    public boolean login(String email) {
+    public boolean login(String email, String password) {
         System.out.println("   - Login with Google Gateway");
 
         try {
-            return this.googleService.login(email);
+            return this.googleService.login(email, password);
         } catch (Exception ex) {
             System.out.println("   $ Login error: " + ex.getMessage());
             return false;

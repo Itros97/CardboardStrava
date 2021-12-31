@@ -25,11 +25,11 @@ public class LoginAppService {
     public boolean login(String googleOrFacebook, String email, String password) {
         if (googleOrFacebook.equals("google")) {
             if (email != null) {
-                return GoogleGateway.getInstance().login(email);
+                return GoogleGateway.getInstance().login(email, password);
             }
         } else if (googleOrFacebook.equals("facebook")) {
             if (email != null) {
-                return FacebookGateway.getInstance().login(email);
+                return FacebookGateway.getInstance().login(email, password);
             }
         } else {
             List<PasswordProfile> profiles = new ArrayList<PasswordProfile>();

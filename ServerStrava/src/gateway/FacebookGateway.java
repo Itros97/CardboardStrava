@@ -7,7 +7,7 @@ import java.net.Socket;
 public class FacebookGateway {
 
     private static FacebookGateway instance;
-    //El puerto creo que esta bien escrito, pero no se si la IP se escribe asi
+    //El puerto creo que esta bien escrito, pero no estoy seguro de si la IP se escribe asi
     String serverIP = "127.0.0.1";
     int serverPort = 8001;
 
@@ -20,7 +20,7 @@ public class FacebookGateway {
     }
 
     //Se pasan parametros a login y a register
-    public boolean login(String email) {
+    public boolean login(String email, String password) {
         System.out.println("   - Login with Facebook Gateway");
 
         //Declaration of the socket to send/receive information to/from the server (an IP and a Port are needed)
@@ -29,6 +29,8 @@ public class FacebookGateway {
              DataOutputStream out = new DataOutputStream(socket.getOutputStream())) {
             //Send email to the server
             out.writeUTF(email);
+            //Send password to the server
+            out.writeUTF(password);
         } catch (Exception e) {
             System.out.println("   $ Socket Login error: " + e.getMessage());
             return false;

@@ -1,16 +1,14 @@
 package rmiremote;
 
-import java.io.BufferedReader;
-import java.io.InputStreamReader;
-import java.net.HttpURLConnection;
-import java.net.URL;
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
+import java.util.ArrayList;
 
 public class GoogleService extends UnicastRemoteObject implements IGoogle {
     private static final long serialVersionUID = 1L;
-    protected static final String URL = "";
-    private int cont = 0;
+
+    ArrayList<String> emails = new ArrayList<String>();
+    ArrayList<String> passwords = new ArrayList<String>();
 
     //Attribute for the Singleton pattern
     public static GoogleService instance;
@@ -29,30 +27,43 @@ public class GoogleService extends UnicastRemoteObject implements IGoogle {
 
     protected GoogleService() throws RemoteException {
         super();
+
+        String e1 = "jaimeamann@opendeusto.es";
+        String e2 = "m.lopez.gutierrez@opendeusto.es";
+        String e3 = "inigo.tarrino@opendeusto.es";
+        String e4 = "mikel.huidobro@opendeusto.es";
+
+        emails.add(e1);
+        emails.add(e2);
+        emails.add(e3);
+        emails.add(e4);
+
+        String p1 = "12345678";
+        String p2 = "qwertyui";
+        String p3 = "asdfghjk";
+        String p4 = "zxcvbnm.";
+
+        passwords.add(p1);
+        passwords.add(p2);
+        passwords.add(p3);
+        passwords.add(p4);
     }
 
-    public boolean login(String email) throws RemoteException {
-        System.out.println(" - Logging in 'COLOCAR AQUI UN LINK'....");
+    public boolean login(String email, String password) throws RemoteException {
+        System.out.println(" - Logging in Google Server.");
+        System.out.println("Email: " + email);
+        System.out.println("Password: " + password);
 
-        try {
-            HttpURLConnection con = (HttpURLConnection) (new URL(URL).openConnection());
-            con.setRequestProperty("User-Agent", "Mozilla/5.0");
-            BufferedReader in = new BufferedReader(new InputStreamReader(con.getInputStream()));
-
-            String inputLine;
-            StringBuffer response = new StringBuffer();
-
-            while ((inputLine = in.readLine()) != null) {
-                response.append(inputLine);
+        for (String e : emails) {
+            for (String p : passwords) {
+                if (e.equals(email) && p.equals(password)) {
+                    System.out.println("Login completed.");
+                    return true;
+                }
             }
 
-            con.disconnect();
-            return true;
-
-            } catch(Exception ex) {
-                System.out.println("  # Error in the login(): " + ex.getMessage());
-                return false;
         }
+        return false;
     }
 
     //ANTIGUO
