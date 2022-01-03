@@ -31,23 +31,6 @@ public class RegisterWindow extends JFrame {
     private JButton btnBack;
 
     /**
-     * Launch the application.
-     */
-    public static void main(String[] args) {
-        EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                try {
-                    RegisterWindow frame = new RegisterWindow();
-                    frame.setTitle("Register Window");
-                    frame.setVisible(true);
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
-            }
-        });
-    }
-
-    /**
      * Create the frame.
      */
     public RegisterWindow() {

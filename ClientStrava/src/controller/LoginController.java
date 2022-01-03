@@ -11,28 +11,21 @@ public class LoginController {
     //This attribute stores the token when login success
     private boolean token = false;
 
-    public LoginController(ServiceLocator serviceLocator) {
-        this.serviceLocator = serviceLocator;
-    }
+    public LoginController() {}
 
-    public boolean login(String googleOrFacebook, String email, String password) {
-        try {
-            token = this.serviceLocator.getService().loginUser(googleOrFacebook, email, password);
-            return token;
-        } catch (RemoteException e) {
-            System.out.println("# Error during login: " + e);
-            return false;
+    public void login(String googleOrFacebook, String email, String password) {
+        //Se realiza el proceso de login si un usuario no se ha logeado ya
+        if (!token) {
+            try {
+                token = this.serviceLocator.getService().loginUser(googleOrFacebook, email, password);
+            } catch (RemoteException e) {
+                System.out.println("# Error during login: " + e);
+            }
         }
     }
 
-    public boolean logout() {
-        try {
-            token = this.serviceLocator.getService().logout(token);
-            return token;
-        } catch (RemoteException e) {
-            System.out.println("# Error during logout: " + e);
-            return false;
-        }
+    public void logout() {
+        token = false;
     }
 
     public boolean getToken() {

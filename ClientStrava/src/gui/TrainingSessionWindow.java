@@ -18,23 +18,6 @@ public class TrainingSessionWindow extends JFrame {
     private JScrollPane scrollList;
 
     /**
-     * Launch the application.
-     */
-    public static void main(String[] args) {
-        EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                try {
-                    TrainingSessionWindow frame = new TrainingSessionWindow();
-                    frame.setTitle("Training Session Window");
-                    frame.setVisible(true);
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
-            }
-        });
-    }
-
-    /**
      * Create the frame.
      */
     public TrainingSessionWindow() {

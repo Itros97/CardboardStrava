@@ -11,9 +11,7 @@ public class RegisterController {
     //Reference to the Service Locator
     private ServiceLocator serviceLocator;
 
-    public RegisterController(ServiceLocator serviceLocator) {
-        this.serviceLocator = serviceLocator;
-    }
+    public RegisterController() {}
 
     public void register(PasswordProfile pp) {
         try {

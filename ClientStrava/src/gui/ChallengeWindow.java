@@ -18,23 +18,6 @@ public class ChallengeWindow extends JFrame {
     private JScrollPane scrollList;
 
     /**
-     * Launch the application.
-     */
-    public static void main(String[] args) {
-        EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                try {
-                    ChallengeWindow frame = new ChallengeWindow();
-                    frame.setTitle("Challenge Window");
-                    frame.setVisible(true);
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
-            }
-        });
-    }
-
-    /**
      * Create the frame.
      */
     public ChallengeWindow() {

@@ -12,9 +12,7 @@ public class TrainingSessionController {
     //Reference to the Service Locator
     private ServiceLocator serviceLocator;
 
-    public TrainingSessionController(ServiceLocator serviceLocator) {
-        this.serviceLocator = serviceLocator;
-    }
+    public TrainingSessionController() {}
 
     public void acceptTrainingSession(String title) {
         try {
