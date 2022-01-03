@@ -1,13 +1,7 @@
 package gui;
 
-import java.awt.EventQueue;
-import javax.swing.JFrame;
-import javax.swing.JTextField;
-import javax.swing.JLabel;
-import javax.swing.JButton;
-import java.awt.Font;
-import javax.swing.SwingConstants;
-import javax.swing.JPasswordField;
+import javax.swing.*;
+import java.awt.*;
 
 public class LoginWindow extends JFrame {
     private JTextField txtInsertUser;
@@ -57,8 +51,12 @@ public class LoginWindow extends JFrame {
         getContentPane().add(lblNewLabel_1);
 
         JButton btnNewButton = new JButton("Login");
-        btnNewButton.setBounds(190, 290, 88, 25);
+        btnNewButton.setBounds(140, 290, 88, 25);
         getContentPane().add(btnNewButton);
+
+        JButton bBack = new JButton("Back");
+        bBack.setBounds(260, 290, 88, 25);
+        getContentPane().add(bBack);
 
         passwordField = new JPasswordField();
         passwordField.setToolTipText("insert password");

@@ -38,6 +38,7 @@ public class RegisterWindow extends JFrame {
             public void run() {
                 try {
                     RegisterWindow frame = new RegisterWindow();
+                    frame.setTitle("Register Window");
                     frame.setVisible(true);
                 } catch (Exception e) {
                     e.printStackTrace();
@@ -163,13 +164,13 @@ public class RegisterWindow extends JFrame {
         btnRegister = new JButton("Register");
         btnRegister.setFont(new Font("Tahoma", Font.PLAIN, 15));
         //btnRegister.setBackground(Color.BLACK);
-        btnRegister.setBounds(62, 508, 290, 26);
+        btnRegister.setBounds(10, 508, 365, 26);
         contentPane.add(btnRegister);
 
         btnBack = new JButton("Back");
         btnBack.setFont(new Font("Tahoma", Font.PLAIN, 15));
         //btnBack.setBackground(Color.BLACK);
-        btnBack.setBounds(399, 508, 290, 26);
+        btnBack.setBounds(413, 508, 375, 26);
         contentPane.add(btnBack);
     }
 }

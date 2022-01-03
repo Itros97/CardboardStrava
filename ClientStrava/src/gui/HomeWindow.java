@@ -10,8 +10,6 @@ public class HomeWindow extends JFrame {
 
     private JPanel contentPane;
     private JLabel txtWelcomeToStrava;
-    private JLabel txtIfYouAre;
-    private JLabel txtIfYouArent;
 
     /**
      * Launch the application.
@@ -21,6 +19,7 @@ public class HomeWindow extends JFrame {
             public void run() {
                 try {
                     HomeWindow frame = new HomeWindow();
+                    frame.setTitle("Home Window");
                     frame.setVisible(true);
                 } catch (Exception e) {
                     e.printStackTrace();
@@ -59,15 +58,6 @@ public class HomeWindow extends JFrame {
             }
         });
 
-        txtIfYouAre = new JLabel();
-        txtIfYouAre.setBackground(Color.LIGHT_GRAY);
-        txtIfYouAre.setFont(new Font("Tahoma", Font.PLAIN, 13));
-        txtIfYouAre.setHorizontalAlignment(SwingConstants.CENTER);
-        txtIfYouAre.setText("If you are a user or you'd like to be one");
-        txtIfYouAre.setBounds(10, 205, 297, 24);
-        contentPane.add(txtIfYouAre);
-        //txtIfYouAre.setColumns(10);
-
         JButton btnNewButton_1 = new JButton("Login");
         btnNewButton_1.setFont(new Font("Tahoma", Font.PLAIN, 13));
         btnNewButton_1.setBounds(32, 327, 104, 40);
@@ -79,15 +69,6 @@ public class HomeWindow extends JFrame {
         btnNewButton_1_1.setFont(new Font("Tahoma", Font.PLAIN, 13));
         btnNewButton_1_1.setBounds(203, 327, 104, 40);
         contentPane.add(btnNewButton_1_1);
-
-        txtIfYouArent = new JLabel();
-        txtIfYouArent.setBackground(Color.LIGHT_GRAY);
-        txtIfYouArent.setText("Options available for logged in users");
-        txtIfYouArent.setHorizontalAlignment(SwingConstants.CENTER);
-        txtIfYouArent.setFont(new Font("Tahoma", Font.PLAIN, 13));
-        //txtIfYouArent.setColumns(10);
-        txtIfYouArent.setBounds(372, 205, 343, 24);
-        contentPane.add(txtIfYouArent);
 
         JButton btnNewButton_1_2 = new JButton("Challenges");
         btnNewButton_1_2.setFont(new Font("Tahoma", Font.PLAIN, 13));
