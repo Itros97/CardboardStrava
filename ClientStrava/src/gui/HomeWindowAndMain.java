@@ -60,6 +60,10 @@ public class HomeWindowAndMain extends JFrame {
             public void actionPerformed(ActionEvent e) {
                 //Se llama al metodo logout() en el Controller y se realiza el logout
                 loginController.logout();
+
+                //HABRIA QUE IMPLEMENTAR UN BOOLEAN QUE SIRVA PARA
+                //QUE SI SE HACE LOGOUT CON EXITO,
+                //APAREZCA UN JTEXTFIELD EN HOMEWINDOW
             }
         });
 
@@ -74,7 +78,7 @@ public class HomeWindowAndMain extends JFrame {
                     @Override
                     public void run() {
                         try {
-                            LoginWindow frame = new LoginWindow();
+                            LoginWindow frame = new LoginWindow(loginController);
                             frame.setVisible(true);
                         } catch (Exception e) {
                             e.printStackTrace();

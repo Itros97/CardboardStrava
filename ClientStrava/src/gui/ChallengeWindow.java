@@ -3,6 +3,8 @@ package gui;
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 public class ChallengeWindow extends JFrame {
 
@@ -107,6 +109,17 @@ public class ChallengeWindow extends JFrame {
         btnCreateTrainingSession.setFont(new Font("Tahoma", Font.PLAIN, 14));
         btnCreateTrainingSession.setBounds(508, 393, 181, 49);
         contentPane.add(btnCreateTrainingSession);
+
+        JButton bBack = new JButton("Back");
+        bBack.setFont(new Font("Tahoma", Font.PLAIN, 14));
+        bBack.setBounds(720, 393, 70, 49);
+        contentPane.add(bBack);
+        bBack.addActionListener(new ActionListener(){
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                dispose();
+            }
+        });
 
         list = new JList();
         list.setSelectionMode(ListSelectionModel.SINGLE_SELECTION );

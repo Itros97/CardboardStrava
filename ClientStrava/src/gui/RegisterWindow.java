@@ -155,5 +155,11 @@ public class RegisterWindow extends JFrame {
         //btnBack.setBackground(Color.BLACK);
         btnBack.setBounds(413, 508, 375, 26);
         contentPane.add(btnBack);
+        btnBack.addActionListener(new ActionListener(){
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                dispose();
+            }
+        });
     }
 }
