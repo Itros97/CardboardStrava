@@ -40,11 +40,11 @@ public class RemoteFacade extends UnicastRemoteObject implements IRemoteFacade {
     }
 
     //Hay que implementar aqui y en otras partes de la facade el token
-    public boolean loginUser(String googleOrFacebook, String email, String password) throws RemoteException {
+    public boolean loginUser(String email, String password) throws RemoteException {
         System.out.println(" * RemoteFacade loginUser: " + email + " / " + password);
         LoginAppService loginS = new LoginAppService();
         boolean token;
-        token = loginS.login(googleOrFacebook, email, password);
+        token = loginS.login(email, password);
         return token;
     }
 

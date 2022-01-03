@@ -22,7 +22,18 @@ public class LoginAppService {
         return instance;
     }
 
-    public boolean login(String googleOrFacebook, String email, String password) {
+    public boolean login(String email, String password) {
+        String googleOrFacebook = "";
+
+        List<PasswordProfile> profiles = new ArrayList<PasswordProfile>();
+        profiles = PasswordProfileDAO.getInstance().getAll();
+
+        for (PasswordProfile pro : profiles) {
+            if (pro.getEmail().equals(email)) {
+                googleOrFacebook = pro.getRegisterType();
+            }
+        }
+
         if (googleOrFacebook.equals("google")) {
             if (email != null) {
                 return GoogleGateway.getInstance().login(email, password);
@@ -32,14 +43,12 @@ public class LoginAppService {
                 return FacebookGateway.getInstance().login(email, password);
             }
         } else {
-            List<PasswordProfile> profiles = new ArrayList<PasswordProfile>();
-            profiles = PasswordProfileDAO.getInstance().getAll();
-                for (PasswordProfile pro : profiles) {
-                    if (pro.getEmail().equals(email) && pro.getPassword().equals(password)) {
-                        //El token que tiene que devolverse (es un boolean)
-                        return true;
-                    }
+            for (PasswordProfile pro : profiles) {
+                if (pro.getEmail().equals(email) && pro.getPassword().equals(password)) {
+                    //El token que tiene que devolverse (es un boolean)
+                    return true;
                 }
+            }
         }
         return false;
     }

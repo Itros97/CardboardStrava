@@ -44,7 +44,7 @@ public class LoginWindow extends JFrame {
         bLogin.addActionListener(new ActionListener(){
             @Override
             public void actionPerformed(ActionEvent e) {
-                //loginController.login(, lEmail.getText(), lPassword.getText());
+                loginController.login(lEmail.getText(), lPassword.getText());
             }
         });
 

@@ -13,11 +13,11 @@ public class LoginController {
 
     public LoginController() {}
 
-    public void login(String googleOrFacebook, String email, String password) {
+    public void login(String email, String password) {
         //Se realiza el proceso de login si un usuario no se ha logeado ya
         if (!token) {
             try {
-                token = this.serviceLocator.getService().loginUser(googleOrFacebook, email, password);
+                token = this.serviceLocator.getService().loginUser(email, password);
             } catch (RemoteException e) {
                 System.out.println("# Error during login: " + e);
             }
