@@ -16,7 +16,7 @@ public class LoginWindow extends JFrame {
      */
     public LoginWindow(LoginController loginController) {
         setTitle("Login Window");
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         setBounds(100, 100, 500, 385);
         getContentPane().setLayout(null);
 
@@ -45,6 +45,9 @@ public class LoginWindow extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 loginController.login(lEmail.getText(), lPassword.getText());
+
+                //AQUI HAY QUE AÑADIR UN JTEXTFIELD DE FEEDBACK
+                //QUE APAREZCA EN LA VENTANA SEGUN EL RESULTADO DE LOGIN
             }
         });
 

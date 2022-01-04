@@ -1,20 +1,29 @@
 package gui;
 
+import controller.ChallengeController;
+import data.DTO.ChallengeDTO;
+
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.GregorianCalendar;
+import java.util.List;
 
 public class ChallengeWindow extends JFrame {
 
     private JPanel contentPane;
-    private JTextField textField;
-    private JTextField textField_1;
-    private JTextField textField_2;
-    private JTextField textField_3;
-    private JTextField textField_4;
-    private JTextField textField_5;
+    private JTextField tName;
+    private JTextField tYear1;
+    private JTextField tYear2;
+    private JTextField tMonth1;
+    private JTextField tMonth2;
+    private JTextField tDay1;
+    private JTextField tDay2;
+    private JTextField tDistance;
+    private JTextField tAimTime;
+    private JTextField tSport;
     private JList list;//declaramos La Lista
     private DefaultListModel model;//declaramos el Modelo
     private JScrollPane scrollList;
@@ -23,92 +32,95 @@ public class ChallengeWindow extends JFrame {
      * Create the frame.
      */
     public ChallengeWindow() {
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        ChallengeController challengeController = new ChallengeController();
+        String typeOfChallenge = "";
+
+        setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         setBounds(100, 100, 886, 514);
         contentPane = new JPanel();
         contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
         setContentPane(contentPane);
         contentPane.setLayout(null);
 
-        JButton bCheckAcceptedChallenges = new JButton("Check accepted challenges");
-        bCheckAcceptedChallenges.setFont(new Font("Tahoma", Font.PLAIN, 14));
-        bCheckAcceptedChallenges.setBounds(253, 82, 205, 49);
-        contentPane.add(bCheckAcceptedChallenges);
+        JLabel lName = new JLabel("Name");
+        lName.setFont(new Font("Tahoma", Font.PLAIN, 15));
+        lName.setBounds(474, 47, 64, 28);
+        contentPane.add(lName);
 
-        JButton bObtainActiveChallenges = new JButton("Obtain active challenges");
-        bObtainActiveChallenges.setFont(new Font("Tahoma", Font.PLAIN, 14));
-        bObtainActiveChallenges.setBounds(253, 170, 205, 49);
-        contentPane.add(bObtainActiveChallenges);
+        tName = new JTextField("");
+        tName.setBounds(600, 50, 207, 28);
+        contentPane.add(tName);
+        tName.setColumns(10);
 
-        JButton btnAcceptChallenge = new JButton("Accept Challenge");
-        btnAcceptChallenge.setFont(new Font("Tahoma", Font.PLAIN, 14));
-        btnAcceptChallenge.setBounds(253, 256, 205, 49);
-        contentPane.add(btnAcceptChallenge);
+        JLabel lStartDate = new JLabel("Start date");
+        lStartDate.setFont(new Font("Tahoma", Font.PLAIN, 15));
+        lStartDate.setBounds(474, 96, 100, 28);
+        contentPane.add(lStartDate);
 
-        JLabel lblNewLabel = new JLabel("Name");
-        lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 15));
-        lblNewLabel.setBounds(474, 47, 64, 28);
-        contentPane.add(lblNewLabel);
+        tYear1 = new JTextField("Year");
+        tYear1.setColumns(10);
+        tYear1.setBounds(600, 99, 66, 28);
+        contentPane.add(tYear1);
 
-        textField = new JTextField();
-        textField.setBounds(600, 50, 207, 28);
-        contentPane.add(textField);
-        textField.setColumns(10);
+        tMonth1 = new JTextField("Month");
+        tMonth1.setColumns(10);
+        tMonth1.setBounds(670, 99, 66, 28);
+        contentPane.add(tMonth1);
 
-        JLabel lblSport = new JLabel("Start date");
-        lblSport.setFont(new Font("Tahoma", Font.PLAIN, 15));
-        lblSport.setBounds(474, 96, 100, 28);
-        contentPane.add(lblSport);
+        tDay1 = new JTextField("Day");
+        tDay1.setColumns(10);
+        tDay1.setBounds(740, 99, 66, 28);
+        contentPane.add(tDay1);
 
-        textField_1 = new JTextField();
-        textField_1.setColumns(10);
-        textField_1.setBounds(600, 99, 207, 28);
-        contentPane.add(textField_1);
+        JLabel lDistanceInKm = new JLabel("End Date");
+        lDistanceInKm.setFont(new Font("Tahoma", Font.PLAIN, 15));
+        lDistanceInKm.setBounds(474, 159, 130, 28);
+        contentPane.add(lDistanceInKm);
 
-        JLabel lblDistanceInKm = new JLabel("End Date");
-        lblDistanceInKm.setFont(new Font("Tahoma", Font.PLAIN, 15));
-        lblDistanceInKm.setBounds(474, 159, 130, 28);
-        contentPane.add(lblDistanceInKm);
+        tYear2 = new JTextField("Year");
+        tYear2.setColumns(10);
+        tYear2.setBounds(600, 159, 66, 28);
+        contentPane.add(tYear2);
 
-        textField_2 = new JTextField();
-        textField_2.setColumns(10);
-        textField_2.setBounds(600, 159, 207, 28);
-        contentPane.add(textField_2);
+        tMonth2 = new JTextField("Month");
+        tMonth2.setColumns(10);
+        tMonth2.setBounds(670, 159, 66, 28);
+        contentPane.add(tMonth2);
 
-        JLabel lblDateOfStart = new JLabel("Distance");
-        lblDateOfStart.setFont(new Font("Tahoma", Font.PLAIN, 15));
-        lblDateOfStart.setBounds(474, 211, 98, 28);
-        contentPane.add(lblDateOfStart);
+        tDay2 = new JTextField("Day");
+        tDay2.setColumns(10);
+        tDay2.setBounds(740, 159, 66, 28);
+        contentPane.add(tDay2);
 
-        textField_3 = new JTextField();
-        textField_3.setColumns(10);
-        textField_3.setBounds(600, 214, 207, 28);
-        contentPane.add(textField_3);
+        JLabel lDistance = new JLabel("Distance");
+        lDistance.setFont(new Font("Tahoma", Font.PLAIN, 15));
+        lDistance.setBounds(474, 211, 98, 28);
+        contentPane.add(lDistance);
 
-        JLabel lblStartHour = new JLabel("Aim time");
-        lblStartHour.setFont(new Font("Tahoma", Font.PLAIN, 15));
-        lblStartHour.setBounds(474, 276, 98, 28);
-        contentPane.add(lblStartHour);
+        tDistance = new JTextField("");
+        tDistance.setColumns(10);
+        tDistance.setBounds(600, 214, 207, 28);
+        contentPane.add(tDistance);
 
-        textField_4 = new JTextField();
-        textField_4.setColumns(10);
-        textField_4.setBounds(600, 273, 207, 28);
-        contentPane.add(textField_4);
+        JLabel lAimTime = new JLabel("Aim time");
+        lAimTime.setFont(new Font("Tahoma", Font.PLAIN, 15));
+        lAimTime.setBounds(474, 276, 98, 28);
+        contentPane.add(lAimTime);
 
-        JLabel lblDuration = new JLabel("Sport");
-        lblDuration.setFont(new Font("Tahoma", Font.PLAIN, 15));
-        lblDuration.setBounds(474, 323, 98, 28);
-        contentPane.add(lblDuration);
+        tAimTime = new JTextField("");
+        tAimTime.setColumns(10);
+        tAimTime.setBounds(600, 273, 207, 28);
+        contentPane.add(tAimTime);
 
-        textField_5 = new JTextField();
-        textField_5.setColumns(10);
-        textField_5.setBounds(600, 326, 207, 28);
-        contentPane.add(textField_5);
+        JLabel lSport = new JLabel("Sport");
+        lSport.setFont(new Font("Tahoma", Font.PLAIN, 15));
+        lSport.setBounds(474, 323, 98, 28);
+        contentPane.add(lSport);
 
-        JButton btnCreateTrainingSession = new JButton("Create Challenge");
-        btnCreateTrainingSession.setFont(new Font("Tahoma", Font.PLAIN, 14));
-        btnCreateTrainingSession.setBounds(508, 393, 181, 49);
-        contentPane.add(btnCreateTrainingSession);
+        tSport = new JTextField("");
+        tSport.setColumns(10);
+        tSport.setBounds(600, 326, 207, 28);
+        contentPane.add(tSport);
 
         JButton bBack = new JButton("Back");
         bBack.setFont(new Font("Tahoma", Font.PLAIN, 14));
@@ -118,6 +130,65 @@ public class ChallengeWindow extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 dispose();
+            }
+        });
+
+        JButton bCreateChallenge = new JButton("Create Challenge");
+        bCreateChallenge.setFont(new Font("Tahoma", Font.PLAIN, 14));
+        bCreateChallenge.setBounds(498, 393, 181, 49);
+        contentPane.add(bCreateChallenge);
+        bCreateChallenge.addActionListener(new ActionListener(){
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                GregorianCalendar dateOfStart = new GregorianCalendar();
+                GregorianCalendar dateOfEnd = new GregorianCalendar();
+                dateOfStart.set(Integer.parseInt(tYear1.getText()), Integer.parseInt(tMonth1.getText()), Integer.parseInt(tDay1.getText()));
+                dateOfEnd.set(Integer.parseInt(tYear2.getText()), Integer.parseInt(tMonth2.getText()), Integer.parseInt(tDay2.getText()));
+
+                challengeController.createChallenge(typeOfChallenge, tName.getName(),
+                        dateOfStart, dateOfEnd, tSport.getText(),
+                        Integer.parseInt(tDistance.getText()),
+                        Integer.parseInt(tAimTime.getText()));
+            }
+        });
+
+        JButton bCheckAcceptedChallenges = new JButton("Check accepted challenges");
+        bCheckAcceptedChallenges.setFont(new Font("Tahoma", Font.PLAIN, 14));
+        bCheckAcceptedChallenges.setBounds(253, 82, 205, 49);
+        contentPane.add(bCheckAcceptedChallenges);
+        bCheckAcceptedChallenges.addActionListener(new ActionListener(){
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                List<ChallengeDTO> acceptedChallenges = challengeController.getAcceptedChallenges();
+
+                //ESTA LISTA TIENE QUE APARECER EN LA JLIST
+            }
+        });
+
+        JButton bObtainActiveChallenges = new JButton("Obtain active challenges");
+        bObtainActiveChallenges.setFont(new Font("Tahoma", Font.PLAIN, 14));
+        bObtainActiveChallenges.setBounds(253, 170, 205, 49);
+        contentPane.add(bObtainActiveChallenges);
+        bObtainActiveChallenges.addActionListener(new ActionListener(){
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                List<ChallengeDTO> activeChallenges = challengeController.getUnfinishedChallenges();
+
+                //ESTA LISTA TIENE QUE APARECER EN LA JLIST
+            }
+        });
+
+
+        JButton bAcceptChallenge = new JButton("Accept Challenge");
+        bAcceptChallenge.setFont(new Font("Tahoma", Font.PLAIN, 14));
+        bAcceptChallenge.setBounds(253, 256, 205, 49);
+        contentPane.add(bAcceptChallenge);
+        bAcceptChallenge.addActionListener(new ActionListener(){
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                challengeController.acceptChallenge(tName.getText());
+
+                //TIENE QUE APARECER ALGUN JTEXTFIELD DE FEEDBACK EN LA VENTANA
             }
         });
 

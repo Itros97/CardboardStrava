@@ -1,20 +1,26 @@
 package gui;
 
+import controller.TrainingSessionController;
+import data.DTO.TrainingSessionDTO;
+
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.List;
 
 public class TrainingSessionWindow extends JFrame {
 
     private JPanel contentPane;
-    private JTextField textField;
-    private JTextField textField_1;
-    private JTextField textField_2;
-    private JTextField textField_3;
-    private JTextField textField_4;
-    private JTextField textField_5;
+    private JTextField tTitle;
+    private JTextField tSport;
+    private JTextField tDistanceInKm;
+    private JTextField tYear;
+    private JTextField tMonth;
+    private JTextField tDay;
+    private JTextField tHour;
+    private JTextField tDuration;
     private JList list;//declaramos La Lista
     private DefaultListModel model;//declaramos el Modelo
     private JScrollPane scrollList;
@@ -23,87 +29,79 @@ public class TrainingSessionWindow extends JFrame {
      * Create the frame.
      */
     public TrainingSessionWindow() {
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        TrainingSessionController trainingSessionController = new TrainingSessionController();
+
+        setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         setBounds(100, 100, 886, 514);
         contentPane = new JPanel();
         contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
         setContentPane(contentPane);
         contentPane.setLayout(null);
 
-        JButton btnNewButton = new JButton("Consult all sessions");
-        btnNewButton.setFont(new Font("Tahoma", Font.PLAIN, 14));
-        btnNewButton.setBounds(258, 82, 181, 49);
-        contentPane.add(btnNewButton);
+        JLabel lTitle = new JLabel("Title");
+        lTitle.setFont(new Font("Tahoma", Font.PLAIN, 15));
+        lTitle.setBounds(474, 47, 64, 28);
+        contentPane.add(lTitle);
 
-        JButton btnConsultOwnSessions = new JButton("Consult own sessions");
-        btnConsultOwnSessions.setFont(new Font("Tahoma", Font.PLAIN, 14));
-        btnConsultOwnSessions.setBounds(258, 256, 181, 49);
-        contentPane.add(btnConsultOwnSessions);
+        tTitle = new JTextField("");
+        tTitle.setBounds(600, 50, 207, 28);
+        contentPane.add(tTitle);
+        tTitle.setColumns(10);
 
-        JLabel lblNewLabel = new JLabel("Title");
-        lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 15));
-        lblNewLabel.setBounds(474, 47, 64, 28);
-        contentPane.add(lblNewLabel);
+        JLabel lSport = new JLabel("Sport");
+        lSport.setFont(new Font("Tahoma", Font.PLAIN, 15));
+        lSport.setBounds(474, 96, 64, 28);
+        contentPane.add(lSport);
 
-        textField = new JTextField();
-        textField.setBounds(600, 50, 207, 28);
-        contentPane.add(textField);
-        textField.setColumns(10);
+        tSport = new JTextField("");
+        tSport.setColumns(10);
+        tSport.setBounds(600, 99, 207, 28);
+        contentPane.add(tSport);
 
-        JLabel lblSport = new JLabel("Sport");
-        lblSport.setFont(new Font("Tahoma", Font.PLAIN, 15));
-        lblSport.setBounds(474, 96, 64, 28);
-        contentPane.add(lblSport);
+        JLabel lDistanceInKm = new JLabel("Distance in km");
+        lDistanceInKm.setFont(new Font("Tahoma", Font.PLAIN, 15));
+        lDistanceInKm.setBounds(474, 159, 130, 28);
+        contentPane.add(lDistanceInKm);
 
-        textField_1 = new JTextField();
-        textField_1.setColumns(10);
-        textField_1.setBounds(600, 99, 207, 28);
-        contentPane.add(textField_1);
+        tDistanceInKm = new JTextField("");
+        tDistanceInKm.setColumns(10);
+        tDistanceInKm.setBounds(600, 159, 207, 28);
+        contentPane.add(tDistanceInKm);
 
-        JLabel lblDistanceInKm = new JLabel("Distance in km");
-        lblDistanceInKm.setFont(new Font("Tahoma", Font.PLAIN, 15));
-        lblDistanceInKm.setBounds(474, 159, 130, 28);
-        contentPane.add(lblDistanceInKm);
+        JLabel lDateOfStart = new JLabel("Time of start");
+        lDateOfStart.setFont(new Font("Tahoma", Font.PLAIN, 15));
+        lDateOfStart.setBounds(474, 211, 98, 28);
+        contentPane.add(lDateOfStart);
 
-        textField_2 = new JTextField();
-        textField_2.setColumns(10);
-        textField_2.setBounds(600, 159, 207, 28);
-        contentPane.add(textField_2);
+        tYear = new JTextField("");
+        tYear.setColumns(10);
+        tYear.setBounds(600, 214, 207, 28);
+        contentPane.add(tYear);
 
-        JLabel lblDateOfStart = new JLabel("Date of start");
-        lblDateOfStart.setFont(new Font("Tahoma", Font.PLAIN, 15));
-        lblDateOfStart.setBounds(474, 211, 98, 28);
-        contentPane.add(lblDateOfStart);
+        tMonth = new JTextField("");
+        tMonth.setColumns(10);
+        tMonth.setBounds(600, 214, 207, 28);
+        contentPane.add(tMonth);
 
-        textField_3 = new JTextField();
-        textField_3.setColumns(10);
-        textField_3.setBounds(600, 214, 207, 28);
-        contentPane.add(textField_3);
+        tDay = new JTextField("");
+        tDay.setColumns(10);
+        tDay.setBounds(600, 214, 207, 28);
+        contentPane.add(tDay);
 
-        JLabel lblStartHour = new JLabel("Start hour");
-        lblStartHour.setFont(new Font("Tahoma", Font.PLAIN, 15));
-        lblStartHour.setBounds(474, 276, 98, 28);
-        contentPane.add(lblStartHour);
+        tHour = new JTextField("");
+        tHour.setColumns(10);
+        tHour.setBounds(600, 214, 207, 28);
+        contentPane.add(tHour);
 
-        textField_4 = new JTextField();
-        textField_4.setColumns(10);
-        textField_4.setBounds(600, 273, 207, 28);
-        contentPane.add(textField_4);
+        JLabel lDuration = new JLabel("Duration");
+        lDuration.setFont(new Font("Tahoma", Font.PLAIN, 15));
+        lDuration.setBounds(474, 323, 98, 28);
+        contentPane.add(lDuration);
 
-        JLabel lblDuration = new JLabel("Duration");
-        lblDuration.setFont(new Font("Tahoma", Font.PLAIN, 15));
-        lblDuration.setBounds(474, 323, 98, 28);
-        contentPane.add(lblDuration);
-
-        textField_5 = new JTextField();
-        textField_5.setColumns(10);
-        textField_5.setBounds(600, 326, 207, 28);
-        contentPane.add(textField_5);
-
-        JButton btnCreateTrainingSession = new JButton("Create Training Session");
-        btnCreateTrainingSession.setFont(new Font("Tahoma", Font.PLAIN, 14));
-        btnCreateTrainingSession.setBounds(508, 393, 181, 49);
-        contentPane.add(btnCreateTrainingSession);
+        tDuration = new JTextField("");
+        tDuration.setColumns(10);
+        tDuration.setBounds(600, 326, 207, 28);
+        contentPane.add(tDuration);
 
         JButton bBack = new JButton("Back");
         bBack.setFont(new Font("Tahoma", Font.PLAIN, 14));
@@ -113,6 +111,49 @@ public class TrainingSessionWindow extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 dispose();
+            }
+        });
+
+        JButton bCreateTrainingSession = new JButton("Create Training Session");
+        bCreateTrainingSession.setFont(new Font("Tahoma", Font.PLAIN, 14));
+        bCreateTrainingSession.setBounds(508, 393, 181, 49);
+        contentPane.add(bCreateTrainingSession);
+        bCreateTrainingSession.addActionListener(new ActionListener(){
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                /*GregorianCalendar timeOfStart = new GregorianCalendar();
+                timeOfStart.set(Integer.parseInt(tYear.getText()), Integer.parseInt(tMonth.getText()), Integer.parseInt(tDay.getText()), Integer.parseInt(tHour.getText()), 0);
+                java.time.LocalDateTime.now();
+                trainingSessionController.createTrainingSession(tTitle.getText(),
+                        tSport.getText(), Double.parseDouble(tDistanceInKm.getText()),
+                        timeOfStart, Double.parseDouble(tDuration.getText()));*/
+                //TAREA: REORGANIZAR TRAININGSESSIONWINDOW Y QUITAR EL ATRIBUTO HOUR DE TRAININGSESSION
+            }
+        });
+
+        JButton bConsultSessions = new JButton("Consult all sessions");
+        bConsultSessions.setFont(new Font("Tahoma", Font.PLAIN, 14));
+        bConsultSessions.setBounds(258, 82, 181, 49);
+        contentPane.add(bConsultSessions);
+        bConsultSessions.addActionListener(new ActionListener(){
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                List<TrainingSessionDTO> sessions = trainingSessionController.getTrainingSessions();
+
+                //ESTA LISTA TIENE QUE APARECER EN LA JLIST
+            }
+        });
+
+        JButton bConsultOwnSessions = new JButton("Consult own sessions");
+        bConsultOwnSessions.setFont(new Font("Tahoma", Font.PLAIN, 14));
+        bConsultOwnSessions.setBounds(258, 256, 181, 49);
+        contentPane.add(bConsultOwnSessions);
+        bConsultOwnSessions.addActionListener(new ActionListener(){
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                List<TrainingSessionDTO> sessions = trainingSessionController.getAcceptedTrainingSessions();
+
+                //ESTA LISTA TIENE QUE APARECER EN LA JLIST
             }
         });
 

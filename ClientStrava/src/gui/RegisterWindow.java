@@ -1,40 +1,48 @@
 package gui;
 
+import data.domain.PasswordProfile;
+
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.GregorianCalendar;
 
 public class RegisterWindow extends JFrame {
 
     private JPanel contentPane;
-    private JButton btnNewButton;
-    private JButton btnNewButton_1;
-    private JLabel lblNewLabel;
-    private JLabel lblName;
-    private JTextField textField;
-    private JTextField textField_1;
-    private JLabel lblPassword;
-    private JLabel lblBirthdate;
-    private JTextField textField_2;
-    private JTextField textField_3;
-    private JLabel lblWeightInKg;
-    private JLabel lblHeightInCm;
-    private JTextField textField_4;
-    private JTextField textField_5;
-    private JLabel lblMaxHeartRate;
-    private JLabel lblReposeHeartRate;
-    private JTextField textField_6;
-    private JTextField textField_7;
+    private JButton bGoogle;
+    private JButton bFacebook;
+    private JLabel lEmail;
+    private JLabel lNickname;
+    private JTextField tEmail;
+    private JTextField tNickname;
+    private JLabel lPassword;
+    private JLabel lBirthdate;
+    private JTextField tPassword;
+    private JTextField tYear;
+    private JTextField tMonth;
+    private JTextField tDay;
+    private JLabel lWeightInKg;
+    private JLabel lHeightInCm;
+    private JTextField tWeight;
+    private JTextField tHeight;
+    private JLabel lMaxHeartRate;
+    private JLabel lReposeHeartRate;
+    private JTextField tMaxHeartRate;
+    private JTextField tReposeHeartRate;
     private JButton btnRegister;
     private JButton btnBack;
+    private String registerType;
 
     /**
      * Create the frame.
      */
     public RegisterWindow() {
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        registerType = "";
+
+        setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         setBounds(100, 100, 813, 596);
         contentPane = new JPanel();
         contentPane.setBackground(Color.WHITE);
@@ -42,113 +50,150 @@ public class RegisterWindow extends JFrame {
         setContentPane(contentPane);
         contentPane.setLayout(null);
 
-        btnNewButton = new JButton("GOOGLE");
-        //btnNewButton.setBackground(Color.RED);
-        btnNewButton.setFont(new Font("Tahoma", Font.PLAIN, 15));
-        btnNewButton.setBounds(10, 21, 365, 37);
-        contentPane.add(btnNewButton);
+        lEmail = new JLabel("Email");
+        lEmail.setBackground(Color.GRAY);
+        lEmail.setFont(new Font("Tahoma", Font.PLAIN, 14));
+        lEmail.setBounds(10, 85, 365, 26);
+        contentPane.add(lEmail);
 
-        btnNewButton_1 = new JButton("FACEBOOK");
-        btnNewButton_1.addActionListener(new ActionListener() {
+        lNickname = new JLabel("Nickname");
+        lNickname.setFont(new Font("Tahoma", Font.PLAIN, 14));
+        lNickname.setBounds(413, 85, 365, 26);
+        contentPane.add(lNickname);
+
+        tEmail = new JTextField("");
+        tEmail.setBounds(10, 121, 365, 26);
+        contentPane.add(tEmail);
+        tEmail.setColumns(10);
+
+        tNickname = new JTextField("");
+        tNickname.setColumns(10);
+        tNickname.setBounds(413, 121, 365, 26);
+        contentPane.add(tNickname);
+
+        lPassword = new JLabel("Password");
+        lPassword.setFont(new Font("Tahoma", Font.PLAIN, 14));
+        lPassword.setBackground(Color.GRAY);
+        lPassword.setBounds(10, 177, 365, 26);
+        contentPane.add(lPassword);
+
+        lBirthdate = new JLabel("Birthdate");
+        lBirthdate.setFont(new Font("Tahoma", Font.PLAIN, 14));
+        lBirthdate.setBounds(413, 177, 365, 26);
+        contentPane.add(lBirthdate);
+
+        tPassword = new JTextField("");
+        tPassword.setColumns(10);
+        tPassword.setBounds(10, 224, 365, 26);
+        contentPane.add(tPassword);
+
+        tYear = new JTextField("Year");
+        tYear.setColumns(10);
+        tYear.setBounds(413, 224, 120, 26);
+        contentPane.add(tYear);
+
+        tMonth = new JTextField("Month");
+        tMonth.setColumns(10);
+        tMonth.setBounds(533, 224, 120, 26);
+        contentPane.add(tMonth);
+
+        tDay = new JTextField("Day");
+        tDay.setColumns(10);
+        tDay.setBounds(653, 224, 120, 26);
+        contentPane.add(tDay);
+
+        lWeightInKg = new JLabel("Weight in kg (optional)");
+        lWeightInKg.setFont(new Font("Tahoma", Font.PLAIN, 14));
+        lWeightInKg.setBackground(Color.GRAY);
+        lWeightInKg.setBounds(10, 293, 365, 26);
+        contentPane.add(lWeightInKg);
+
+        lHeightInCm = new JLabel("Height in cm (optional)");
+        lHeightInCm.setFont(new Font("Tahoma", Font.PLAIN, 14));
+        lHeightInCm.setBackground(Color.GRAY);
+        lHeightInCm.setBounds(413, 293, 365, 26);
+        contentPane.add(lHeightInCm);
+
+        tWeight = new JTextField("");
+        tWeight.setColumns(10);
+        tWeight.setBounds(10, 329, 365, 26);
+        contentPane.add(tWeight);
+
+        tHeight = new JTextField("");
+        tHeight.setColumns(10);
+        tHeight.setBounds(413, 329, 365, 26);
+        contentPane.add(tHeight);
+
+        lMaxHeartRate = new JLabel("Max heart rate in b/min (optional)");
+        lMaxHeartRate.setFont(new Font("Tahoma", Font.PLAIN, 14));
+        lMaxHeartRate.setBackground(Color.GRAY);
+        lMaxHeartRate.setBounds(10, 398, 365, 26);
+        contentPane.add(lMaxHeartRate);
+
+        lReposeHeartRate = new JLabel("Repose heart rate in b/min (optional)");
+        lReposeHeartRate.setFont(new Font("Tahoma", Font.PLAIN, 14));
+        lReposeHeartRate.setBackground(Color.GRAY);
+        lReposeHeartRate.setBounds(413, 398, 365, 26);
+        contentPane.add(lReposeHeartRate);
+
+        tMaxHeartRate = new JTextField("");
+        tMaxHeartRate.setColumns(10);
+        tMaxHeartRate.setBounds(10, 434, 365, 26);
+        contentPane.add(tMaxHeartRate);
+
+        tReposeHeartRate = new JTextField("");
+        tReposeHeartRate.setColumns(10);
+        tReposeHeartRate.setBounds(413, 434, 365, 26);
+        contentPane.add(tReposeHeartRate);
+
+        bGoogle = new JButton("GOOGLE");
+        //btnNewButton.setBackground(Color.RED);
+        bGoogle.setFont(new Font("Tahoma", Font.PLAIN, 15));
+        bGoogle.setBounds(10, 21, 365, 37);
+        contentPane.add(bGoogle);
+        bGoogle.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
+                registerType = "google";
             }
         });
-        btnNewButton_1.setFont(new Font("Tahoma", Font.PLAIN, 15));
+
+        bFacebook = new JButton("FACEBOOK");
+        bFacebook.setFont(new Font("Tahoma", Font.PLAIN, 15));
         //btnNewButton_1.setBackground(Color.BLUE);
-        btnNewButton_1.setBounds(413, 21, 375, 37);
-        contentPane.add(btnNewButton_1);
-
-        lblNewLabel = new JLabel("Email");
-        lblNewLabel.setBackground(Color.GRAY);
-        lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 14));
-        lblNewLabel.setBounds(10, 85, 365, 26);
-        contentPane.add(lblNewLabel);
-
-        lblName = new JLabel("Name");
-        lblName.setFont(new Font("Tahoma", Font.PLAIN, 14));
-        lblName.setBounds(413, 85, 365, 26);
-        contentPane.add(lblName);
-
-        textField = new JTextField();
-        textField.setBounds(10, 121, 365, 26);
-        contentPane.add(textField);
-        textField.setColumns(10);
-
-        textField_1 = new JTextField();
-        textField_1.setColumns(10);
-        textField_1.setBounds(413, 121, 365, 26);
-        contentPane.add(textField_1);
-
-        lblPassword = new JLabel("Password");
-        lblPassword.setFont(new Font("Tahoma", Font.PLAIN, 14));
-        lblPassword.setBackground(Color.GRAY);
-        lblPassword.setBounds(10, 177, 365, 26);
-        contentPane.add(lblPassword);
-
-        lblBirthdate = new JLabel("Birthdate");
-        lblBirthdate.setFont(new Font("Tahoma", Font.PLAIN, 14));
-        lblBirthdate.setBounds(413, 177, 365, 26);
-        contentPane.add(lblBirthdate);
-
-        textField_2 = new JTextField();
-        textField_2.setColumns(10);
-        textField_2.setBounds(10, 224, 365, 26);
-        contentPane.add(textField_2);
-
-        textField_3 = new JTextField();
-        textField_3.setColumns(10);
-        textField_3.setBounds(413, 224, 365, 26);
-        contentPane.add(textField_3);
-
-        lblWeightInKg = new JLabel("Weight in kg (optional)");
-        lblWeightInKg.setFont(new Font("Tahoma", Font.PLAIN, 14));
-        lblWeightInKg.setBackground(Color.GRAY);
-        lblWeightInKg.setBounds(10, 293, 365, 26);
-        contentPane.add(lblWeightInKg);
-
-        lblHeightInCm = new JLabel("Height in cm (optional)");
-        lblHeightInCm.setFont(new Font("Tahoma", Font.PLAIN, 14));
-        lblHeightInCm.setBackground(Color.GRAY);
-        lblHeightInCm.setBounds(413, 293, 365, 26);
-        contentPane.add(lblHeightInCm);
-
-        textField_4 = new JTextField();
-        textField_4.setColumns(10);
-        textField_4.setBounds(10, 329, 365, 26);
-        contentPane.add(textField_4);
-
-        textField_5 = new JTextField();
-        textField_5.setColumns(10);
-        textField_5.setBounds(413, 329, 365, 26);
-        contentPane.add(textField_5);
-
-        lblMaxHeartRate = new JLabel("Max heart rate in b/min (optional)");
-        lblMaxHeartRate.setFont(new Font("Tahoma", Font.PLAIN, 14));
-        lblMaxHeartRate.setBackground(Color.GRAY);
-        lblMaxHeartRate.setBounds(10, 398, 365, 26);
-        contentPane.add(lblMaxHeartRate);
-
-        lblReposeHeartRate = new JLabel("Repose heart rate in b/min (optional)");
-        lblReposeHeartRate.setFont(new Font("Tahoma", Font.PLAIN, 14));
-        lblReposeHeartRate.setBackground(Color.GRAY);
-        lblReposeHeartRate.setBounds(413, 398, 365, 26);
-        contentPane.add(lblReposeHeartRate);
-
-        textField_6 = new JTextField();
-        textField_6.setColumns(10);
-        textField_6.setBounds(10, 434, 365, 26);
-        contentPane.add(textField_6);
-
-        textField_7 = new JTextField();
-        textField_7.setColumns(10);
-        textField_7.setBounds(413, 434, 365, 26);
-        contentPane.add(textField_7);
+        bFacebook.setBounds(413, 21, 375, 37);
+        contentPane.add(bFacebook);
+        bFacebook.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                registerType = "facebook";
+            }
+        });
 
         btnRegister = new JButton("Register");
         btnRegister.setFont(new Font("Tahoma", Font.PLAIN, 15));
         //btnRegister.setBackground(Color.BLACK);
         btnRegister.setBounds(10, 508, 365, 26);
         contentPane.add(btnRegister);
+        btnRegister.addActionListener(new ActionListener(){
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                PasswordProfile p = new PasswordProfile();
+
+                p.setEmail(tEmail.getText());
+                p.setNickname(tNickname.getText());
+
+                GregorianCalendar calendar = new GregorianCalendar();
+                calendar.set(Integer.parseInt(tYear.getText()), Integer.parseInt(tMonth.getText()), Integer.parseInt(tDay.getText()));
+                p.setBirthdate(calendar);
+                p.setWeightKg(Double.parseDouble(tWeight.getText()));
+                p.setHeightCm(Integer.parseInt(tHeight.getText()));
+                p.setMaximumHeartRate(Integer.parseInt(tMaxHeartRate.getText()));
+                p.setReposeHeartRate(Integer.parseInt(tReposeHeartRate.getText()));
+
+                p.setRegisterType(registerType);
+
+                p.setPassword(tPassword.getText());
+            }
+        });
 
         btnBack = new JButton("Back");
         btnBack.setFont(new Font("Tahoma", Font.PLAIN, 15));
