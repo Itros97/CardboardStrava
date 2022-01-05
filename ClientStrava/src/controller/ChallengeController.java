@@ -10,7 +10,7 @@ import java.util.List;
 public class ChallengeController {
 
     //Reference to the Service Locator
-    private ServiceLocator serviceLocator;
+    private ServiceLocator serviceLocator = new ServiceLocator();
 
     public ChallengeController() {}
 

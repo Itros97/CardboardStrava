@@ -9,7 +9,7 @@ import java.rmi.RemoteException;
 public class RegisterController {
 
     //Reference to the Service Locator
-    private ServiceLocator serviceLocator;
+    private ServiceLocator serviceLocator = new ServiceLocator();
 
     public RegisterController() {}
 

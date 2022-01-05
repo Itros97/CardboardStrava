@@ -122,6 +122,15 @@ public class ChallengeWindow extends JFrame {
         tSport.setBounds(600, 326, 207, 28);
         contentPane.add(tSport);
 
+        list = new JList();
+        list.setSelectionMode(ListSelectionModel.SINGLE_SELECTION );
+        model = new DefaultListModel();
+        list.setModel(model);
+        scrollList = new JScrollPane();
+        scrollList.setBounds(20, 120,220, 80);
+        list.setBounds(20, 20,220, 435);
+        contentPane.add(list);
+
         JButton bBack = new JButton("Back");
         bBack.setFont(new Font("Tahoma", Font.PLAIN, 14));
         bBack.setBounds(720, 393, 70, 49);
@@ -174,7 +183,20 @@ public class ChallengeWindow extends JFrame {
             public void actionPerformed(ActionEvent e) {
                 List<ChallengeDTO> activeChallenges = challengeController.getUnfinishedChallenges();
 
-                //ESTA LISTA TIENE QUE APARECER EN LA JLIST
+                Thread tActiveChallenges = new Thread(new Runnable() {
+                    @Override
+                    public void run() {
+                        try {
+                            for (ChallengeDTO ch : activeChallenges) {
+                                model.addElement(ch.getName() + ": " + ch.getSport());
+                            }
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                        }
+                    }
+                });
+                tActiveChallenges.start();
+
             }
         });
 
@@ -191,14 +213,5 @@ public class ChallengeWindow extends JFrame {
                 //TIENE QUE APARECER ALGUN JTEXTFIELD DE FEEDBACK EN LA VENTANA
             }
         });
-
-        list = new JList();
-        list.setSelectionMode(ListSelectionModel.SINGLE_SELECTION );
-        model = new DefaultListModel();
-        list.setModel(model);
-        scrollList = new JScrollPane();
-        scrollList.setBounds(20, 120,220, 80);
-        list.setBounds(20, 20,220, 435);
-        contentPane.add(list);
     }
 }

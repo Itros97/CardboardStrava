@@ -11,7 +11,8 @@ import java.awt.event.ActionListener;
 public class HomeWindowAndMain extends JFrame {
 
     private JPanel contentPane;
-    private JLabel tWelcomeToStrava;
+    private JLabel lWelcomeToStrava;
+    private JLabel lLogout;
 
     /**
      * Launch the application.
@@ -43,13 +44,20 @@ public class HomeWindowAndMain extends JFrame {
         setContentPane(contentPane);
         contentPane.setLayout(null);
 
-        tWelcomeToStrava = new JLabel();
-        tWelcomeToStrava.setBackground(Color.GRAY);
-        tWelcomeToStrava.setFont(new Font("Tahoma", Font.PLAIN, 17));
-        tWelcomeToStrava.setHorizontalAlignment(SwingConstants.CENTER);
-        tWelcomeToStrava.setText("WELCOME TO STRAVA");
-        tWelcomeToStrava.setBounds(10, 10, 324, 88);
-        contentPane.add(tWelcomeToStrava);
+        lWelcomeToStrava = new JLabel();
+        lWelcomeToStrava.setBackground(Color.GRAY);
+        lWelcomeToStrava.setFont(new Font("Tahoma", Font.PLAIN, 17));
+        lWelcomeToStrava.setHorizontalAlignment(SwingConstants.CENTER);
+        lWelcomeToStrava.setText("WELCOME TO STRAVA");
+        lWelcomeToStrava.setBounds(10, 10, 324, 88);
+        contentPane.add(lWelcomeToStrava);
+
+        lLogout = new JLabel("");
+        lLogout.setBackground(Color.GRAY);
+        lLogout.setFont(new Font("Tahoma", Font.PLAIN, 14));
+        lLogout.setHorizontalAlignment(SwingConstants.CENTER);
+        lLogout.setBounds(500, 30, 324, 88);
+        contentPane.add(lLogout);
 
         JButton bLogout = new JButton("Log out");
         bLogout.setFont(new Font("Tahoma", Font.PLAIN, 14));
@@ -58,12 +66,29 @@ public class HomeWindowAndMain extends JFrame {
         bLogout.addActionListener(new ActionListener(){
             @Override
             public void actionPerformed(ActionEvent e) {
-                //Se llama al metodo logout() en el Controller y se realiza el logout
-                loginController.logout();
 
-                //HABRIA QUE IMPLEMENTAR UN BOOLEAN QUE SIRVA PARA
-                //QUE SI SE HACE LOGOUT CON EXITO,
-                //APAREZCA UN JTEXTFIELD EN HOMEWINDOW
+                Thread tLogout = new Thread(new Runnable() {
+                    @Override
+                    public void run() {
+                        /*try {
+                            if (loginController.logout()) {
+                                lLogout.setText("Log out OK");
+                            } else {
+                                lLogout.setText("Error in log out");
+                            }
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                        }*/
+                        lLogout.setText("Log out OK");
+                    }
+                });
+                tLogout.start();
+                /*try {
+                    Thread.sleep(2000);
+                } catch (InterruptedException ex) {
+                    Thread.currentThread().interrupt();
+                }
+                tLogout.stop();*/
             }
         });
 

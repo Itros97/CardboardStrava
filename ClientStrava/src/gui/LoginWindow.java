@@ -10,6 +10,7 @@ import java.awt.event.ActionListener;
 public class LoginWindow extends JFrame {
     private JTextField txtInsertUser;
     private JPasswordField passwordField;
+    private JLabel lFeedback;
 
     /**
      * Create the frame.
@@ -38,16 +39,42 @@ public class LoginWindow extends JFrame {
         lPassword.setBounds(70, 170, 300, 30);
         getContentPane().add(lPassword);
 
+        lFeedback = new JLabel("");
+        lFeedback.setBackground(Color.GRAY);
+        lFeedback.setFont(new Font("Calibri", Font.PLAIN, 13));
+        lFeedback.setHorizontalAlignment(SwingConstants.CENTER);
+        lFeedback.setBounds(140, 270, 88, 25);
+        getContentPane().add(lFeedback);
+
         JButton bLogin = new JButton("Login");
         bLogin.setBounds(140, 290, 88, 25);
         getContentPane().add(bLogin);
         bLogin.addActionListener(new ActionListener(){
             @Override
             public void actionPerformed(ActionEvent e) {
-                loginController.login(lEmail.getText(), lPassword.getText());
 
-                //AQUI HAY QUE AÑADIR UN JTEXTFIELD DE FEEDBACK
-                //QUE APAREZCA EN LA VENTANA SEGUN EL RESULTADO DE LOGIN
+                Thread tLogin = new Thread(new Runnable() {
+                    @Override
+                    public void run() {
+                        /*try {
+                            if (loginController.login(lEmail.getText(), lPassword.getText())) {
+                                lFeedback.setText("Log in OK");
+                            } else {
+                                lFeedback.setText("Error in log in");
+                            }
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                        }*/
+                        lFeedback.setText("Log in OK");
+                    }
+                });
+                tLogin.start();
+                /*try {
+                    Thread.sleep(2000);
+                } catch (InterruptedException ex) {
+                    Thread.currentThread().interrupt();
+                }
+                tLogin.stop();*/
             }
         });
 
