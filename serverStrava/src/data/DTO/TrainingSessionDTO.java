@@ -10,7 +10,6 @@ public class TrainingSessionDTO implements Serializable {
 	//distance in km
 	private double distance;
 	private GregorianCalendar dateOfStart;
-	private GregorianCalendar hourOfStart;
 	private double duration;
 	private boolean accepted;
 	
@@ -38,12 +37,6 @@ public class TrainingSessionDTO implements Serializable {
 	public void setDateOfStart(GregorianCalendar dateOfStart) {
 		this.dateOfStart = dateOfStart;
 	}
-	public GregorianCalendar getHourOfStart() {
-		return hourOfStart;
-	}
-	public void setHourOfStart(GregorianCalendar hourOfStart) {
-		this.hourOfStart = hourOfStart;
-	}
 	public double getDuration() {
 		return duration;
 	}
@@ -60,7 +53,7 @@ public class TrainingSessionDTO implements Serializable {
 	@Override
 	public String toString() {
 		return "TrainingSession [title=" + title + ", sport=" + sport + ", distance=" + distance + ", dateOfStart="
-				+ dateOfStart + ", hourOfStart=" + hourOfStart + ", duration=" + duration + "]";
+				+ dateOfStart + ", duration=" + duration + "]";
 	}
 	
 }

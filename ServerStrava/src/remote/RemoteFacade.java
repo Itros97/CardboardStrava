@@ -150,13 +150,12 @@ public class RemoteFacade extends UnicastRemoteObject implements IRemoteFacade {
         }
     }
 
-    public void createTrainingSession(String title, String sport, double distance, GregorianCalendar dateOfStart, GregorianCalendar hourOfStart, double duration) throws RemoteException {
+    public void createTrainingSession(String title, String sport, double distance, GregorianCalendar dateOfStart, double duration) throws RemoteException {
         TrainingSession ts = new TrainingSession();
         ts.setTitle(title);
         ts.setSport(sport);
         ts.setDistance(distance);
         ts.setDateOfStart(dateOfStart);
-        ts.setHourOfStart(hourOfStart);
         ts.setDuration(duration);
 
         System.out.println(" * RemoteFacade createTrainingSession: " + ts);

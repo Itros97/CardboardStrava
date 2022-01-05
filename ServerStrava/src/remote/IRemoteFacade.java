@@ -30,7 +30,7 @@ public interface IRemoteFacade extends Remote {
 
     List<ChallengeDTO> getAcceptedChallenges() throws RemoteException;
 
-    void createTrainingSession(String title, String sport, double distance, GregorianCalendar dateOfStart, GregorianCalendar hourOfStart, double duration) throws RemoteException;
+    void createTrainingSession(String title, String sport, double distance, GregorianCalendar dateOfStart, double duration) throws RemoteException;
 
     void createChallenge(String typeOfChallenge, String name, GregorianCalendar dateOfStart, GregorianCalendar dateOfEnd, String sport, double objectiveDistance, int objectiveTime) throws RemoteException;
 }

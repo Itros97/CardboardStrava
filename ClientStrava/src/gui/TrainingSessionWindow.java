@@ -8,6 +8,7 @@ import javax.swing.border.EmptyBorder;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.GregorianCalendar;
 import java.util.List;
 
 public class TrainingSessionWindow extends JFrame {
@@ -121,13 +122,12 @@ public class TrainingSessionWindow extends JFrame {
         bCreateTrainingSession.addActionListener(new ActionListener(){
             @Override
             public void actionPerformed(ActionEvent e) {
-                /*GregorianCalendar timeOfStart = new GregorianCalendar();
+                GregorianCalendar timeOfStart = new GregorianCalendar();
                 timeOfStart.set(Integer.parseInt(tYear.getText()), Integer.parseInt(tMonth.getText()), Integer.parseInt(tDay.getText()), Integer.parseInt(tHour.getText()), 0);
                 java.time.LocalDateTime.now();
                 trainingSessionController.createTrainingSession(tTitle.getText(),
                         tSport.getText(), Double.parseDouble(tDistanceInKm.getText()),
-                        timeOfStart, Double.parseDouble(tDuration.getText()));*/
-                //TAREA: REORGANIZAR TRAININGSESSIONWINDOW Y QUITAR EL ATRIBUTO HOUR DE TRAININGSESSION
+                        timeOfStart, Double.parseDouble(tDuration.getText()));
             }
         });
 

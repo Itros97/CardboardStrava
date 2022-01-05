@@ -14,7 +14,6 @@ public class TrainingSession {
 	//distance in km
 	private double distance;
 	private GregorianCalendar dateOfStart;
-	private GregorianCalendar hourOfStart;
 	private double duration;
 	private boolean accepted;
 	
@@ -42,12 +41,6 @@ public class TrainingSession {
 	public void setDateOfStart(GregorianCalendar dateOfStart) {
 		this.dateOfStart = dateOfStart;
 	}
-	public GregorianCalendar getHourOfStart() {
-		return hourOfStart;
-	}
-	public void setHourOfStart(GregorianCalendar hourOfStart) {
-		this.hourOfStart = hourOfStart;
-	}
 	public double getDuration() {
 		return duration;
 	}
@@ -64,7 +57,7 @@ public class TrainingSession {
 	@Override
 	public String toString() {
 		return "TrainingSession [title=" + title + ", sport=" + sport + ", distante=" + distance + ", dateOfStart="
-				+ dateOfStart + ", hourOfStart=" + hourOfStart + ", duration=" + duration + "]";
+				+ dateOfStart + ", duration=" + duration + "]";
 	}
 	
 }

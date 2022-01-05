@@ -40,9 +40,9 @@ public class TrainingSessionController {
         }
     }
 
-    public void createTrainingSession(String title, String sport, double distance, GregorianCalendar dateOfStart, GregorianCalendar hourOfStart, double duration) {
+    public void createTrainingSession(String title, String sport, double distance, GregorianCalendar dateOfStart, double duration) {
         try {
-            this.serviceLocator.getService().createTrainingSession(title, sport, distance, dateOfStart, hourOfStart, duration);
+            this.serviceLocator.getService().createTrainingSession(title, sport, distance, dateOfStart, duration);
         } catch (RemoteException e) {
             System.out.println("# Error creating a training session: " + e);
         }
