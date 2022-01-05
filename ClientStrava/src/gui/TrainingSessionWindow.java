@@ -74,24 +74,24 @@ public class TrainingSessionWindow extends JFrame {
         lDateOfStart.setBounds(474, 211, 98, 28);
         contentPane.add(lDateOfStart);
 
-        tYear = new JTextField("");
+        tYear = new JTextField("Year");
         tYear.setColumns(10);
-        tYear.setBounds(600, 214, 207, 28);
+        tYear.setBounds(600, 214, 51, 28);
         contentPane.add(tYear);
 
-        tMonth = new JTextField("");
+        tMonth = new JTextField("Month");
         tMonth.setColumns(10);
-        tMonth.setBounds(600, 214, 207, 28);
+        tMonth.setBounds(651, 214, 51, 28);
         contentPane.add(tMonth);
 
-        tDay = new JTextField("");
+        tDay = new JTextField("Day");
         tDay.setColumns(10);
-        tDay.setBounds(600, 214, 207, 28);
+        tDay.setBounds(702, 214, 51, 28);
         contentPane.add(tDay);
 
-        tHour = new JTextField("");
+        tHour = new JTextField("Hour");
         tHour.setColumns(10);
-        tHour.setBounds(600, 214, 207, 28);
+        tHour.setBounds(753, 214, 51, 28);
         contentPane.add(tHour);
 
         JLabel lDuration = new JLabel("Duration");
