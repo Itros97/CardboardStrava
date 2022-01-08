@@ -18,9 +18,11 @@ public class GetTrainingSessionsAppService {
 
         return instance;
     }
-
+/*
     public List<TrainingSession> getTrainingSessions() {
         //Get all the categories using DAO Pattern
         return TrainingSessionDAO.getInstance().getAll();
     }
+
+ */
 }

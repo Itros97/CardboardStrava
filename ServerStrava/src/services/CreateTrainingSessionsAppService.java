@@ -20,7 +20,7 @@ public class CreateTrainingSessionsAppService {
     public void createTrainingSession(TrainingSession ts) {
         if (ts != null) {
             //Save the challenge in the DB using DAO Pattern
-            TrainingSessionDAO.getInstance().save(ts);
+         //   TrainingSessionDAO.getInstance().save(ts);
         }
     }
 }
