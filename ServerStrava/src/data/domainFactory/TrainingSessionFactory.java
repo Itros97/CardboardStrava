@@ -16,9 +16,9 @@ public class TrainingSessionFactory {
         ts.setSport("running");
         ts.setDistance(8.7);
         ts.setDateOfStart(gregorianCalendar);
-        ts.setHourOfStart(gregorianCalendar);
         ts.setDuration(1.5);
         //1.5 = una hora y media
+        ts.setAccepted(false);
 
         return ts;
     }

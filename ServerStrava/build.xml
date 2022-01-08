@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<project basedir="." default="4.server" name="StarvaServer">
+<project basedir="." default="4.server" name="StravaServer">
 	<property name="src.dir" location="src"/>
    	<property name="bin.dir" location="bin"/>
 	<property name="dist.dir" location="dist"/>
@@ -22,7 +22,7 @@
 	<target name="2.export" depends="1.build" description="Export classes into a .jar file">
 		<delete dir="${dist.dir}"/>
 		<mkdir dir="${dist.dir}"/>
-		<jar destfile="${dist.dir}/${export.file}" basedir="${bin.dir}" includes="**/remote/I**.class, **/dto/**.class"/>
+		<jar destfile="${dist.dir}/${export.file}" basedir="${bin.dir}" includes="**/remote/I**.class, **/DTO/**.class, **/domain/**.class"/>
 	</target>
 	
 	<target name="3.local.test" depends="1.build" description="Runs local repository test">

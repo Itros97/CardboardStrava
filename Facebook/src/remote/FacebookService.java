@@ -1,103 +1,79 @@
 package remote;
 
-import java.io.BufferedReader;
-import java.io.InputStreamReader;
-import java.net.HttpURLConnection;
-import java.net.URL;
-import java.rmi.RemoteException;
-import java.rmi.server.UnicastRemoteObject;
+import java.io.DataInputStream;
+import java.io.DataOutputStream;
+import java.net.Socket;
+import java.util.ArrayList;
 
-public class FacebookService extends UnicastRemoteObject implements IFacebook {
-    private static final long serialVersionUID = 1L;
+public class FacebookService extends Thread {
+    private DataInputStream in;
+    private DataOutputStream out;
+    private Socket tcpSocket;
 
-    protected static final String URL = "https://free.currconv.com/api/v7/convert?q=USD_EUR,GBP_EUR&compact=ultra&apiKey=d4f1b436d25d00b16f3f";
+    ArrayList<String> emails = new ArrayList<String>();
+    ArrayList<String> passwords = new ArrayList<String>();
 
-    //Attribute for the Singleton pattern
-    public static FacebookService instance;
-
-    private FacebookService() throws RemoteException {
-        super();
-        connectToServer();
+    public FacebookService(Socket socket) {
+        try {
+            this.tcpSocket = socket;
+            this.in = new DataInputStream(socket.getInputStream());
+            this.out = new DataOutputStream(socket.getOutputStream());
+            this.start();
+        } catch (Exception e) {
+            System.out.println("# FacebookService - TCPConnection IO error:" + e.getMessage());
+        }
     }
 
-    public static FacebookService getInstance() {
-        if (instance == null) {
+    public void run() {
+        String e1 = "jaimeamann@opendeusto.es";
+        String e2 = "m.lopez.gutierrez@opendeusto.es";
+        String e3 = "inigo.tarrino@opendeusto.es";
+        String e4 = "mikel.huidobro@opendeusto.es";
+
+        emails.add(e1);
+        emails.add(e2);
+        emails.add(e3);
+        emails.add(e4);
+
+        String p1 = "12345678";
+        String p2 = "qwertyui";
+        String p3 = "asdfghjk";
+        String p4 = "zxcvbnm.";
+
+        passwords.add(p1);
+        passwords.add(p2);
+        passwords.add(p3);
+        passwords.add(p4);
+
+        //Facebook server
+        try {
+            //Read request from the client
+            String email = this.in.readUTF();
+            System.out.println("   - FacebookService - Received data from '" + tcpSocket.getInetAddress().getHostAddress() + ":" + tcpSocket.getPort() + "' -> '" + email + "'");
+
+            //Read request from the client
+            String password = this.in.readUTF();
+            System.out.println("   - FacebookService - Received data from '" + tcpSocket.getInetAddress().getHostAddress() + ":" + tcpSocket.getPort() + "' -> '" + password + "'");
+
+            for (String e : emails) {
+                for (String p : passwords) {
+                    if (e.equals(email) && p.equals(password)) {
+                        System.out.println("Login with Facebook Server completed.");
+                        //Send response
+                        this.out.writeBoolean(true);
+                    }
+                }
+            }
+
+        } catch (Exception e) {
+            System.out.println("   # FacebookService error" + e.getMessage());
+        } finally {
             try {
-                instance = new FacebookService();
-            } catch(Exception ex) {
-                System.err.println("  # Error initializing service(): " + ex.getMessage());
+                tcpSocket.close();
+            } catch (Exception e) {
+                System.out.println("   # FacebookService closure error:" + e.getMessage());
             }
-        }
-
-        return instance;
-    }
-
-    private static final void connectToServer() {
-        System.out.println(" - Connecting to 'free.currconv.com'....");
-
-        try {
-            HttpURLConnection con = (HttpURLConnection) (new URL(URL).openConnection());
-            con.setRequestProperty("User-Agent", "Mozilla/5.0");
-            BufferedReader in = new BufferedReader(new InputStreamReader(con.getInputStream()));
-
-            String inputLine;
-            StringBuffer response = new StringBuffer();
-
-            while ((inputLine = in.readLine()) != null) {
-                response.append(inputLine);
-            }
-
-            con.disconnect();
-        } catch(Exception ex) {
-            System.out.println("  # Error connecting to server(): " + ex.getMessage());
         }
     }
 
-    public void login() throws RemoteException {
-        System.out.println(" - Trying to login in 'free.currconv.com'....");
-
-        try {
-            HttpURLConnection con = (HttpURLConnection) (new URL(URL).openConnection());
-            con.setRequestProperty("User-Agent", "Mozilla/5.0");
-            BufferedReader in = new BufferedReader(new InputStreamReader(con.getInputStream()));
-
-            String inputLine;
-            StringBuffer response = new StringBuffer();
-
-            while ((inputLine = in.readLine()) != null) {
-                response.append(inputLine);
-            }
-
-            con.disconnect();
-
-            inputLine = response.toString();
-            System.out.println(" - Login successful!");
-        } catch(Exception ex) {
-            System.out.println("  # Login error: " + ex.getMessage());
-        }
-    }
-
-    public void register() throws RemoteException {
-        System.out.println(" - Trying to register in 'free.currconv.com'....");
-
-        try {
-            HttpURLConnection con = (HttpURLConnection) (new URL(URL).openConnection());
-            con.setRequestProperty("User-Agent", "Mozilla/5.0");
-            BufferedReader in = new BufferedReader(new InputStreamReader(con.getInputStream()));
-
-            String inputLine;
-            StringBuffer response = new StringBuffer();
-
-            while ((inputLine = in.readLine()) != null) {
-                response.append(inputLine);
-            }
-
-            con.disconnect();
-
-            inputLine = response.toString();
-            System.out.println(" - Registered with success!");
-        } catch(Exception ex) {
-            System.out.println("  # Register error: " + ex.getMessage());
-        }
-    }
 }

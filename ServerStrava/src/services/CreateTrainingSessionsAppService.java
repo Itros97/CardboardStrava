@@ -1,10 +1,7 @@
 package services;
 
-import java.rmi.RemoteException;
-import data.DTO.TrainingSessionDTO;
-import data.domain.*;
-import data.dao.*;
-import gateway.*;
+import data.dao.TrainingSessionDAO;
+import data.domain.TrainingSession;
 
 public class CreateTrainingSessionsAppService {
     //Instance for Singleton Pattern

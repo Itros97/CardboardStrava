@@ -1,7 +1,7 @@
 package remote;
 
 import java.rmi.Naming;
-import ServerStrava.src.remote.IRemoteFacade;
+import remote.IRemoteFacade;
 
 public class ServiceLocator {
     private IRemoteFacade service;

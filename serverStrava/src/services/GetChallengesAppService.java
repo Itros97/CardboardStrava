@@ -1,11 +1,9 @@
 package services;
 
-import java.rmi.RemoteException;
+import data.dao.ChallengeDAO;
+import data.domain.Challenge;
+
 import java.util.List;
-import data.DTO.ChallengeDTO;
-import data.domain.*;
-import data.dao.*;
-import gateway.*;
 
 public class GetChallengesAppService {
     //Instance for Singleton Pattern

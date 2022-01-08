@@ -9,6 +9,7 @@ public class ChallengeDTO implements Serializable {
 	private GregorianCalendar dateOfStart;
 	private GregorianCalendar dateOfEnd;
 	private String sport;
+	private boolean accepted;
 	
 	public String getName() {
 		return name;
@@ -33,6 +34,12 @@ public class ChallengeDTO implements Serializable {
 	}
 	public void setSport(String sport) {
 		this.sport = sport;
+	}
+	public boolean isAccepted() {
+		return accepted;
+	}
+	public void setAccepted(boolean accepted) {
+		this.accepted = accepted;
 	}
 	
 	@Override

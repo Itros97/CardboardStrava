@@ -15,7 +15,7 @@ public class ChallengeDAO extends DataAccessObjectBase implements IDataAccessObj
 
     private ChallengeDAO() { }
 
-    public static ChallengeDAO getInstance() {
+        public static ChallengeDAO getInstance() {
         if (instance == null) {
             instance = new ChallengeDAO();
         }
@@ -51,7 +51,7 @@ public class ChallengeDAO extends DataAccessObjectBase implements IDataAccessObj
 
             tx.commit();
         } catch (Exception ex) {
-            System.out.println("  $ Error retrieving all the Articles: " + ex.getMessage());
+            System.out.println("  $ Error retrieving all the Challenges: " + ex.getMessage());
         } finally {
             if (tx != null && tx.isActive()) {
                 tx.rollback();
@@ -79,7 +79,7 @@ public class ChallengeDAO extends DataAccessObjectBase implements IDataAccessObj
 
             tx.commit();
         } catch (Exception ex) {
-            System.out.println("  $ Error querying an Article: " + ex.getMessage());
+            System.out.println("  $ Error querying a Challenge: " + ex.getMessage());
         } finally {
             if (tx != null && tx.isActive()) {
                 tx.rollback();

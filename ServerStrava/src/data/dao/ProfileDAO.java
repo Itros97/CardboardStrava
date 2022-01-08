@@ -1,6 +1,6 @@
 package data.dao;
 
-import data.domain.ChallengeWithTime;
+import data.domain.Profile;
 
 import javax.jdo.Extent;
 import javax.jdo.PersistenceManager;
@@ -10,48 +10,48 @@ import java.util.ArrayList;
 import java.util.List;
 
 //This class implements Singleton and DAO patterns
-public class ChallengeWithTimeDAO extends DataAccessObjectBase implements IDataAccessObject<ChallengeWithTime> {
-    private static ChallengeWithTimeDAO instance;
+public class ProfileDAO extends DataAccessObjectBase implements IDataAccessObject<Profile> {
+    private static ProfileDAO instance;
 
-    private ChallengeWithTimeDAO() { }
+    private ProfileDAO() { }
 
-    public static ChallengeWithTimeDAO getInstance() {
+    public static ProfileDAO getInstance() {
         if (instance == null) {
-            instance = new ChallengeWithTimeDAO();
+            instance = new ProfileDAO();
         }
 
         return instance;
     }
 
     @Override
-    public void save(ChallengeWithTime object) {
+    public void save(Profile object) {
         super.saveObject(object);
     }
 
     @Override
-    public void delete(ChallengeWithTime object) {
+    public void delete(Profile object) {
         super.deleteObject(object);
     }
 
     @Override
-    public List<ChallengeWithTime> getAll() {
+    public List<Profile> getAll() {
         PersistenceManager pm = pmf.getPersistenceManager();
         Transaction tx = pm.currentTransaction();
 
-        List<ChallengeWithTime> challenges = new ArrayList<>();
+        List<Profile> profiles = new ArrayList<>();
 
         try {
             tx.begin();
 
-            Extent<ChallengeWithTime> extent = pm.getExtent(ChallengeWithTime.class, true);
+            Extent<Profile> extent = pm.getExtent(Profile.class, true);
 
-            for (ChallengeWithTime category : extent) {
-                challenges.add(category);
+            for (Profile category : extent) {
+                profiles.add(category);
             }
 
             tx.commit();
         } catch (Exception ex) {
-            System.out.println("  $ Error retrieving all the Challenges: " + ex.getMessage());
+            System.out.println("  $ Error retrieving all the Profiles: " + ex.getMessage());
         } finally {
             if (tx != null && tx.isActive()) {
                 tx.rollback();
@@ -60,26 +60,29 @@ public class ChallengeWithTimeDAO extends DataAccessObjectBase implements IDataA
             pm.close();
         }
 
-        return challenges;
+        return profiles;
     }
 
     @Override
-    public ChallengeWithTime find(String name) {
+    public Profile find(String email) {
         PersistenceManager pm = pmf.getPersistenceManager();
         Transaction tx = pm.currentTransaction();
 
-        ChallengeWithTime result = null;
+        Profile result = null;
 
         try {
             tx.begin();
 
-            Query<?> query = pm.newQuery("SELECT FROM " + ChallengeWithTime.class.getName() + " WHERE name == " + name);
+            Profile p = new Profile();
+            p.setEmail(email);
+
+            Query<?> query = pm.newQuery("SELECT FROM " + p.getEmail() + " WHERE email == " + email);
             query.setUnique(true);
-            result = (ChallengeWithTime) query.execute();
+            result = (Profile) query.execute();
 
             tx.commit();
         } catch (Exception ex) {
-            System.out.println("  $ Error querying an Challenge: " + ex.getMessage());
+            System.out.println("  $ Error querying an Profile: " + ex.getMessage());
         } finally {
             if (tx != null && tx.isActive()) {
                 tx.rollback();
@@ -91,5 +94,3 @@ public class ChallengeWithTimeDAO extends DataAccessObjectBase implements IDataA
         return result;
     }
 }
-
-

@@ -1,25 +1,32 @@
 package server;
 
 import remote.FacebookService;
-import remote.IFacebook;
 
-import java.rmi.Naming;
+import java.io.IOException;
+import java.net.ServerSocket;
 
 public class FacebookServer {
+
+    private static int numClients = 0;
+
     public static void main(String[] args) {
-        if (System.getSecurityManager() == null) {
-            System.setSecurityManager(new SecurityManager());
+        if (args.length < 1) {
+            System.out.println(" # Usage: TranslationServer [PORT]");
+            System.exit(1);
         }
 
-        String name = "//" + args[0] + ":" + args[1] + "/" + args[2];
+        //args[1] = Server socket port
+        int serverPort = Integer.parseInt(args[0]);
 
-        try {
-            IFacebook remoteObject = FacebookService.getInstance();
-            Naming.rebind(name, remoteObject);
-            System.out.println(" * Google Server '" + name + "' started!!");
-        } catch (Exception ex) {
-            System.out.println(" # Google Server: " + ex.getMessage());
-            ex.printStackTrace();
+        try (ServerSocket tcpServerSocket = new ServerSocket(serverPort);) {
+            System.out.println(" - FacebookServer: Waiting for connections '" + tcpServerSocket.getInetAddress().getHostAddress() + ":" + tcpServerSocket.getLocalPort() + "' ...");
+
+            while (true) {
+                new FacebookService(tcpServerSocket.accept());
+                System.out.println(" - FacebookServer: New client connection accepted. Client number: " + ++numClients);
+            }
+        } catch (IOException e) {
+            System.out.println("# FacebookServer: IO error:" + e.getMessage());
         }
     }
 }

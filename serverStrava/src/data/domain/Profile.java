@@ -1,9 +1,13 @@
 package data.domain;
 
+import javax.jdo.annotations.PersistenceCapable;
+import javax.jdo.annotations.PrimaryKey;
 import java.util.GregorianCalendar;
 
+@PersistenceCapable
 public class Profile {
 
+	@PrimaryKey
 	private String email;
 
 	private String nickname;

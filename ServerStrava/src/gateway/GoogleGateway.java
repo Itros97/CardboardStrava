@@ -1,21 +1,20 @@
 package gateway;
 
-//Son los import que aparecen en Auctions
+import rmiremote.IGoogle;
 
 import java.rmi.Naming;
 
-
 public class GoogleGateway {
-    public static GoogleGateway instance;
+
+    private static GoogleGateway instance;
     private IGoogle googleService;
 
     private GoogleGateway() {
         try {
-            //¿Qué URL hay que poner?
-            String URL = "";
+            String URL = "//127.0.0.1:1099/Google";
             this.googleService = (IGoogle) Naming.lookup(URL);
-        } catch (Exception e) {
-            System.err.println("# Error locating remote façade: " + e);
+        } catch (Exception ex) {
+            System.err.println("# Error locating remote facade: " + ex);
         }
     }
 
@@ -27,25 +26,27 @@ public class GoogleGateway {
         return instance;
     }
 
-    public void login() {
+    //Se pasan parametros a login y a register
+    public boolean login(String email, String password) {
         System.out.println("   - Login with Google Gateway");
 
         try {
-            this.googleService.login();
+            return this.googleService.login(email, password);
         } catch (Exception ex) {
             System.out.println("   $ Login error: " + ex.getMessage());
+            return false;
         }
     }
 
-    public void register() {
+    //ANTIGUO
+    /*public void register(PasswordProfile pp) {
         System.out.println("   - Register with Google Gateway");
 
         try {
-            this.googleService.register();
+            this.googleService.register(pp.getEmail(), pp.getNickname(), pp.getBirthdate(), pp.getWeightKg(), pp.getHeightCm(), pp.getReposeHeartRate(), pp.getMaximumHeartRate(), pp.getRegisterType());
         } catch (Exception ex) {
             System.out.println("   $ Register error: " + ex.getMessage());
         }
-    }
-
+    }*/
 
 }

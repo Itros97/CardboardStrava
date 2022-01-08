@@ -1,50 +1,58 @@
 package gateway;
 
-//Son los import que aparecen en Auctions
-
-import java.rmi.Naming;
+import java.io.DataInputStream;
+import java.io.DataOutputStream;
+import java.net.Socket;
 
 public class FacebookGateway {
-    public static FacebookGateway instance;
-    private IFacebook facebookService;
 
-    private FacebookGateway() {
-        try {
-            //¿Qué URL hay que poner?
-            String URL = "";
-            this.facebookService = (IFacebook) Naming.lookup(URL);
-        } catch (Exception e) {
-            System.err.println("# Error locating remote façade: " + e);
-        }
-    }
+    private static FacebookGateway instance;
+    //El puerto creo que esta bien escrito, pero no estoy seguro de si la IP se escribe asi
+    String serverIP = "127.0.0.1";
+    int serverPort = 8001;
 
     public static FacebookGateway getInstance() {
-        if (instance == null) {
+        if(instance == null) {
             instance = new FacebookGateway();
         }
 
         return instance;
     }
 
-    public void login() {
-        System.out.println("   - Login with Google Gateway");
+    //Se pasan parametros a login y a register
+    public boolean login(String email, String password) {
+        System.out.println("   - Login with Facebook Gateway");
 
-        try {
-            this.facebookService.login();
-        } catch (Exception ex) {
-            System.out.println("   $ Login error: " + ex.getMessage());
+        //Declaration of the socket to send/receive information to/from the server (an IP and a Port are needed)
+        try (Socket socket = new Socket(serverIP, serverPort);
+             DataInputStream in = new DataInputStream(socket.getInputStream());
+             DataOutputStream out = new DataOutputStream(socket.getOutputStream())) {
+            //Send email to the server
+            out.writeUTF(email);
+            System.out.println("- EchoClient: Sent data to '" + socket.getInetAddress().getHostAddress() + ":" + socket.getPort() + "' -> '" + email + "'");
+            //Send password to the server
+            out.writeUTF(password);
+            System.out.println("- EchoClient: Sent data to '" + socket.getInetAddress().getHostAddress() + ":" + socket.getPort() + "' -> '" + password + "'");
+
+            //Read response (a boolean) from Facebook Server
+            boolean b = in.readBoolean();
+            System.out.println("- EchoClient: Received boolean from '" + socket.getInetAddress().getHostAddress() + ":" + socket.getPort() + "' -> '" + b + "'");
+            return b;
+        } catch (Exception e) {
+            System.out.println("   $ Socket Login error: " + e.getMessage());
+            return false;
         }
     }
 
-    public void register() {
-        System.out.println("   - Register with Google Gateway");
+    //ANTIGUO
+    /*
+    public void register(PasswordProfile pp) {
+        System.out.println("   - Register with Facebook Gateway");
 
-        try {
-            this.facebookService.register();
-        } catch (Exception ex) {
-            System.out.println("   $ Register error: " + ex.getMessage());
+        try (Socket socket = new Socket(serverIP, serverPort) {
+            socket.register(pp.getEmail(), pp.getNickname(), pp.getBirthdate(), pp.getWeightKg(), pp.getHeightCm(), pp.getReposeHeartRate(), pp.getMaximumHeartRate(), pp.getRegisterType());
+        } catch (Exception e) {
+            System.out.println("   $ Register error: " + e.getMessage());
         }
-    }
-
-
+    }*/
 }
