@@ -62,13 +62,4 @@ public class ProfileDTO implements Serializable {
 	public void setRegisterType(String registerType) {
 		this.registerType = registerType;
 	}
-	@Override
-	public String toString() {
-		return "Profile [email=" + email + ", nickname=" + nickname + ", birthdate=" + birthdate + ", weightKg=" + weightKg
-				+ ", heightCm=" + heightCm + ", maximumHeartRate=" + maximumHeartRate + ", reposeHeartRate="
-				+ reposeHeartRate + ", registerType=" + registerType + "]";
-	}
-	
-	
-	
 }
