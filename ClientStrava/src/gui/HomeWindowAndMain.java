@@ -66,7 +66,6 @@ public class HomeWindowAndMain extends JFrame {
         bLogout.addActionListener(new ActionListener(){
             @Override
             public void actionPerformed(ActionEvent e) {
-
                 Thread tLogout = new Thread(new Runnable() {
                     @Override
                     public void run() {
@@ -84,11 +83,10 @@ public class HomeWindowAndMain extends JFrame {
                 });
                 tLogout.start();
                 /*try {
-                    Thread.sleep(2000);
+                    Thread.sleep(1000);
                 } catch (InterruptedException ex) {
                     Thread.currentThread().interrupt();
-                }
-                tLogout.stop();*/
+                }*/
             }
         });
 
@@ -181,4 +179,11 @@ public class HomeWindowAndMain extends JFrame {
         });
     }
 
+    private static void retrasoSeg() {
+        try {
+            Thread.sleep(1000);
+        } catch (InterruptedException e) {
+
+        }
+    }
 }

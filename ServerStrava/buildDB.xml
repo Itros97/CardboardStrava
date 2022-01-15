@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<project basedir="." default="4.run-example" name="StarvaServer">
+<project basedir="." default="4.run-example" name="StravaServer">
 	<property name="src.dir" location="src"/>
 	<property name="bin.dir" location="bin"/>
 	<property name="lib.dir" location="lib"/>
@@ -16,10 +16,7 @@
 	<target name="1.compile" description="Builds the source code">
 		<delete dir="${bin.dir}"/>
 		<mkdir dir="${bin.dir}"/>
-
-		<javac srcdir="${src.dir}" destdir="${bin.dir}" classpathref="classpath" includeantruntime="false" fork="true">
-			<include name="**/*.java"/>
-		</javac>
+		<javac srcdir="${src.dir}" destdir="${bin.dir}" classpathref="classpath" includeantruntime="no" fork="true"/>
 	</target>
 
 	<target name="2.enhance-classes" depends="1.compile" description="Adds JDO code to the persisten compiled classes">
@@ -48,7 +45,7 @@
 		</java>
 	</target>
 
-	<target name="5.delete-db-schema" depends="2.enhance-classes" description="Drops DB sechema from the DB Server">
+	<target name="5.delete-db-schema" depends="2.enhance-classes" description="Drops DB schema from the DB Server">
 		<taskdef name="schematool" classpathref="classpath" classname="org.datanucleus.store.schema.SchemaToolTask"/>
 		<schematool mode="delete" classpathref="classpath" props="datanucleus.properties" failonerror="true">
 			<sysproperty key="log4j.configuration" value="file:${resources.dir}/log4j.properties"/>

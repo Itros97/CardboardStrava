@@ -10,6 +10,7 @@ import services.*;
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.GregorianCalendar;
 import java.util.HashMap;
 import java.util.List;
@@ -80,7 +81,8 @@ public class RemoteFacade extends UnicastRemoteObject implements IRemoteFacade {
         System.out.println(" * RemoteFacade getTrainingSessions: ");
 
         //Get TrainingSessions using GetTrainingSessionsAppService
-        List<TrainingSession> ts = GetTrainingSessionsAppService.getInstance().getTrainingSessions();
+        List<TrainingSession> ts = new ArrayList<TrainingSession>();
+        ts = GetTrainingSessionsAppService.getInstance().getTrainingSessions();
 
         if (ts != null) {
             //Convert domain object to DTO
@@ -94,8 +96,9 @@ public class RemoteFacade extends UnicastRemoteObject implements IRemoteFacade {
         System.out.println(" * RemoteFacade getAcceptedTrainingSessions: ");
 
         //Get TrainingSessions using GetTrainingSessionsAppService
-        List<TrainingSession> ts = GetTrainingSessionsAppService.getInstance().getTrainingSessions();
-
+        List<TrainingSession> ts = new ArrayList<TrainingSession>();
+        ts = GetTrainingSessionsAppService.getInstance().getTrainingSessions();
+        
         ts.removeIf(t -> !t.isAccepted());
 
         if (ts != null) {

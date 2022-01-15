@@ -1,0 +1,32 @@
+12:23:33,348 (main) ERROR [DataNucleus.SchemaTool] - Error creating NucleusContext
+No se puede leer el archivo de propiedades "datanucleus.properties"
+org.datanucleus.exceptions.NucleusUserException: No se puede leer el archivo de propiedades "datanucleus.properties"
+	at org.datanucleus.util.PersistenceUtils.setPropertiesUsingFile(PersistenceUtils.java:80)
+	at org.datanucleus.store.schema.SchemaTool.main(SchemaTool.java:299)
+Caused by: java.lang.NullPointerException: inStream parameter is null
+	at java.base/java.util.Objects.requireNonNull(Objects.java:247)
+	at java.base/java.util.Properties.load(Properties.java:407)
+	at org.datanucleus.util.PersistenceUtils.setPropertiesUsingFile(PersistenceUtils.java:74)
+	... 1 more
+Nested Throwables StackTrace:
+java.lang.NullPointerException: inStream parameter is null
+	at java.base/java.util.Objects.requireNonNull(Objects.java:247)
+	at java.base/java.util.Properties.load(Properties.java:407)
+	at org.datanucleus.util.PersistenceUtils.setPropertiesUsingFile(PersistenceUtils.java:74)
+	at org.datanucleus.store.schema.SchemaTool.main(SchemaTool.java:299)
+12:23:54,507 (main) ERROR [DataNucleus.SchemaTool] - Error creating NucleusContext
+No se puede leer el archivo de propiedades "datanucleus.properties"
+org.datanucleus.exceptions.NucleusUserException: No se puede leer el archivo de propiedades "datanucleus.properties"
+	at org.datanucleus.util.PersistenceUtils.setPropertiesUsingFile(PersistenceUtils.java:80)
+	at org.datanucleus.store.schema.SchemaTool.main(SchemaTool.java:299)
+Caused by: java.lang.NullPointerException: inStream parameter is null
+	at java.base/java.util.Objects.requireNonNull(Objects.java:247)
+	at java.base/java.util.Properties.load(Properties.java:407)
+	at org.datanucleus.util.PersistenceUtils.setPropertiesUsingFile(PersistenceUtils.java:74)
+	... 1 more
+Nested Throwables StackTrace:
+java.lang.NullPointerException: inStream parameter is null
+	at java.base/java.util.Objects.requireNonNull(Objects.java:247)
+	at java.base/java.util.Properties.load(Properties.java:407)
+	at org.datanucleus.util.PersistenceUtils.setPropertiesUsingFile(PersistenceUtils.java:74)
+	at org.datanucleus.store.schema.SchemaTool.main(SchemaTool.java:299)

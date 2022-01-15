@@ -2,7 +2,6 @@ package services;
 
 import data.dao.TrainingSessionDAO;
 import data.domain.TrainingSession;
-
 import java.util.ArrayList;
 import java.util.List;
 
