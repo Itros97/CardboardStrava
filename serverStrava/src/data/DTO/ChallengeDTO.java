@@ -41,10 +41,4 @@ public class ChallengeDTO implements Serializable {
 	public void setAccepted(boolean accepted) {
 		this.accepted = accepted;
 	}
-	
-	@Override
-	public String toString() {
-		return "Challenge [name=" + name + ", dateOfStart=" + dateOfStart + ", dateOfEnd=" + dateOfEnd
-				+ ", sport=" + sport + "]";
-	}
 }

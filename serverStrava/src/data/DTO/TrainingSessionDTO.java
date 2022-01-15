@@ -49,11 +49,4 @@ public class TrainingSessionDTO implements Serializable {
 	public void setAccepted(boolean accepted) {
 		this.accepted = accepted;
 	}
-	
-	@Override
-	public String toString() {
-		return "TrainingSession [title=" + title + ", sport=" + sport + ", distance=" + distance + ", dateOfStart="
-				+ dateOfStart + ", duration=" + duration + "]";
-	}
-	
 }
