@@ -8,4 +8,4 @@ public interface IGoogle extends Remote {
     /*public void register(String email, String nickname, GregorianCalendar birthdate,
                          double weightKg, int heightCm, int maximumHeartRate,
                          int reposeHeartRate, String googleOrFacebook) throws RemoteException;
-*/}
+    */}
