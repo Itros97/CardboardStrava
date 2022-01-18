@@ -16,6 +16,7 @@
             <include name="**/*.jar"/>
         </fileset>
         <pathelement location="${bin.dir}"/>
+		<pathelement location="${resources.dir}"/>
     </path>
 	
 	<target name="1.compile" description="Builds the project">

@@ -19,13 +19,9 @@ import java.util.Map;
 public class RemoteFacade extends UnicastRemoteObject implements IRemoteFacade {
     private static final long serialVersionUID = 1L;
 
-    //Data structure for manage Server State
-    public Map<Long, Profile> serverState = new HashMap<>();
+    public static RemoteFacade instance;
 
-    //Attribute for the Singleton pattern
-    private static RemoteFacade instance;
-
-    private RemoteFacade() throws RemoteException {
+    public RemoteFacade() throws RemoteException {
         super();
     }
 
