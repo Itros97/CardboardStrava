@@ -10,9 +10,9 @@ import java.util.List;
 public class TrainingSessionController {
 
     //Reference to the Service Locator
-    private ServiceLocator serviceLocator = new ServiceLocator();
+    private ServiceLocator serviceLocator;
 
-    public TrainingSessionController() {}
+    public TrainingSessionController(ServiceLocator serviceLocator) { this.serviceLocator = serviceLocator; }
 
     public void acceptTrainingSession(String title) {
         try {

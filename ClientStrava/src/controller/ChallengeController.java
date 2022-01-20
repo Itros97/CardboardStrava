@@ -12,7 +12,7 @@ public class ChallengeController {
     //Reference to the Service Locator
     private ServiceLocator serviceLocator = new ServiceLocator();
 
-    public ChallengeController() {}
+    public ChallengeController(ServiceLocator serviceLocator) { this.serviceLocator = serviceLocator; }
 
     public void acceptChallenge(String name) {
         try {

@@ -8,6 +8,8 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class LoginWindow extends JFrame {
+    private LoginController controller;
+
     private JTextField txtInsertUser;
     private JPasswordField passwordField;
     private JLabel lFeedback;
@@ -16,6 +18,8 @@ public class LoginWindow extends JFrame {
      * Create the frame.
      */
     public LoginWindow(LoginController loginController) {
+        this.controller = loginController;
+
         setTitle("Login Window");
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         setBounds(100, 100, 500, 385);
@@ -57,7 +61,7 @@ public class LoginWindow extends JFrame {
                     @Override
                     public void run() {
                         /*try {
-                            if (loginController.login(lEmail.getText(), lPassword.getText())) {
+                            if (controller.login(lEmail.getText(), lPassword.getText())) {
                                 lFeedback.setText("Log in OK");
                             } else {
                                 lFeedback.setText("Error in log in");

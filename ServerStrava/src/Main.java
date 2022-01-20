@@ -1,14 +1,19 @@
 import java.rmi.Naming;
+import java.rmi.Remote;
+import java.rmi.RemoteException;
 import java.util.GregorianCalendar;
+import java.util.List;
 
+import data.DTO.TrainingSessionDTO;
 import data.domain.*;
 import data.dao.*;
 import remote.IRemoteFacade;
 import remote.RemoteFacade;
+import services.GetTrainingSessionsAppService;
 
 public class Main {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws RemoteException {
         //Activate Security Manager. It is needed for RMI.
         if (System.getSecurityManager() == null) {
             System.setSecurityManager(new SecurityManager());
@@ -21,12 +26,20 @@ public class Main {
 
         //Initialize DB
         initDB();
+        List<TrainingSessionDTO> ts = RemoteFacade.getInstance().getTrainingSessions();
+
+        for (TrainingSessionDTO trainingSession : ts) {
+            System.out.println(trainingSession.getTitle());
+        }
+        //CONCLUSIONES DE PRUEBAS:
+        //EL ERROR NO ES APP SERVICE NI FAÇADE NI ASSEMBLER, por lo tanto,
+        //Es RMI, ServiceLocator, los Controller, las ventanas o los ant
 
         //Bind remote facade instance to a service name using RMIRegistry
         try {
             IRemoteFacade remoteFacade = new RemoteFacade();
             Naming.rebind(name, remoteFacade);
-            //System.setProperty("java.rmi.server.hostname","127.0.0.1");
+            System.setProperty("java.rmi.server.hostname","127.0.0.1");
             System.out.println(" * STRAVA server '" + name + "' started!!");
         } catch (Exception ex) {
             System.err.println(" # STRAVA Server Exception: " + ex.getMessage());

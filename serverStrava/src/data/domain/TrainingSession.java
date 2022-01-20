@@ -14,6 +14,7 @@ public class TrainingSession {
 	//distance in km
 	private double distance;
 	private GregorianCalendar dateOfStart;
+	//duration in minutes
 	private double duration;
 	private boolean accepted;
 	

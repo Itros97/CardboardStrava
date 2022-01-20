@@ -1,6 +1,10 @@
 package gui;
 
+import controller.ChallengeController;
 import controller.LoginController;
+import controller.RegisterController;
+import controller.TrainingSessionController;
+import remote.ServiceLocator;
 
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
@@ -9,7 +13,6 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class HomeWindowAndMain extends JFrame {
-
     private JPanel contentPane;
     private JLabel lWelcomeToStrava;
     private JLabel lLogout;
@@ -18,10 +21,17 @@ public class HomeWindowAndMain extends JFrame {
      * Launch the application.
      */
     public static void main(String[] args) {
+        ServiceLocator serviceLocator = new ServiceLocator();
+
+        //args[0] = RMIRegistry IP
+        //args[1] = RMIRegistry Port
+        //args[2] = Service Name
+        serviceLocator.setService(args[0], args[1], args[2]);
+
         EventQueue.invokeLater(new Runnable() {
             public void run() {
                 try {
-                    HomeWindowAndMain frame = new HomeWindowAndMain();
+                    HomeWindowAndMain frame = new HomeWindowAndMain(serviceLocator);
                     frame.setTitle("Home Window");
                     frame.setVisible(true);
                 } catch (Exception e) {
@@ -34,8 +44,11 @@ public class HomeWindowAndMain extends JFrame {
     /**
      * Create the frame.
      */
-    public HomeWindowAndMain() {
-        LoginController loginController = new LoginController();
+    public HomeWindowAndMain(ServiceLocator serviceLocator) {
+        LoginController loginController = new LoginController(serviceLocator);
+        RegisterController registerController = new RegisterController(serviceLocator);
+        ChallengeController challengeController = new ChallengeController(serviceLocator);
+        TrainingSessionController trainingSessionController = new TrainingSessionController(serviceLocator);
 
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setBounds(100, 100, 739, 468);
@@ -70,7 +83,7 @@ public class HomeWindowAndMain extends JFrame {
                     @Override
                     public void run() {
                         /*try {
-                            if (loginController.logout()) {
+                            if (controller.logout()) {
                                 lLogout.setText("Log out OK");
                             } else {
                                 lLogout.setText("Error in log out");
@@ -123,7 +136,7 @@ public class HomeWindowAndMain extends JFrame {
                     @Override
                     public void run() {
                         try {
-                            RegisterWindow frame = new RegisterWindow();
+                            RegisterWindow frame = new RegisterWindow(registerController);
                             frame.setVisible(true);
                         } catch (Exception e) {
                             e.printStackTrace();
@@ -145,7 +158,7 @@ public class HomeWindowAndMain extends JFrame {
                     @Override
                     public void run() {
                         try {
-                            ChallengeWindow frame = new ChallengeWindow();
+                            ChallengeWindow frame = new ChallengeWindow(challengeController);
                             frame.setVisible(true);
                         } catch (Exception e) {
                             e.printStackTrace();
@@ -167,7 +180,7 @@ public class HomeWindowAndMain extends JFrame {
                     @Override
                     public void run() {
                         try {
-                            TrainingSessionWindow frame = new TrainingSessionWindow();
+                            TrainingSessionWindow frame = new TrainingSessionWindow(trainingSessionController);
                             frame.setVisible(true);
                         } catch (Exception e) {
                             e.printStackTrace();

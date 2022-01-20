@@ -1,5 +1,6 @@
 package gui;
 
+import controller.RegisterController;
 import data.domain.PasswordProfile;
 
 import javax.swing.*;
@@ -10,6 +11,7 @@ import java.awt.event.ActionListener;
 import java.util.GregorianCalendar;
 
 public class RegisterWindow extends JFrame {
+    private RegisterController controller;
 
     private JPanel contentPane;
     private JButton bGoogle;
@@ -39,7 +41,9 @@ public class RegisterWindow extends JFrame {
     /**
      * Create the frame.
      */
-    public RegisterWindow() {
+    public RegisterWindow(RegisterController registerController) {
+        this.controller = registerController;
+
         registerType = "";
 
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
@@ -192,6 +196,9 @@ public class RegisterWindow extends JFrame {
                 p.setRegisterType(registerType);
 
                 p.setPassword(tPassword.getText());
+
+                controller.register(p);
+                //POR IMPLEMENTAR: un if para registrar Profiles o PasswordProfiles
             }
         });
 

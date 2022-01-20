@@ -11,7 +11,7 @@ public class LoginController {
     //This attribute stores the token when login success
     private boolean token = false;
 
-    public LoginController() {}
+    public LoginController(ServiceLocator serviceLocator) { this.serviceLocator = serviceLocator; }
 
     public boolean login(String email, String password) {
         //Se realiza el proceso de login si un usuario no se ha logeado ya

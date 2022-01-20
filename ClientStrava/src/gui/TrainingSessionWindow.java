@@ -12,6 +12,7 @@ import java.util.GregorianCalendar;
 import java.util.List;
 
 public class TrainingSessionWindow extends JFrame {
+    private TrainingSessionController controller;
 
     private JPanel contentPane;
     private JTextField tTitle;
@@ -29,8 +30,8 @@ public class TrainingSessionWindow extends JFrame {
     /**
      * Create the frame.
      */
-    public TrainingSessionWindow() {
-        TrainingSessionController trainingSessionController = new TrainingSessionController();
+    public TrainingSessionWindow(TrainingSessionController trainingSessionController) {
+        this.controller = trainingSessionController;
 
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         setBounds(100, 100, 886, 514);
@@ -125,7 +126,7 @@ public class TrainingSessionWindow extends JFrame {
                 GregorianCalendar timeOfStart = new GregorianCalendar();
                 timeOfStart.set(Integer.parseInt(tYear.getText()), Integer.parseInt(tMonth.getText()), Integer.parseInt(tDay.getText()), Integer.parseInt(tHour.getText()), 0);
                 java.time.LocalDateTime.now();
-                trainingSessionController.createTrainingSession(tTitle.getText(),
+                controller.createTrainingSession(tTitle.getText(),
                         tSport.getText(), Double.parseDouble(tDistanceInKm.getText()),
                         timeOfStart, Double.parseDouble(tDuration.getText()));
             }
@@ -138,22 +139,18 @@ public class TrainingSessionWindow extends JFrame {
         bConsultSessions.addActionListener(new ActionListener(){
             @Override
             public void actionPerformed(ActionEvent e) {
-                List<TrainingSessionDTO> sessions = trainingSessionController.getTrainingSessions();
-
-                //ESTA LISTA TIENE QUE APARECER EN LA JLIST
-            }
-        });
-
-        JButton bConsultOwnSessions = new JButton("Consult own sessions");
-        bConsultOwnSessions.setFont(new Font("Tahoma", Font.PLAIN, 14));
-        bConsultOwnSessions.setBounds(258, 256, 181, 49);
-        contentPane.add(bConsultOwnSessions);
-        bConsultOwnSessions.addActionListener(new ActionListener(){
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                List<TrainingSessionDTO> sessions = trainingSessionController.getAcceptedTrainingSessions();
-
-                //ESTA LISTA TIENE QUE APARECER EN LA JLIST
+                System.out.println(" - Getting all the training sessions ...");
+                List<TrainingSessionDTO> sessions = controller.getTrainingSessions();
+                System.out.println(sessions.get(0));
+                Thread tSessions = new Thread(new Runnable() {
+                    @Override
+                    public void run() {
+                        for (TrainingSessionDTO session : sessions) {
+                            model.addElement(session.getTitle());
+                        }
+                    }
+                });
+                tSessions.start();
             }
         });
 
@@ -165,5 +162,25 @@ public class TrainingSessionWindow extends JFrame {
         scrollList.setBounds(20, 120,220, 80);
         list.setBounds(20, 20,220, 435);
         contentPane.add(list);
+
+        JButton bConsultOwnSessions = new JButton("Consult own sessions");
+        bConsultOwnSessions.setFont(new Font("Tahoma", Font.PLAIN, 14));
+        bConsultOwnSessions.setBounds(258, 256, 181, 49);
+        contentPane.add(bConsultOwnSessions);
+        bConsultOwnSessions.addActionListener(new ActionListener(){
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                List<TrainingSessionDTO> acceptedSessions = controller.getAcceptedTrainingSessions();
+                Thread tAcceptedSessions = new Thread(new Runnable() {
+                    @Override
+                    public void run() {
+                        for (TrainingSessionDTO session : acceptedSessions) {
+                            model.addElement(session.getTitle());
+                        }
+                    }
+                });
+                tAcceptedSessions.start();
+            }
+        });
     }
 }

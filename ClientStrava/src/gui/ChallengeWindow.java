@@ -1,6 +1,7 @@
 package gui;
 
 import controller.ChallengeController;
+import controller.LoginController;
 import data.DTO.ChallengeDTO;
 
 import javax.swing.*;
@@ -12,6 +13,7 @@ import java.util.GregorianCalendar;
 import java.util.List;
 
 public class ChallengeWindow extends JFrame {
+    ChallengeController controller;
 
     private JPanel contentPane;
     private JTextField tName;
@@ -31,8 +33,9 @@ public class ChallengeWindow extends JFrame {
     /**
      * Create the frame.
      */
-    public ChallengeWindow() {
-        ChallengeController challengeController = new ChallengeController();
+    public ChallengeWindow(ChallengeController challengeController) {
+        this.controller = challengeController;
+
         String typeOfChallenge = "";
 
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
@@ -154,7 +157,7 @@ public class ChallengeWindow extends JFrame {
                 dateOfStart.set(Integer.parseInt(tYear1.getText()), Integer.parseInt(tMonth1.getText()), Integer.parseInt(tDay1.getText()));
                 dateOfEnd.set(Integer.parseInt(tYear2.getText()), Integer.parseInt(tMonth2.getText()), Integer.parseInt(tDay2.getText()));
 
-                challengeController.createChallenge(typeOfChallenge, tName.getName(),
+                controller.createChallenge(typeOfChallenge, tName.getName(),
                         dateOfStart, dateOfEnd, tSport.getText(),
                         Integer.parseInt(tDistance.getText()),
                         Integer.parseInt(tAimTime.getText()));
@@ -168,9 +171,17 @@ public class ChallengeWindow extends JFrame {
         bCheckAcceptedChallenges.addActionListener(new ActionListener(){
             @Override
             public void actionPerformed(ActionEvent e) {
-                List<ChallengeDTO> acceptedChallenges = challengeController.getAcceptedChallenges();
+                List<ChallengeDTO> acceptedChallenges = controller.getAcceptedChallenges();
 
-                //ESTA LISTA TIENE QUE APARECER EN LA JLIST
+                Thread tAcceptedChallenges = new Thread(new Runnable() {
+                    @Override
+                    public void run() {
+                        for (ChallengeDTO ch : acceptedChallenges) {
+                            model.addElement(ch.getName() + ": " + ch.getSport());
+                        }
+                    }
+                });
+                tAcceptedChallenges.start();
             }
         });
 
@@ -181,17 +192,13 @@ public class ChallengeWindow extends JFrame {
         bObtainActiveChallenges.addActionListener(new ActionListener(){
             @Override
             public void actionPerformed(ActionEvent e) {
-                List<ChallengeDTO> activeChallenges = challengeController.getUnfinishedChallenges();
+                List<ChallengeDTO> activeChallenges = controller.getUnfinishedChallenges();
 
                 Thread tActiveChallenges = new Thread(new Runnable() {
                     @Override
                     public void run() {
-                        try {
-                            for (ChallengeDTO ch : activeChallenges) {
-                                model.addElement(ch.getName() + ": " + ch.getSport());
-                            }
-                        } catch (Exception e) {
-                            e.printStackTrace();
+                        for (ChallengeDTO ch : activeChallenges) {
+                            model.addElement(ch.getName() + ": " + ch.getSport());
                         }
                     }
                 });
@@ -208,7 +215,7 @@ public class ChallengeWindow extends JFrame {
         bAcceptChallenge.addActionListener(new ActionListener(){
             @Override
             public void actionPerformed(ActionEvent e) {
-                challengeController.acceptChallenge(tName.getText());
+                controller.acceptChallenge(tName.getText());
 
                 //TIENE QUE APARECER ALGUN JTEXTFIELD DE FEEDBACK EN LA VENTANA
             }

@@ -77,8 +77,7 @@ public class RemoteFacade extends UnicastRemoteObject implements IRemoteFacade {
         System.out.println(" * RemoteFacade getTrainingSessions: ");
 
         //Get TrainingSessions using GetTrainingSessionsAppService
-        List<TrainingSession> ts = new ArrayList<TrainingSession>();
-        ts = GetTrainingSessionsAppService.getInstance().getTrainingSessions();
+        List<TrainingSession> ts = GetTrainingSessionsAppService.getInstance().getTrainingSessions();
 
         if (ts != null) {
             //Convert domain object to DTO
@@ -92,9 +91,8 @@ public class RemoteFacade extends UnicastRemoteObject implements IRemoteFacade {
         System.out.println(" * RemoteFacade getAcceptedTrainingSessions: ");
 
         //Get TrainingSessions using GetTrainingSessionsAppService
-        List<TrainingSession> ts = new ArrayList<TrainingSession>();
-        ts = GetTrainingSessionsAppService.getInstance().getTrainingSessions();
-        
+        List<TrainingSession> ts = GetTrainingSessionsAppService.getInstance().getTrainingSessions();
+
         ts.removeIf(t -> !t.isAccepted());
 
         if (ts != null) {
