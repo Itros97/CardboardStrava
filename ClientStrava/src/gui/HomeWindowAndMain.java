@@ -4,13 +4,15 @@ import controller.ChallengeController;
 import controller.LoginController;
 import controller.RegisterController;
 import controller.TrainingSessionController;
-import remote.ServiceLocator;
+import ServiceLocator.ServiceLocator;
+import data.DTO.TrainingSessionDTO;
 
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.List;
 
 public class HomeWindowAndMain extends JFrame {
     private JPanel contentPane;
@@ -27,6 +29,13 @@ public class HomeWindowAndMain extends JFrame {
         //args[1] = RMIRegistry Port
         //args[2] = Service Name
         serviceLocator.setService(args[0], args[1], args[2]);
+
+        //PRUEBA ServiceLocator
+        TrainingSessionController trainingSessionController = new TrainingSessionController(serviceLocator);
+        List<TrainingSessionDTO> sessions = trainingSessionController.getTrainingSessions();
+        for (TrainingSessionDTO session : sessions) {
+            session.getTitle();
+        }
 
         EventQueue.invokeLater(new Runnable() {
             public void run() {

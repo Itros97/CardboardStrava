@@ -1,4 +1,4 @@
-package remote;
+package ServiceLocator;
 
 import java.rmi.Naming;
 import remote.IRemoteFacade;

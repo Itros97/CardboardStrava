@@ -38,6 +38,7 @@ public class ChallengeWindow extends JFrame {
 
         String typeOfChallenge = "";
 
+        setTitle("Challenge Window");
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         setBounds(100, 100, 886, 514);
         contentPane = new JPanel();

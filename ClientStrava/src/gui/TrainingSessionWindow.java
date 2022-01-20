@@ -33,6 +33,7 @@ public class TrainingSessionWindow extends JFrame {
     public TrainingSessionWindow(TrainingSessionController trainingSessionController) {
         this.controller = trainingSessionController;
 
+        setTitle("Training Session Window");
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         setBounds(100, 100, 886, 514);
         contentPane = new JPanel();

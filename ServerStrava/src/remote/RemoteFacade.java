@@ -25,17 +25,6 @@ public class RemoteFacade extends UnicastRemoteObject implements IRemoteFacade {
         super();
     }
 
-    public static RemoteFacade getInstance() {
-        if (instance == null) {
-            try {
-                instance = new RemoteFacade();
-            } catch (Exception var1) {
-                System.err.println("# Error creating RemoteFacade: " + var1);
-            }
-        }
-        return instance;
-    }
-
     //Hay que implementar aqui y en otras partes de la facade el token
     public boolean loginUser(String email, String password) throws RemoteException {
         System.out.println(" * RemoteFacade loginUser: " + email + " / " + password);

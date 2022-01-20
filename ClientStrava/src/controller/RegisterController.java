@@ -1,8 +1,7 @@
 package controller;
 
 import data.domain.PasswordProfile;
-import data.domain.Profile;
-import remote.ServiceLocator;
+import ServiceLocator.ServiceLocator;
 
 import java.rmi.RemoteException;
 

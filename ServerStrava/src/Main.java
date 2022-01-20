@@ -26,14 +26,13 @@ public class Main {
 
         //Initialize DB
         initDB();
-        List<TrainingSessionDTO> ts = RemoteFacade.getInstance().getTrainingSessions();
+
+        //PRUEBA DAOs, DTOs y Assemblers
+        /*List<TrainingSessionDTO> ts = RemoteFacade.getInstance().getTrainingSessions();
 
         for (TrainingSessionDTO trainingSession : ts) {
             System.out.println(trainingSession.getTitle());
-        }
-        //CONCLUSIONES DE PRUEBAS:
-        //EL ERROR NO ES APP SERVICE NI FAÇADE NI ASSEMBLER, por lo tanto,
-        //Es RMI, ServiceLocator, los Controller, las ventanas o los ant
+        }*/
 
         //Bind remote facade instance to a service name using RMIRegistry
         try {

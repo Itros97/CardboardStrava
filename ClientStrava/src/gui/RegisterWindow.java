@@ -46,6 +46,7 @@ public class RegisterWindow extends JFrame {
 
         registerType = "";
 
+        setTitle("Register Window");
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         setBounds(100, 100, 813, 596);
         contentPane = new JPanel();

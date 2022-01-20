@@ -1,7 +1,7 @@
 package controller;
 
 import data.DTO.ChallengeDTO;
-import remote.ServiceLocator;
+import ServiceLocator.ServiceLocator;
 
 import java.rmi.RemoteException;
 import java.util.GregorianCalendar;

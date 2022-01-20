@@ -1,6 +1,6 @@
 package controller;
 
-import remote.ServiceLocator;
+import ServiceLocator.ServiceLocator;
 import java.rmi.RemoteException;
 
 //This class implements Controller pattern.
