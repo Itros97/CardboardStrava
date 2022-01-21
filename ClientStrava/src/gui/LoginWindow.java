@@ -8,11 +8,11 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class LoginWindow extends JFrame {
-    private LoginController controller;
+    private final LoginController controller;
 
-    private JTextField txtInsertUser;
-    private JPasswordField passwordField;
-    private JLabel lFeedback;
+    private final JTextField txtInsertUser;
+    private final JPasswordField passwordField;
+    private final JLabel lFeedback;
 
     /**
      * Create the frame.

@@ -13,7 +13,7 @@ import services.GetTrainingSessionsAppService;
 
 public class Main {
 
-    public static void main(String[] args) throws RemoteException {
+    public static void main(String[] args) {
         //Activate Security Manager. It is needed for RMI.
         if (System.getSecurityManager() == null) {
             System.setSecurityManager(new SecurityManager());

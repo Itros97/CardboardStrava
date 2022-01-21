@@ -15,9 +15,9 @@ import java.awt.event.ActionListener;
 import java.util.List;
 
 public class HomeWindowAndMain extends JFrame {
-    private JPanel contentPane;
-    private JLabel lWelcomeToStrava;
-    private JLabel lLogout;
+    private final JPanel contentPane;
+    private final JLabel lWelcomeToStrava;
+    private final JLabel lLogout;
 
     /**
      * Launch the application.

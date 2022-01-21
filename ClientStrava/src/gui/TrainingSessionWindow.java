@@ -12,20 +12,20 @@ import java.util.GregorianCalendar;
 import java.util.List;
 
 public class TrainingSessionWindow extends JFrame {
-    private TrainingSessionController controller;
+    private final TrainingSessionController controller;
 
-    private JPanel contentPane;
-    private JTextField tTitle;
-    private JTextField tSport;
-    private JTextField tDistanceInKm;
-    private JTextField tYear;
-    private JTextField tMonth;
-    private JTextField tDay;
-    private JTextField tHour;
-    private JTextField tDuration;
-    private JList list;//declaramos La Lista
-    private DefaultListModel model;//declaramos el Modelo
-    private JScrollPane scrollList;
+    private final JPanel contentPane;
+    private final JTextField tTitle;
+    private final JTextField tSport;
+    private final JTextField tDistanceInKm;
+    private final JTextField tYear;
+    private final JTextField tMonth;
+    private final JTextField tDay;
+    private final JTextField tHour;
+    private final JTextField tDuration;
+    private final JList list;//declaramos La Lista
+    private final DefaultListModel model;//declaramos el Modelo
+    private final JScrollPane scrollList;
 
     /**
      * Create the frame.

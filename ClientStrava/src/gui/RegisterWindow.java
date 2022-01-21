@@ -11,31 +11,31 @@ import java.awt.event.ActionListener;
 import java.util.GregorianCalendar;
 
 public class RegisterWindow extends JFrame {
-    private RegisterController controller;
+    private final RegisterController controller;
 
-    private JPanel contentPane;
-    private JButton bGoogle;
-    private JButton bFacebook;
-    private JLabel lEmail;
-    private JLabel lNickname;
-    private JTextField tEmail;
-    private JTextField tNickname;
-    private JLabel lPassword;
-    private JLabel lBirthdate;
-    private JTextField tPassword;
-    private JTextField tYear;
-    private JTextField tMonth;
-    private JTextField tDay;
-    private JLabel lWeightInKg;
-    private JLabel lHeightInCm;
-    private JTextField tWeight;
-    private JTextField tHeight;
-    private JLabel lMaxHeartRate;
-    private JLabel lReposeHeartRate;
-    private JTextField tMaxHeartRate;
-    private JTextField tReposeHeartRate;
-    private JButton btnRegister;
-    private JButton btnBack;
+    private final JPanel contentPane;
+    private final JButton bGoogle;
+    private final JButton bFacebook;
+    private final JLabel lEmail;
+    private final JLabel lNickname;
+    private final JTextField tEmail;
+    private final JTextField tNickname;
+    private final JLabel lPassword;
+    private final JLabel lBirthdate;
+    private final JTextField tPassword;
+    private final JTextField tYear;
+    private final JTextField tMonth;
+    private final JTextField tDay;
+    private final JLabel lWeightInKg;
+    private final JLabel lHeightInCm;
+    private final JTextField tWeight;
+    private final JTextField tHeight;
+    private final JLabel lMaxHeartRate;
+    private final JLabel lReposeHeartRate;
+    private final JTextField tMaxHeartRate;
+    private final JTextField tReposeHeartRate;
+    private final JButton btnRegister;
+    private final JButton btnBack;
     private String registerType;
 
     /**

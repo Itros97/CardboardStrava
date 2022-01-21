@@ -15,20 +15,20 @@ import java.util.List;
 public class ChallengeWindow extends JFrame {
     ChallengeController controller;
 
-    private JPanel contentPane;
-    private JTextField tName;
-    private JTextField tYear1;
-    private JTextField tYear2;
-    private JTextField tMonth1;
-    private JTextField tMonth2;
-    private JTextField tDay1;
-    private JTextField tDay2;
-    private JTextField tDistance;
-    private JTextField tAimTime;
-    private JTextField tSport;
-    private JList list;//declaramos La Lista
-    private DefaultListModel model;//declaramos el Modelo
-    private JScrollPane scrollList;
+    private final JPanel contentPane;
+    private final JTextField tName;
+    private final JTextField tYear1;
+    private final JTextField tYear2;
+    private final JTextField tMonth1;
+    private final JTextField tMonth2;
+    private final JTextField tDay1;
+    private final JTextField tDay2;
+    private final JTextField tDistance;
+    private final JTextField tAimTime;
+    private final JTextField tSport;
+    private final JList list;//declaramos La Lista
+    private final DefaultListModel model;//declaramos el Modelo
+    private final JScrollPane scrollList;
 
     /**
      * Create the frame.

@@ -10,7 +10,7 @@ import java.util.List;
 public class TrainingSessionController {
 
     //Reference to the Service Locator
-    private ServiceLocator serviceLocator;
+    private final ServiceLocator serviceLocator;
 
     public TrainingSessionController(ServiceLocator serviceLocator) { this.serviceLocator = serviceLocator; }
 
