@@ -1,15 +1,9 @@
 import java.rmi.Naming;
-import java.rmi.Remote;
-import java.rmi.RemoteException;
 import java.util.GregorianCalendar;
-import java.util.List;
-
-import data.DTO.TrainingSessionDTO;
 import data.domain.*;
 import data.dao.*;
 import remote.IRemoteFacade;
 import remote.RemoteFacade;
-import services.GetTrainingSessionsAppService;
 
 public class Main {
 
@@ -43,6 +37,7 @@ public class Main {
         try {
             GregorianCalendar calendar = new GregorianCalendar();
 
+            /* DATOS ANTIGUOS
             //Create Profiles
             Profile p1 = new Profile();
             p1.setEmail("primerprofile@opendeusto.es");
@@ -99,7 +94,7 @@ public class Main {
             ProfileDAO.getInstance().save(p2);
             ProfileDAO.getInstance().save(p3);
             ProfileDAO.getInstance().save(p4);
-            ProfileDAO.getInstance().save(p5);
+            ProfileDAO.getInstance().save(p5);*/
 
             PasswordProfile pp1 = new PasswordProfile();
             pp1.setEmail("denna@gmail.com");

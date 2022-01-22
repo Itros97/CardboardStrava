@@ -181,7 +181,6 @@ public class RegisterWindow extends JFrame {
         btnRegister.addActionListener(new ActionListener(){
             @Override
             public void actionPerformed(ActionEvent e) {
-                //POR IMPLEMENTAR: un if para registrar Profiles o PasswordProfiles
                 PasswordProfile p = new PasswordProfile();
 
                 if (!tEmail.getText().equals("")) {

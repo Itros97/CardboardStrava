@@ -1,13 +1,12 @@
 package data.domainFactory;
 
 import data.domain.PasswordProfile;
-import data.domain.Profile;
 
 import java.util.Date;
 import java.util.GregorianCalendar;
 
 public class ProfileFactory {
-    public static Profile createProfile(String what) {
+    /*public static Profile createProfile(String what) {
         Date date = new Date();
         GregorianCalendar gregorianCalendar = new GregorianCalendar();
         gregorianCalendar.setTime(date);
@@ -39,5 +38,5 @@ public class ProfileFactory {
 
             return p;
         }
-    }
+    }*/
 }
