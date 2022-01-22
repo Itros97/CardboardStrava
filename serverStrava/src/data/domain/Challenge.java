@@ -13,7 +13,7 @@ public class Challenge{
 	private GregorianCalendar dateOfStart;
 	private GregorianCalendar dateOfEnd;
 	private String sport;
-	private boolean accepted;
+	private String emailAceptante;
 	
 	public String getName() {
 		return name;
@@ -39,11 +39,11 @@ public class Challenge{
 	public void setSport(String sport) {
 		this.sport = sport;
 	}
-	public boolean isAccepted() {
-		return accepted;
+	public String getEmailAceptante() {
+		return emailAceptante;
 	}
-	public void setAccepted(boolean accepted) {
-		this.accepted = accepted;
+	public void setEmailAceptante(String emailAceptante) {
+		this.emailAceptante = emailAceptante;
 	}
 	
 	@Override

@@ -18,7 +18,6 @@ public class TrainingSessionFactory {
         ts.setDateOfStart(gregorianCalendar);
         ts.setDuration(1.5);
         //1.5 = una hora y media
-        ts.setAccepted(false);
 
         return ts;
     }

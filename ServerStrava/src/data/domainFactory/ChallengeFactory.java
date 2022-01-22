@@ -21,7 +21,7 @@ public class ChallengeFactory {
             challengeWithDistance.setDateOfEnd(gregorianCalendar);
             challengeWithDistance.setSport("ambos deportes");
             challengeWithDistance.setObjectiveDistance(18.2);
-            challengeWithDistance.setAccepted(false);
+            challengeWithDistance.setEmailAceptante("");
 
             return challengeWithDistance;
         } else if (what.equals("time")) {
@@ -32,7 +32,7 @@ public class ChallengeFactory {
             challengeWithTime.setDateOfEnd(gregorianCalendar);
             challengeWithTime.setSport("ambos deportes");
             challengeWithTime.setObjectiveTime(3);
-            challengeWithTime.setAccepted(false);
+            challengeWithTime.setEmailAceptante("");
 
             return challengeWithTime;
         } else {
@@ -42,7 +42,7 @@ public class ChallengeFactory {
             ch.setDateOfStart(gregorianCalendar);
             ch.setDateOfEnd(gregorianCalendar);
             ch.setSport("ambos deportes");
-            ch.setAccepted(false);
+            ch.setEmailAceptante("");
 
             return ch;
         }

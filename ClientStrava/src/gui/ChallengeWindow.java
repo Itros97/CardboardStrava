@@ -33,7 +33,7 @@ public class ChallengeWindow extends JFrame {
     /**
      * Create the frame.
      */
-    public ChallengeWindow(ChallengeController challengeController) {
+    public ChallengeWindow(ChallengeController challengeController, String email) {
         this.controller = challengeController;
 
         String typeOfChallenge = "";
@@ -162,52 +162,58 @@ public class ChallengeWindow extends JFrame {
                         dateOfStart, dateOfEnd, tSport.getText(),
                         Integer.parseInt(tDistance.getText()),
                         Integer.parseInt(tAimTime.getText()));
+
+                //TIENE QUE APARECER UN JLABEL DE FEEDBACK EN LA VENTANA
             }
         });
 
         JButton bCheckAcceptedChallenges = new JButton("Check accepted challenges");
         bCheckAcceptedChallenges.setFont(new Font("Tahoma", Font.PLAIN, 14));
-        bCheckAcceptedChallenges.setBounds(253, 82, 205, 49);
+        bCheckAcceptedChallenges.setBounds(253, 170, 205, 49);
         contentPane.add(bCheckAcceptedChallenges);
         bCheckAcceptedChallenges.addActionListener(new ActionListener(){
             @Override
             public void actionPerformed(ActionEvent e) {
-                List<ChallengeDTO> acceptedChallenges = controller.getAcceptedChallenges();
-
-                Thread tAcceptedChallenges = new Thread(new Runnable() {
-                    @Override
-                    public void run() {
-                        for (ChallengeDTO ch : acceptedChallenges) {
-                            model.addElement(ch.getName() + ": " + ch.getSport());
+                System.out.println(" - Getting all the challenges...");
+                List<ChallengeDTO> acceptedChallenges = controller.getAcceptedChallenges(email);
+                if (acceptedChallenges != null) {
+                    Thread tAcceptedChallenges = new Thread(new Runnable() {
+                        @Override
+                        public void run() {
+                            model.removeAllElements();
+                            for (ChallengeDTO ch : acceptedChallenges) {
+                                model.addElement(ch.getName() + ": " + ch.getSport());
+                            }
                         }
-                    }
-                });
-                tAcceptedChallenges.start();
+                    });
+                    tAcceptedChallenges.start();
+                }
             }
         });
 
         JButton bObtainActiveChallenges = new JButton("Obtain active challenges");
         bObtainActiveChallenges.setFont(new Font("Tahoma", Font.PLAIN, 14));
-        bObtainActiveChallenges.setBounds(253, 170, 205, 49);
+        bObtainActiveChallenges.setBounds(253, 82, 205, 49);
         contentPane.add(bObtainActiveChallenges);
         bObtainActiveChallenges.addActionListener(new ActionListener(){
             @Override
             public void actionPerformed(ActionEvent e) {
+                System.out.println(" - Getting all active challenges...");
                 List<ChallengeDTO> activeChallenges = controller.getUnfinishedChallenges();
-
-                Thread tActiveChallenges = new Thread(new Runnable() {
-                    @Override
-                    public void run() {
-                        for (ChallengeDTO ch : activeChallenges) {
-                            model.addElement(ch.getName() + ": " + ch.getSport());
+                if (activeChallenges != null) {
+                    Thread tActiveChallenges = new Thread(new Runnable() {
+                        @Override
+                        public void run() {
+                            model.removeAllElements();
+                            for (ChallengeDTO ch : activeChallenges) {
+                                model.addElement(ch.getName() + ": " + ch.getSport());
+                            }
                         }
-                    }
-                });
-                tActiveChallenges.start();
-
+                    });
+                    tActiveChallenges.start();
+                }
             }
         });
-
 
         JButton bAcceptChallenge = new JButton("Accept Challenge");
         bAcceptChallenge.setFont(new Font("Tahoma", Font.PLAIN, 14));
@@ -216,9 +222,9 @@ public class ChallengeWindow extends JFrame {
         bAcceptChallenge.addActionListener(new ActionListener(){
             @Override
             public void actionPerformed(ActionEvent e) {
-                controller.acceptChallenge(tName.getText());
+                controller.acceptChallenge(tName.getText(), email);
 
-                //TIENE QUE APARECER ALGUN JTEXTFIELD DE FEEDBACK EN LA VENTANA
+                //TIENE QUE APARECER UN JLABEL DE FEEDBACK EN LA VENTANA
             }
         });
     }

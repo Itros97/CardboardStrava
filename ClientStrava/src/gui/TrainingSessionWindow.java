@@ -30,7 +30,7 @@ public class TrainingSessionWindow extends JFrame {
     /**
      * Create the frame.
      */
-    public TrainingSessionWindow(TrainingSessionController trainingSessionController) {
+    public TrainingSessionWindow(TrainingSessionController trainingSessionController, String email) {
         this.controller = trainingSessionController;
 
         setTitle("Training Session Window");
@@ -106,6 +106,15 @@ public class TrainingSessionWindow extends JFrame {
         tDuration.setBounds(600, 326, 207, 28);
         contentPane.add(tDuration);
 
+        list = new JList();
+        list.setSelectionMode(ListSelectionModel.SINGLE_SELECTION );
+        model = new DefaultListModel();
+        list.setModel(model);
+        scrollList = new JScrollPane();
+        scrollList.setBounds(20, 120,220, 80);
+        list.setBounds(20, 20,220, 435);
+        contentPane.add(list);
+
         JButton bBack = new JButton("Back");
         bBack.setFont(new Font("Tahoma", Font.PLAIN, 14));
         bBack.setBounds(720, 393, 70, 49);
@@ -129,7 +138,7 @@ public class TrainingSessionWindow extends JFrame {
                 java.time.LocalDateTime.now();
                 controller.createTrainingSession(tTitle.getText(),
                         tSport.getText(), Double.parseDouble(tDistanceInKm.getText()),
-                        timeOfStart, Double.parseDouble(tDuration.getText()));
+                        timeOfStart, Double.parseDouble(tDuration.getText()), email);
             }
         });
 
@@ -140,29 +149,22 @@ public class TrainingSessionWindow extends JFrame {
         bConsultSessions.addActionListener(new ActionListener(){
             @Override
             public void actionPerformed(ActionEvent e) {
-                System.out.println(" - Getting all the training sessions ...");
+                System.out.println(" - Getting all the training sessions...");
                 List<TrainingSessionDTO> sessions = controller.getTrainingSessions();
-                System.out.println(sessions.get(0));
-                Thread tSessions = new Thread(new Runnable() {
-                    @Override
-                    public void run() {
-                        for (TrainingSessionDTO session : sessions) {
-                            model.addElement(session.getTitle());
+                if (sessions != null) {
+                    Thread tSessions = new Thread(new Runnable() {
+                        @Override
+                        public void run() {
+                            model.removeAllElements();
+                            for (TrainingSessionDTO session : sessions) {
+                                model.addElement(session.getTitle());
+                            }
                         }
-                    }
-                });
-                tSessions.start();
+                    });
+                    tSessions.start();
+                }
             }
         });
-
-        list = new JList();
-        list.setSelectionMode(ListSelectionModel.SINGLE_SELECTION );
-        model = new DefaultListModel();
-        list.setModel(model);
-        scrollList = new JScrollPane();
-        scrollList.setBounds(20, 120,220, 80);
-        list.setBounds(20, 20,220, 435);
-        contentPane.add(list);
 
         JButton bConsultOwnSessions = new JButton("Consult own sessions");
         bConsultOwnSessions.setFont(new Font("Tahoma", Font.PLAIN, 14));
@@ -171,16 +173,20 @@ public class TrainingSessionWindow extends JFrame {
         bConsultOwnSessions.addActionListener(new ActionListener(){
             @Override
             public void actionPerformed(ActionEvent e) {
-                List<TrainingSessionDTO> acceptedSessions = controller.getAcceptedTrainingSessions();
-                Thread tAcceptedSessions = new Thread(new Runnable() {
-                    @Override
-                    public void run() {
-                        for (TrainingSessionDTO session : acceptedSessions) {
-                            model.addElement(session.getTitle());
+                System.out.println(" - Getting own training sessions...");
+                List<TrainingSessionDTO> ownSessions = controller.getOwnTrainingSessions(email);
+                if (ownSessions != null) {
+                    Thread tAcceptedSessions = new Thread(new Runnable() {
+                        @Override
+                        public void run() {
+                            model.removeAllElements();
+                            for (TrainingSessionDTO session : ownSessions) {
+                                model.addElement(session.getTitle());
+                            }
                         }
-                    }
-                });
-                tAcceptedSessions.start();
+                    });
+                    tAcceptedSessions.start();
+                }
             }
         });
     }

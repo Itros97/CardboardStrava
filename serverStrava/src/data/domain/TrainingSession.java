@@ -16,7 +16,7 @@ public class TrainingSession {
 	private GregorianCalendar dateOfStart;
 	//duration in minutes
 	private double duration;
-	private boolean accepted;
+	private String creatorEmail;
 	
 	public String getTitle() {
 		return title;
@@ -48,11 +48,11 @@ public class TrainingSession {
 	public void setDuration(double duration) {
 		this.duration = duration;
 	}
-	public boolean isAccepted() {
-		return accepted;
+	public String getCreatorEmail() {
+		return creatorEmail;
 	}
-	public void setAccepted(boolean accepted) {
-		this.accepted = accepted;
+	public void setCreatorEmail(String creatorEmail) {
+		this.creatorEmail = creatorEmail;
 	}
 	
 	@Override

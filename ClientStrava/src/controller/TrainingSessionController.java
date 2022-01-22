@@ -14,14 +14,6 @@ public class TrainingSessionController {
 
     public TrainingSessionController(ServiceLocator serviceLocator) { this.serviceLocator = serviceLocator; }
 
-    public void acceptTrainingSession(String title) {
-        try {
-            this.serviceLocator.getService().acceptTrainingSession(title);
-        } catch (RemoteException e) {
-            System.out.println("# Error accepting training session: " + e);
-        }
-    }
-
     public List<TrainingSessionDTO> getTrainingSessions() {
         try {
             return this.serviceLocator.getService().getTrainingSessions();
@@ -31,18 +23,18 @@ public class TrainingSessionController {
         }
     }
 
-    public List<TrainingSessionDTO> getAcceptedTrainingSessions() {
+    public List<TrainingSessionDTO> getOwnTrainingSessions(String email) {
         try {
-            return this.serviceLocator.getService().getAcceptedTrainingSessions();
+            return this.serviceLocator.getService().getOwnTrainingSessions(email);
         } catch (RemoteException e) {
             System.out.println("# Error getting accepted training sessions: " + e);
             return null;
         }
     }
 
-    public void createTrainingSession(String title, String sport, double distance, GregorianCalendar dateOfStart, double duration) {
+    public void createTrainingSession(String title, String sport, double distance, GregorianCalendar dateOfStart, double duration, String creatorEmail) {
         try {
-            this.serviceLocator.getService().createTrainingSession(title, sport, distance, dateOfStart, duration);
+            this.serviceLocator.getService().createTrainingSession(title, sport, distance, dateOfStart, duration, creatorEmail);
         } catch (RemoteException e) {
             System.out.println("# Error creating a training session: " + e);
         }

@@ -18,9 +18,7 @@ public class CreateChallengeWithDistanceAppService {
     }
 
     public void createChallengeWithDistance(ChallengeWithDistance ch) {
-        if (ch != null) {
             //Save the challenge in the DB using DAO Pattern
             ChallengeWithDistanceDAO.getInstance().save(ch);
-        }
     }
 }

@@ -16,21 +16,19 @@ public interface IRemoteFacade extends Remote {
 
     boolean logout(boolean token) throws RemoteException;
 
-    void acceptTrainingSession(String title) throws RemoteException;
-
-    void acceptChallenge(String name) throws RemoteException;
+    void acceptChallenge(String name, String email) throws RemoteException;
 
     List<TrainingSessionDTO> getTrainingSessions() throws RemoteException;
 
-    List<TrainingSessionDTO> getAcceptedTrainingSessions() throws RemoteException;
+    List<TrainingSessionDTO> getOwnTrainingSessions(String email) throws RemoteException;
 
     List<ChallengeDTO> getChallenges() throws RemoteException;
 
     List<ChallengeDTO> getUnfinishedChallenges() throws RemoteException;
 
-    List<ChallengeDTO> getAcceptedChallenges() throws RemoteException;
+    List<ChallengeDTO> getAcceptedChallenges(String email) throws RemoteException;
 
-    void createTrainingSession(String title, String sport, double distance, GregorianCalendar dateOfStart, double duration) throws RemoteException;
+    void createTrainingSession(String title, String sport, double distance, GregorianCalendar dateOfStart, double duration, String creatorEmail) throws RemoteException;
 
     void createChallenge(String typeOfChallenge, String name, GregorianCalendar dateOfStart, GregorianCalendar dateOfEnd, String sport, double objectiveDistance, int objectiveTime) throws RemoteException;
 }

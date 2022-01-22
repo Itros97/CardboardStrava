@@ -28,7 +28,7 @@ public class TraininigSessionAssembler {
         dto.setDistance(ts1.getDistance());
         dto.setDateOfStart(ts1.getDateOfStart());
         dto.setDuration(ts1.getDuration());
-        dto.setAccepted(ts1.isAccepted());
+        dto.setCreatorEmail(ts1.getCreatorEmail());
 
         return dto;
     }

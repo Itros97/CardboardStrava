@@ -14,9 +14,9 @@ public class ChallengeController {
 
     public ChallengeController(ServiceLocator serviceLocator) { this.serviceLocator = serviceLocator; }
 
-    public void acceptChallenge(String name) {
+    public void acceptChallenge(String name, String email) {
         try {
-            this.serviceLocator.getService().acceptChallenge(name);
+            this.serviceLocator.getService().acceptChallenge(name, email);
         } catch (RemoteException e) {
             System.out.println("# Error accepting challenge: " + e);
         }
@@ -40,9 +40,9 @@ public class ChallengeController {
         }
     }
 
-    public List<ChallengeDTO> getAcceptedChallenges() {
+    public List<ChallengeDTO> getAcceptedChallenges(String email) {
         try {
-            return this.serviceLocator.getService().getAcceptedChallenges();
+            return this.serviceLocator.getService().getAcceptedChallenges(email);
         } catch (RemoteException e) {
             System.out.println("# Error getting accepted challenges: " + e);
             return null;

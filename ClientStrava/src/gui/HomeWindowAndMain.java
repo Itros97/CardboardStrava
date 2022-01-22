@@ -30,13 +30,6 @@ public class HomeWindowAndMain extends JFrame {
         //args[2] = Service Name
         serviceLocator.setService(args[0], args[1], args[2]);
 
-        //PRUEBA ServiceLocator
-        TrainingSessionController trainingSessionController = new TrainingSessionController(serviceLocator);
-        List<TrainingSessionDTO> sessions = trainingSessionController.getTrainingSessions();
-        for (TrainingSessionDTO session : sessions) {
-            session.getTitle();
-        }
-
         EventQueue.invokeLater(new Runnable() {
             public void run() {
                 try {
@@ -58,6 +51,9 @@ public class HomeWindowAndMain extends JFrame {
         RegisterController registerController = new RegisterController(serviceLocator);
         ChallengeController challengeController = new ChallengeController(serviceLocator);
         TrainingSessionController trainingSessionController = new TrainingSessionController(serviceLocator);
+
+        //EMAIL DEL LOGEADO: POR IMPLEMENTAR
+        String email = "nulo@gmail.com";
 
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setBounds(100, 100, 739, 468);
@@ -167,7 +163,7 @@ public class HomeWindowAndMain extends JFrame {
                     @Override
                     public void run() {
                         try {
-                            ChallengeWindow frame = new ChallengeWindow(challengeController);
+                            ChallengeWindow frame = new ChallengeWindow(challengeController, email);
                             frame.setVisible(true);
                         } catch (Exception e) {
                             e.printStackTrace();
@@ -189,7 +185,7 @@ public class HomeWindowAndMain extends JFrame {
                     @Override
                     public void run() {
                         try {
-                            TrainingSessionWindow frame = new TrainingSessionWindow(trainingSessionController);
+                            TrainingSessionWindow frame = new TrainingSessionWindow(trainingSessionController, email);
                             frame.setVisible(true);
                         } catch (Exception e) {
                             e.printStackTrace();

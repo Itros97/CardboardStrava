@@ -26,7 +26,7 @@ public class ChallengeWithTimeAssembler {
         dto.setDateOfEnd(ch1.getDateOfEnd());
         dto.setSport(ch1.getSport());
         dto.setObjectiveTime(ch1.getObjectiveTime());
-        dto.setAccepted(ch1.isAccepted());
+        dto.setEmailAceptante(ch1.getEmailAceptante());
 
         return dto;
     }

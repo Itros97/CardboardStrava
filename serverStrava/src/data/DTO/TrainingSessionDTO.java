@@ -11,8 +11,8 @@ public class TrainingSessionDTO implements Serializable {
 	private double distance;
 	private GregorianCalendar dateOfStart;
 	private double duration;
-	private boolean accepted;
-	
+	private String creatorEmail;
+
 	public String getTitle() {
 		return title;
 	}
@@ -43,10 +43,10 @@ public class TrainingSessionDTO implements Serializable {
 	public void setDuration(double duration) {
 		this.duration = duration;
 	}
-	public boolean isAccepted() {
-		return accepted;
+	public String getCreatorEmail() {
+		return creatorEmail;
 	}
-	public void setAccepted(boolean accepted) {
-		this.accepted = accepted;
+	public void setCreatorEmail(String creatorEmail) {
+		this.creatorEmail = creatorEmail;
 	}
 }

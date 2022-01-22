@@ -20,17 +20,17 @@ public class AcceptChallengeAppService {
         return instance;
     }
 
-    public void accept (String name) {
+    public void accept (String name, String email) {
         List<Challenge> chs = new ArrayList<Challenge>();
         chs = GetChallengesAppService.getInstance().getChallenges();
 
         for (Challenge ch : chs) {
             if (name.equals(ch.getName())) {
-                ch.setAccepted(true);
+                ch.setEmailAceptante(email);
                 Challenge cha = new Challenge();
                 cha = ch;
                 chs.remove(ch);
-                ChallengeDAO.getInstance().save(ch);
+                ChallengeDAO.getInstance().save(cha);
             }
         }
     }

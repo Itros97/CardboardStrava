@@ -18,9 +18,7 @@ public class CreateChallengeWithTimeAppService {
     }
 
     public void createChallengeWithTime(ChallengeWithTime ch) {
-        if (ch != null) {
             //Save the challenge in the DB using DAO Pattern
             ChallengeWithTimeDAO.getInstance().save(ch);
-        }
     }
 }

@@ -52,14 +52,9 @@ public class RemoteFacade extends UnicastRemoteObject implements IRemoteFacade {
         }
     }
 
-    public void acceptTrainingSession(String title) throws RemoteException {
-        System.out.println(" * RemoteFacade acceptTrainingSession: " + title);
-        AcceptTrainingSessionAppService.getInstance().accept(title);
-    }
-
-    public void acceptChallenge(String name) throws RemoteException {
+    public void acceptChallenge(String name, String email) throws RemoteException {
         System.out.println(" * RemoteFacade acceptChallenge: " + name);
-        AcceptChallengeAppService.getInstance().accept(name);
+        AcceptChallengeAppService.getInstance().accept(name, email);
     }
 
     public List<TrainingSessionDTO> getTrainingSessions() throws RemoteException {
@@ -76,15 +71,19 @@ public class RemoteFacade extends UnicastRemoteObject implements IRemoteFacade {
         }
     }
 
-    public List<TrainingSessionDTO> getAcceptedTrainingSessions() throws RemoteException {
+    public List<TrainingSessionDTO> getOwnTrainingSessions(String email) throws RemoteException {
         System.out.println(" * RemoteFacade getAcceptedTrainingSessions: ");
 
         //Get TrainingSessions using GetTrainingSessionsAppService
         List<TrainingSession> ts = GetTrainingSessionsAppService.getInstance().getTrainingSessions();
 
-        ts.removeIf(t -> !t.isAccepted());
+        for (TrainingSession t : ts) {
+            if (!t.getCreatorEmail().equals(email)) {
+                ts.remove(t);
+            }
+        }
 
-        if (ts != null) {
+        if (!ts.isEmpty()) {
             //Convert domain object to DTO
             return TraininigSessionAssembler.getInstance().trainingSessionToDTO(ts);
         } else {
@@ -121,28 +120,34 @@ public class RemoteFacade extends UnicastRemoteObject implements IRemoteFacade {
         }
     }
 
-    public List<ChallengeDTO> getAcceptedChallenges() throws RemoteException {
-        System.out.println(" * RemoteFacade getChallenges: ");
+    public List<ChallengeDTO> getAcceptedChallenges(String email) throws RemoteException {
+        System.out.println(" * RemoteFacade getAcceptedChallenges: ");
 
+        //Get Challenges using GetTrainingSessionsAppService
         List<Challenge> ch = GetChallengesAppService.getInstance().getChallenges();
 
-        ch.removeIf(c -> !c.isAccepted());
+        for (Challenge c : ch) {
+            if (!c.getEmailAceptante().equals(email)) {
+                ch.remove(c);
+            }
+        }
 
-        if (ch != null) {
+        if (!ch.isEmpty()) {
             //Convert domain object to DTO
             return ChallengeAssembler.getInstance().challengeToDTO(ch);
         } else {
-            throw new RemoteException("getChallenges() fails!");
+            throw new RemoteException("getAcceptedChallenges() fails!");
         }
     }
 
-    public void createTrainingSession(String title, String sport, double distance, GregorianCalendar dateOfStart, double duration) throws RemoteException {
+    public void createTrainingSession(String title, String sport, double distance, GregorianCalendar dateOfStart, double duration, String creatorEmail) throws RemoteException {
         TrainingSession ts = new TrainingSession();
         ts.setTitle(title);
         ts.setSport(sport);
         ts.setDistance(distance);
         ts.setDateOfStart(dateOfStart);
         ts.setDuration(duration);
+        ts.setCreatorEmail(creatorEmail);
 
         System.out.println(" * RemoteFacade createTrainingSession: " + ts);
         CreateTrainingSessionsAppService.getInstance().createTrainingSession(ts);

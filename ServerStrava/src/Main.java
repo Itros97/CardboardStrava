@@ -27,13 +27,6 @@ public class Main {
         //Initialize DB
         initDB();
 
-        //PRUEBA DAOs, DTOs y Assemblers
-        /*List<TrainingSessionDTO> ts = RemoteFacade.getInstance().getTrainingSessions();
-
-        for (TrainingSessionDTO trainingSession : ts) {
-            System.out.println(trainingSession.getTitle());
-        }*/
-
         //Bind remote facade instance to a service name using RMIRegistry
         try {
             IRemoteFacade remoteFacade = new RemoteFacade();
@@ -176,7 +169,7 @@ public class Main {
             ts1.setDistance(12);
             ts1.setDateOfStart(calendar);
             ts1.setDuration(60);
-            ts1.setAccepted(false);
+            ts1.setCreatorEmail("");
 
             TrainingSession ts2 = new TrainingSession();
             ts2.setTitle("Biciclismo");
@@ -184,7 +177,7 @@ public class Main {
             ts2.setDistance(24);
             ts2.setDateOfStart(calendar);
             ts2.setDuration(60);
-            ts2.setAccepted(false);
+            ts2.setCreatorEmail("");
 
             TrainingSession ts3 = new TrainingSession();
             ts3.setTitle("Natacion");
@@ -192,7 +185,7 @@ public class Main {
             ts3.setDistance(10);
             ts3.setDateOfStart(calendar);
             ts3.setDuration(200);
-            ts3.setAccepted(false);
+            ts3.setCreatorEmail("");
 
             TrainingSession ts4 = new TrainingSession();
             ts4.setTitle("Correr");
@@ -200,7 +193,7 @@ public class Main {
             ts4.setDistance(20);
             ts4.setDateOfStart(calendar);
             ts4.setDuration(120);
-            ts4.setAccepted(false);
+            ts4.setCreatorEmail("");
 
             TrainingSession ts5 = new TrainingSession();
             ts5.setTitle("Cycling");
@@ -208,7 +201,7 @@ public class Main {
             ts5.setDistance(40);
             ts5.setDateOfStart(calendar);
             ts5.setDuration(120);
-            ts5.setAccepted(false);
+            ts5.setCreatorEmail("");
 
             //Save Users in the DB
             TrainingSessionDAO.getInstance().save(ts1);
@@ -222,35 +215,35 @@ public class Main {
             ch1.setDateOfStart(calendar);
             ch1.setDateOfEnd(calendar);
             ch1.setSport("correr");
-            ch1.setAccepted(false);
+            ch1.setEmailAceptante("");
 
             Challenge ch2 = new Challenge();
             ch2.setName("Nadar un kilometro");
             ch2.setDateOfStart(calendar);
             ch2.setDateOfEnd(calendar);
             ch2.setSport("natacion");
-            ch2.setAccepted(false);
+            ch2.setEmailAceptante("");
 
             Challenge ch3 = new Challenge();
             ch3.setName("Subir una colina");
             ch3.setDateOfStart(calendar);
             ch3.setDateOfEnd(calendar);
             ch3.setSport("ciclismo");
-            ch3.setAccepted(false);
+            ch3.setEmailAceptante("");
 
             Challenge ch4 = new Challenge();
             ch4.setName("Subir una montanya");
             ch4.setDateOfStart(calendar);
             ch4.setDateOfEnd(calendar);
             ch4.setSport("ciclismo");
-            ch4.setAccepted(false);
+            ch4.setEmailAceptante("");
 
             Challenge ch5 = new Challenge();
             ch5.setName("Nadar un rato");
             ch5.setDateOfStart(calendar);
             ch5.setDateOfEnd(calendar);
             ch5.setSport("natacion");
-            ch5.setAccepted(false);
+            ch5.setEmailAceptante("");
 
             //Save Users in the DB
             ChallengeDAO.getInstance().save(ch1);
@@ -265,7 +258,7 @@ public class Main {
             chd1.setDateOfEnd(calendar);
             chd1.setSport("correr");
             chd1.setObjectiveDistance(30.5);
-            chd1.setAccepted(false);
+            chd1.setEmailAceptante("");
 
             ChallengeWithDistance chd2 = new ChallengeWithDistance();
             chd2.setName("Nadar dos kilometros");
@@ -273,7 +266,7 @@ public class Main {
             chd2.setDateOfEnd(calendar);
             chd2.setSport("natacion");
             chd2.setObjectiveDistance(2);
-            chd2.setAccepted(false);
+            chd2.setEmailAceptante("");
 
             ChallengeWithDistance chd3 = new ChallengeWithDistance();
             chd3.setName("Subir una colina en tu bici");
@@ -281,7 +274,7 @@ public class Main {
             chd3.setDateOfEnd(calendar);
             chd3.setSport("ciclismo");
             chd3.setObjectiveDistance(0.5);
-            chd3.setAccepted(false);
+            chd3.setEmailAceptante("");
 
             ChallengeWithDistance chd4 = new ChallengeWithDistance();
             chd4.setName("Subir el Gorbea");
@@ -289,7 +282,7 @@ public class Main {
             chd4.setDateOfEnd(calendar);
             chd4.setSport("ciclismo");
             chd4.setObjectiveDistance(8.2);
-            chd4.setAccepted(false);
+            chd4.setEmailAceptante("");
 
             ChallengeWithDistance chd5 = new ChallengeWithDistance();
             chd5.setName("Nadar un ratito");
@@ -297,7 +290,7 @@ public class Main {
             chd5.setDateOfEnd(calendar);
             chd5.setSport("natacion");
             chd5.setObjectiveDistance(3.2);
-            chd5.setAccepted(false);
+            chd5.setEmailAceptante("");
 
             //Save Users in the DB
             ChallengeWithDistanceDAO.getInstance().save(chd1);
@@ -312,7 +305,7 @@ public class Main {
             cht1.setDateOfEnd(calendar);
             cht1.setSport("correr");
             cht1.setObjectiveTime(300);
-            cht1.setAccepted(false);
+            cht1.setEmailAceptante("");
 
             ChallengeWithTime cht2 = new ChallengeWithTime();
             cht2.setName("Nadar tres kilometros");
@@ -320,7 +313,7 @@ public class Main {
             cht2.setDateOfEnd(calendar);
             cht2.setSport("natacion");
             cht2.setObjectiveTime(60);
-            cht2.setAccepted(false);
+            cht2.setEmailAceptante("");
 
             ChallengeWithTime cht3 = new ChallengeWithTime();
             cht3.setName("Paseo en bici");
@@ -328,7 +321,7 @@ public class Main {
             cht3.setDateOfEnd(calendar);
             cht3.setSport("ciclismo");
             cht3.setObjectiveTime(30);
-            cht3.setAccepted(false);
+            cht3.setEmailAceptante("");
 
             ChallengeWithTime cht4 = new ChallengeWithTime();
             cht4.setName("Ruta en bici");
@@ -336,7 +329,7 @@ public class Main {
             cht4.setDateOfEnd(calendar);
             cht4.setSport("ciclismo");
             cht4.setObjectiveTime(120);
-            cht4.setAccepted(false);
+            cht4.setEmailAceptante("");
 
             ChallengeWithTime cht5 = new ChallengeWithTime();
             cht5.setName("Nadar un largo rato");
@@ -344,7 +337,7 @@ public class Main {
             cht5.setDateOfEnd(calendar);
             cht5.setSport("natacion");
             cht5.setObjectiveTime(50);
-            cht5.setAccepted(false);
+            cht5.setEmailAceptante("");
 
             //Save Users in the DB
             ChallengeWithTimeDAO.getInstance().save(cht1);
