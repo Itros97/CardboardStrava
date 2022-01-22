@@ -15,13 +15,11 @@ public class LoginController {
 
     public boolean login(String email, String password) {
         //Se realiza el proceso de login si un usuario no se ha logeado ya
-        if (!token) {
-            try {
-                token = this.serviceLocator.getService().loginUser(email, password);
-                return true;
-            } catch (RemoteException e) {
-                System.out.println("# Error during login: " + e);
-            }
+        try {
+            token = this.serviceLocator.getService().loginUser(email, password);
+            return token;
+        } catch (RemoteException e) {
+            System.out.println("# Error during login: " + e);
         }
         return false;
     }

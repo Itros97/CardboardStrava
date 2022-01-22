@@ -10,8 +10,8 @@ import java.awt.event.ActionListener;
 public class LoginWindow extends JFrame {
     private final LoginController controller;
 
-    private final JTextField txtInsertUser;
-    private final JPasswordField passwordField;
+    private final JTextField tEmail;
+    private final JTextField tPassword;
     private final JLabel lFeedback;
 
     /**
@@ -31,17 +31,23 @@ public class LoginWindow extends JFrame {
         lEmail.setBounds(70, 50, 150, 30);
         getContentPane().add(lEmail);
 
-        txtInsertUser = new JTextField();
-        txtInsertUser.setToolTipText("insert email");
-        txtInsertUser.setFont(new Font("Arial", Font.PLAIN, 15));
-        txtInsertUser.setBounds(40, 100, 400, 25);
-        getContentPane().add(txtInsertUser);
-        txtInsertUser.setColumns(10);
+        tEmail = new JTextField("");
+        tEmail.setToolTipText("insert email");
+        tEmail.setFont(new Font("Arial", Font.PLAIN, 15));
+        tEmail.setBounds(40, 100, 400, 25);
+        getContentPane().add(tEmail);
+        tEmail.setColumns(10);
 
         JLabel lPassword = new JLabel("User e-mail password");
         lPassword.setFont(new Font("Calibri", Font.PLAIN, 30));
         lPassword.setBounds(70, 170, 300, 30);
         getContentPane().add(lPassword);
+
+        tPassword = new JTextField("");
+        tPassword.setToolTipText("insert password");
+        tPassword.setFont(new Font("Arial", Font.PLAIN, 15));
+        tPassword.setBounds(40, 220, 400, 25);
+        getContentPane().add(tPassword);
 
         lFeedback = new JLabel("");
         lFeedback.setBackground(Color.GRAY);
@@ -56,29 +62,32 @@ public class LoginWindow extends JFrame {
         bLogin.addActionListener(new ActionListener(){
             @Override
             public void actionPerformed(ActionEvent e) {
+                if (!tEmail.getText().equals("") && !tPassword.equals("")) {
 
-                Thread tLogin = new Thread(new Runnable() {
-                    @Override
-                    public void run() {
-                        /*try {
-                            if (controller.login(lEmail.getText(), lPassword.getText())) {
-                                lFeedback.setText("Log in OK");
-                            } else {
-                                lFeedback.setText("Error in log in");
+                } else {
+                    Thread tLogin = new Thread(new Runnable() {
+                        @Override
+                        public void run() {
+                            try {
+                                if (controller.login(tEmail.getText(), tPassword.getText())) {
+                                    lFeedback.setText("Log in OK");
+                                } else {
+                                    lFeedback.setText("Error in log in");
+                                }
+                            } catch (Exception e) {
+                                e.printStackTrace();
                             }
-                        } catch (Exception e) {
-                            e.printStackTrace();
-                        }*/
-                        lFeedback.setText("Log in OK");
-                    }
-                });
-                tLogin.start();
+                            lFeedback.setText("Log in OK");
+                        }
+                    });
+                    tLogin.start();
                 /*try {
                     Thread.sleep(2000);
                 } catch (InterruptedException ex) {
                     Thread.currentThread().interrupt();
                 }
                 tLogin.stop();*/
+                }
             }
         });
 
@@ -91,11 +100,5 @@ public class LoginWindow extends JFrame {
                 dispose();
             }
         });
-
-        passwordField = new JPasswordField();
-        passwordField.setToolTipText("insert password");
-        passwordField.setFont(new Font("Arial", Font.PLAIN, 15));
-        passwordField.setBounds(40, 220, 400, 25);
-        getContentPane().add(passwordField);
     }
 }

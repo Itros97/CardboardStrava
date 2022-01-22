@@ -35,7 +35,11 @@ public class RemoteFacade extends UnicastRemoteObject implements IRemoteFacade {
     }
 
     public void registerUser(PasswordProfile pp) throws RemoteException {
-        System.out.println(" * RemoteFacade registerUser: " + pp.getRegisterType() + " / " + pp.getEmail() + " / " + pp.getPassword());
+        if (!pp.getRegisterType().equals("")) {
+            System.out.println(" * RemoteFacade registerUser: " + pp.getRegisterType() + " / " + pp.getEmail() + " / " + pp.getPassword());
+        } else {
+            System.out.println(" * RemoteFacade registerUser: Default Register Type / " + pp.getEmail() + " / " + pp.getPassword());
+        }
         RegisterAppService registerS = new RegisterAppService();
         registerS.register(pp);
     }

@@ -34,6 +34,8 @@ public class LoginAppService {
             }
         }
 
+        System.out.println("El login llega hasta aqui");
+
         if (googleOrFacebook.equals("google")) {
             if (email != null) {
                 return GoogleGateway.getInstance().login(email, password);

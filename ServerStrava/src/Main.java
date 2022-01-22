@@ -45,8 +45,8 @@ public class Main {
 
             //Create Profiles
             Profile p1 = new Profile();
-            p1.setEmail("jaimeamann@opendeusto.es");
-            p1.setNickname("Jaime");
+            p1.setEmail("primerprofile@opendeusto.es");
+            p1.setNickname("profile");
             p1.setBirthdate(calendar);
             p1.setWeightKg(75.6);
             p1.setHeightCm(172);
@@ -156,12 +156,44 @@ public class Main {
             pp5.setRegisterType("google");
             pp5.setPassword("electricboogaloo");
 
+            PasswordProfile pp6 = new PasswordProfile();
+            pp6.setEmail("jaimeamann@opendeusto.es");
+            pp6.setNickname("");
+            pp6.setBirthdate(calendar);
+            pp6.setRegisterType("google");
+            pp6.setPassword("12345678");
+
+            PasswordProfile pp7 = new PasswordProfile();
+            pp7.setEmail("m.lopez.gutierrez@opendeusto.es");
+            pp7.setNickname("");
+            pp7.setBirthdate(calendar);
+            pp7.setRegisterType("google");
+            pp7.setPassword("qwertyui");
+
+            PasswordProfile pp8 = new PasswordProfile();
+            pp8.setEmail("inigo.tarrino@opendeusto.es");
+            pp8.setNickname("");
+            pp8.setBirthdate(calendar);
+            pp8.setRegisterType("google");
+            pp8.setPassword("asdfghjk");
+
+            PasswordProfile pp9 = new PasswordProfile();
+            pp9.setEmail("mikel.huidobro@opendeusto.es");
+            pp9.setNickname("");
+            pp9.setBirthdate(calendar);
+            pp9.setRegisterType("google");
+            pp9.setPassword("zxcvbnm.");
+
             //Save Users in the DB
             PasswordProfileDAO.getInstance().save(pp1);
             PasswordProfileDAO.getInstance().save(pp2);
             PasswordProfileDAO.getInstance().save(pp3);
             PasswordProfileDAO.getInstance().save(pp4);
             PasswordProfileDAO.getInstance().save(pp5);
+            PasswordProfileDAO.getInstance().save(pp6);
+            PasswordProfileDAO.getInstance().save(pp7);
+            PasswordProfileDAO.getInstance().save(pp8);
+            PasswordProfileDAO.getInstance().save(pp9);
 
             TrainingSession ts1 = new TrainingSession();
             ts1.setTitle("Running");

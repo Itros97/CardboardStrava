@@ -239,3 +239,79 @@ org.datanucleus.exceptions.NucleusException: No hay clases !
 	at org.datanucleus.store.rdbms.RDBMSStoreManager.createSchemaForClasses(RDBMSStoreManager.java:3973)
 	at org.datanucleus.store.schema.SchemaTool.createSchemaForClasses(SchemaTool.java:510)
 	at org.datanucleus.store.schema.SchemaTool.main(SchemaTool.java:426)
+14:10:38,250 (main) ERROR [DataNucleus.Enhancer] - Error thrown enhancing with ASMClassEnhancer
+java.lang.NullPointerException
+	at org.datanucleus.enhancer.ClassEnhancerImpl.enhance(ClassEnhancerImpl.java:693)
+	at org.datanucleus.enhancer.DataNucleusEnhancer.enhanceClass(DataNucleusEnhancer.java:937)
+	at org.datanucleus.enhancer.DataNucleusEnhancer.enhance(DataNucleusEnhancer.java:528)
+	at org.datanucleus.enhancer.DataNucleusEnhancer.main(DataNucleusEnhancer.java:1157)
+14:10:38,253 (main) ERROR [DataNucleus.Enhancer] - Error thrown enhancing with ASMClassEnhancer
+java.lang.NullPointerException
+	at org.datanucleus.enhancer.ClassEnhancerImpl.checkClassIsEnhanced(ClassEnhancerImpl.java:778)
+	at org.datanucleus.enhancer.ClassEnhancerImpl.enhance(ClassEnhancerImpl.java:641)
+	at org.datanucleus.enhancer.DataNucleusEnhancer.enhanceClass(DataNucleusEnhancer.java:937)
+	at org.datanucleus.enhancer.DataNucleusEnhancer.enhance(DataNucleusEnhancer.java:528)
+	at org.datanucleus.enhancer.DataNucleusEnhancer.main(DataNucleusEnhancer.java:1157)
+14:10:38,254 (main) ERROR [DataNucleus.Enhancer] - Error thrown enhancing with ASMClassEnhancer
+java.lang.NullPointerException
+	at org.datanucleus.enhancer.ClassEnhancerImpl.enhance(ClassEnhancerImpl.java:693)
+	at org.datanucleus.enhancer.DataNucleusEnhancer.enhanceClass(DataNucleusEnhancer.java:937)
+	at org.datanucleus.enhancer.DataNucleusEnhancer.enhance(DataNucleusEnhancer.java:528)
+	at org.datanucleus.enhancer.DataNucleusEnhancer.main(DataNucleusEnhancer.java:1157)
+14:10:38,255 (main) ERROR [DataNucleus.Enhancer] - Error thrown enhancing with ASMClassEnhancer
+java.lang.NullPointerException
+	at org.datanucleus.enhancer.ClassEnhancerImpl.checkClassIsEnhanced(ClassEnhancerImpl.java:778)
+	at org.datanucleus.enhancer.ClassEnhancerImpl.enhance(ClassEnhancerImpl.java:641)
+	at org.datanucleus.enhancer.DataNucleusEnhancer.enhanceClass(DataNucleusEnhancer.java:937)
+	at org.datanucleus.enhancer.DataNucleusEnhancer.enhance(DataNucleusEnhancer.java:528)
+	at org.datanucleus.enhancer.DataNucleusEnhancer.main(DataNucleusEnhancer.java:1157)
+14:10:38,255 (main) ERROR [DataNucleus.Enhancer] - Error thrown enhancing with ASMClassEnhancer
+java.lang.NullPointerException
+	at org.datanucleus.enhancer.ClassEnhancerImpl.enhance(ClassEnhancerImpl.java:693)
+	at org.datanucleus.enhancer.DataNucleusEnhancer.enhanceClass(DataNucleusEnhancer.java:937)
+	at org.datanucleus.enhancer.DataNucleusEnhancer.enhance(DataNucleusEnhancer.java:528)
+	at org.datanucleus.enhancer.DataNucleusEnhancer.main(DataNucleusEnhancer.java:1157)
+14:10:38,256 (main) ERROR [DataNucleus.Enhancer] - Error thrown enhancing with ASMClassEnhancer
+java.lang.NullPointerException
+	at org.datanucleus.enhancer.ClassEnhancerImpl.checkClassIsEnhanced(ClassEnhancerImpl.java:778)
+	at org.datanucleus.enhancer.ClassEnhancerImpl.enhance(ClassEnhancerImpl.java:641)
+	at org.datanucleus.enhancer.DataNucleusEnhancer.enhanceClass(DataNucleusEnhancer.java:937)
+	at org.datanucleus.enhancer.DataNucleusEnhancer.enhance(DataNucleusEnhancer.java:528)
+	at org.datanucleus.enhancer.DataNucleusEnhancer.main(DataNucleusEnhancer.java:1157)
+14:10:38,257 (main) ERROR [DataNucleus.Enhancer] - Error thrown enhancing with ASMClassEnhancer
+java.lang.NullPointerException
+	at org.datanucleus.enhancer.ClassEnhancerImpl.enhance(ClassEnhancerImpl.java:693)
+	at org.datanucleus.enhancer.DataNucleusEnhancer.enhanceClass(DataNucleusEnhancer.java:937)
+	at org.datanucleus.enhancer.DataNucleusEnhancer.enhance(DataNucleusEnhancer.java:528)
+	at org.datanucleus.enhancer.DataNucleusEnhancer.main(DataNucleusEnhancer.java:1157)
+14:10:38,258 (main) ERROR [DataNucleus.Enhancer] - Error thrown enhancing with ASMClassEnhancer
+java.lang.NullPointerException
+	at org.datanucleus.enhancer.ClassEnhancerImpl.checkClassIsEnhanced(ClassEnhancerImpl.java:778)
+	at org.datanucleus.enhancer.ClassEnhancerImpl.enhance(ClassEnhancerImpl.java:641)
+	at org.datanucleus.enhancer.DataNucleusEnhancer.enhanceClass(DataNucleusEnhancer.java:937)
+	at org.datanucleus.enhancer.DataNucleusEnhancer.enhance(DataNucleusEnhancer.java:528)
+	at org.datanucleus.enhancer.DataNucleusEnhancer.main(DataNucleusEnhancer.java:1157)
+14:10:38,259 (main) ERROR [DataNucleus.Enhancer] - Error thrown enhancing with ASMClassEnhancer
+java.lang.NullPointerException
+	at org.datanucleus.enhancer.ClassEnhancerImpl.enhance(ClassEnhancerImpl.java:693)
+	at org.datanucleus.enhancer.DataNucleusEnhancer.enhanceClass(DataNucleusEnhancer.java:937)
+	at org.datanucleus.enhancer.DataNucleusEnhancer.enhance(DataNucleusEnhancer.java:528)
+	at org.datanucleus.enhancer.DataNucleusEnhancer.main(DataNucleusEnhancer.java:1157)
+14:10:38,261 (main) ERROR [DataNucleus.Enhancer] - Error thrown enhancing with ASMClassEnhancer
+java.lang.NullPointerException
+	at org.datanucleus.enhancer.ClassEnhancerImpl.checkClassIsEnhanced(ClassEnhancerImpl.java:778)
+	at org.datanucleus.enhancer.ClassEnhancerImpl.enhance(ClassEnhancerImpl.java:641)
+	at org.datanucleus.enhancer.DataNucleusEnhancer.enhanceClass(DataNucleusEnhancer.java:937)
+	at org.datanucleus.enhancer.DataNucleusEnhancer.enhance(DataNucleusEnhancer.java:528)
+	at org.datanucleus.enhancer.DataNucleusEnhancer.main(DataNucleusEnhancer.java:1157)
+14:10:38,278 (main) ERROR [DataNucleus.Enhancer] - Error thrown enhancing with ASMClassEnhancer
+java.lang.NullPointerException
+	at org.datanucleus.enhancer.ClassEnhancerImpl.enhance(ClassEnhancerImpl.java:693)
+	at org.datanucleus.enhancer.DataNucleusEnhancer.enhanceClass(DataNucleusEnhancer.java:937)
+	at org.datanucleus.enhancer.DataNucleusEnhancer.enhance(DataNucleusEnhancer.java:528)
+	at org.datanucleus.enhancer.DataNucleusEnhancer.main(DataNucleusEnhancer.java:1157)
+14:10:38,279 (main) ERROR [DataNucleus.Enhancer] - DataNucleus Enhancer ha terminado con un error. Por favor lee el LOG para los detalles. Habia errores con algunas de las clases
+Failure during enhancement of classes - see the log for details
+org.datanucleus.exceptions.NucleusException: Failure during enhancement of classes - see the log for details
+	at org.datanucleus.enhancer.DataNucleusEnhancer.enhance(DataNucleusEnhancer.java:539)
+	at org.datanucleus.enhancer.DataNucleusEnhancer.main(DataNucleusEnhancer.java:1157)

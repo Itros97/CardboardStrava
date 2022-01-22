@@ -181,25 +181,51 @@ public class RegisterWindow extends JFrame {
         btnRegister.addActionListener(new ActionListener(){
             @Override
             public void actionPerformed(ActionEvent e) {
+                //POR IMPLEMENTAR: un if para registrar Profiles o PasswordProfiles
                 PasswordProfile p = new PasswordProfile();
 
-                p.setEmail(tEmail.getText());
-                p.setNickname(tNickname.getText());
-
+                if (!tEmail.getText().equals("")) {
+                    p.setEmail(tEmail.getText());
+                } else {
+                    //MENSAJE POR PANTALLA DICIENDO QUE SE PONGA EL EMAIL
+                }
+                if (!tNickname.getText().equals("")) {
+                    p.setNickname(tNickname.getText());
+                } else {
+                    //MENSAJE POR PANTALLA DICIENDO QUE SE PONGA EL NICKNAME
+                }
                 GregorianCalendar calendar = new GregorianCalendar();
-                calendar.set(Integer.parseInt(tYear.getText()), Integer.parseInt(tMonth.getText()), Integer.parseInt(tDay.getText()));
+                if (isNumeric(tYear.getText()) && isNumeric(tMonth.getText()) && isNumeric(tDay.getText())) {
+                    calendar.set(Integer.parseInt(tYear.getText()), Integer.parseInt(tMonth.getText()), Integer.parseInt(tDay.getText()));
+                } else {
+                    //MENSAJE POR PANTALLA DICIENDO QUE SE PONGA EL ANYO, EL MES Y EL DIA EN NUMEROS
+                }
                 p.setBirthdate(calendar);
-                p.setWeightKg(Double.parseDouble(tWeight.getText()));
-                p.setHeightCm(Integer.parseInt(tHeight.getText()));
-                p.setMaximumHeartRate(Integer.parseInt(tMaxHeartRate.getText()));
-                p.setReposeHeartRate(Integer.parseInt(tReposeHeartRate.getText()));
-
+                if (isNumeric(tWeight.getText())) {
+                    p.setWeightKg(Double.parseDouble(tWeight.getText()));
+                } else {
+                    p.setWeightKg(0);
+                }
+                if (isNumeric(tHeight.getText())) {
+                    p.setHeightCm(Integer.parseInt(tHeight.getText()));
+                } else {
+                    p.setHeightCm(0);
+                }
+                if (isNumeric(tMaxHeartRate.getText())) {
+                    p.setMaximumHeartRate(Integer.parseInt(tMaxHeartRate.getText()));
+                } else {
+                    p.setMaximumHeartRate(0);
+                }
+                if (isNumeric(tReposeHeartRate.getText())) {
+                    p.setReposeHeartRate(Integer.parseInt(tReposeHeartRate.getText()));
+                } else {
+                    p.setReposeHeartRate(0);
+                }
                 p.setRegisterType(registerType);
 
                 p.setPassword(tPassword.getText());
 
                 controller.register(p);
-                //POR IMPLEMENTAR: un if para registrar Profiles o PasswordProfiles
             }
         });
 
@@ -215,4 +241,17 @@ public class RegisterWindow extends JFrame {
             }
         });
     }
+
+    public static boolean isNumeric(String strNum) {
+        if (strNum == null) {
+            return false;
+        }
+        try {
+            double d = Double.parseDouble(strNum);
+        } catch (NumberFormatException nfe) {
+            return false;
+        }
+        return true;
+    }
+
 }
