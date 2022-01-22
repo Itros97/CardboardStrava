@@ -198,12 +198,4 @@ public class HomeWindowAndMain extends JFrame {
             }
         });
     }
-
-    private static void retrasoSeg() {
-        try {
-            Thread.sleep(1000);
-        } catch (InterruptedException e) {
-
-        }
-    }
 }

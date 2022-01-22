@@ -43,7 +43,7 @@ public class TrainingSessionWindow extends JFrame {
 
         JLabel lTitle = new JLabel("Title");
         lTitle.setFont(new Font("Tahoma", Font.PLAIN, 15));
-        lTitle.setBounds(474, 47, 64, 28);
+        lTitle.setBounds(464, 47, 64, 28);
         contentPane.add(lTitle);
 
         tTitle = new JTextField("");
@@ -53,7 +53,7 @@ public class TrainingSessionWindow extends JFrame {
 
         JLabel lSport = new JLabel("Sport");
         lSport.setFont(new Font("Tahoma", Font.PLAIN, 15));
-        lSport.setBounds(474, 96, 64, 28);
+        lSport.setBounds(464, 96, 64, 28);
         contentPane.add(lSport);
 
         tSport = new JTextField("");
@@ -63,7 +63,7 @@ public class TrainingSessionWindow extends JFrame {
 
         JLabel lDistanceInKm = new JLabel("Distance in km");
         lDistanceInKm.setFont(new Font("Tahoma", Font.PLAIN, 15));
-        lDistanceInKm.setBounds(474, 159, 130, 28);
+        lDistanceInKm.setBounds(464, 159, 130, 28);
         contentPane.add(lDistanceInKm);
 
         tDistanceInKm = new JTextField("");
@@ -73,7 +73,7 @@ public class TrainingSessionWindow extends JFrame {
 
         JLabel lDateOfStart = new JLabel("Time of start");
         lDateOfStart.setFont(new Font("Tahoma", Font.PLAIN, 15));
-        lDateOfStart.setBounds(474, 211, 98, 28);
+        lDateOfStart.setBounds(464, 211, 98, 28);
         contentPane.add(lDateOfStart);
 
         tYear = new JTextField("Year");
@@ -96,9 +96,9 @@ public class TrainingSessionWindow extends JFrame {
         tHour.setBounds(753, 214, 51, 28);
         contentPane.add(tHour);
 
-        JLabel lDuration = new JLabel("Duration");
+        JLabel lDuration = new JLabel("Duration in min");
         lDuration.setFont(new Font("Tahoma", Font.PLAIN, 15));
-        lDuration.setBounds(474, 323, 98, 28);
+        lDuration.setBounds(464, 323, 108, 28);
         contentPane.add(lDuration);
 
         tDuration = new JTextField("");

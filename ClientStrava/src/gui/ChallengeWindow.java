@@ -36,7 +36,7 @@ public class ChallengeWindow extends JFrame {
     public ChallengeWindow(ChallengeController challengeController, String email) {
         this.controller = challengeController;
 
-        String typeOfChallenge = "";
+        final String[] typeOfChallenge = {""};
 
         setTitle("Challenge Window");
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
@@ -54,7 +54,6 @@ public class ChallengeWindow extends JFrame {
         tName = new JTextField("");
         tName.setBounds(600, 50, 207, 28);
         contentPane.add(tName);
-        tName.setColumns(10);
 
         JLabel lStartDate = new JLabel("Start date");
         lStartDate.setFont(new Font("Tahoma", Font.PLAIN, 15));
@@ -62,17 +61,14 @@ public class ChallengeWindow extends JFrame {
         contentPane.add(lStartDate);
 
         tYear1 = new JTextField("Year");
-        tYear1.setColumns(10);
         tYear1.setBounds(600, 99, 66, 28);
         contentPane.add(tYear1);
 
         tMonth1 = new JTextField("Month");
-        tMonth1.setColumns(10);
         tMonth1.setBounds(670, 99, 66, 28);
         contentPane.add(tMonth1);
 
         tDay1 = new JTextField("Day");
-        tDay1.setColumns(10);
         tDay1.setBounds(740, 99, 66, 28);
         contentPane.add(tDay1);
 
@@ -82,17 +78,14 @@ public class ChallengeWindow extends JFrame {
         contentPane.add(lDistanceInKm);
 
         tYear2 = new JTextField("Year");
-        tYear2.setColumns(10);
         tYear2.setBounds(600, 159, 66, 28);
         contentPane.add(tYear2);
 
         tMonth2 = new JTextField("Month");
-        tMonth2.setColumns(10);
         tMonth2.setBounds(670, 159, 66, 28);
         contentPane.add(tMonth2);
 
         tDay2 = new JTextField("Day");
-        tDay2.setColumns(10);
         tDay2.setBounds(740, 159, 66, 28);
         contentPane.add(tDay2);
 
@@ -102,9 +95,13 @@ public class ChallengeWindow extends JFrame {
         contentPane.add(lDistance);
 
         tDistance = new JTextField("");
-        tDistance.setColumns(10);
         tDistance.setBounds(600, 214, 207, 28);
         contentPane.add(tDistance);
+
+        JLabel lAviso = new JLabel("Fill distance or time optionally, but not both");
+        lAviso.setFont(new Font("Tahoma", Font.PLAIN, 10));
+        lAviso.setBounds(474, 244, 400, 28);
+        contentPane.add(lAviso);
 
         JLabel lAimTime = new JLabel("Aim time");
         lAimTime.setFont(new Font("Tahoma", Font.PLAIN, 15));
@@ -112,7 +109,6 @@ public class ChallengeWindow extends JFrame {
         contentPane.add(lAimTime);
 
         tAimTime = new JTextField("");
-        tAimTime.setColumns(10);
         tAimTime.setBounds(600, 273, 207, 28);
         contentPane.add(tAimTime);
 
@@ -122,7 +118,6 @@ public class ChallengeWindow extends JFrame {
         contentPane.add(lSport);
 
         tSport = new JTextField("");
-        tSport.setColumns(10);
         tSport.setBounds(600, 326, 207, 28);
         contentPane.add(tSport);
 
@@ -158,10 +153,23 @@ public class ChallengeWindow extends JFrame {
                 dateOfStart.set(Integer.parseInt(tYear1.getText()), Integer.parseInt(tMonth1.getText()), Integer.parseInt(tDay1.getText()));
                 dateOfEnd.set(Integer.parseInt(tYear2.getText()), Integer.parseInt(tMonth2.getText()), Integer.parseInt(tDay2.getText()));
 
-                controller.createChallenge(typeOfChallenge, tName.getName(),
-                        dateOfStart, dateOfEnd, tSport.getText(),
-                        Integer.parseInt(tDistance.getText()),
-                        Integer.parseInt(tAimTime.getText()));
+                if (tDistance.getText().equals("")) {
+                    typeOfChallenge[0] = "time";
+                } else if (tAimTime.getText().equals("")) {
+                    typeOfChallenge[0] = "distance";
+                }
+
+                if (tDistance.getText().equals("")) {
+                    controller.createChallenge(typeOfChallenge[0], tName.getText(),
+                            dateOfStart, dateOfEnd, tSport.getText(),
+                            0,
+                            Integer.parseInt(tAimTime.getText()));
+                } else {
+                    controller.createChallenge(typeOfChallenge[0], tName.getText(),
+                            dateOfStart, dateOfEnd, tSport.getText(),
+                            Integer.parseInt(tDistance.getText()),
+                            0);
+                }
 
                 //TIENE QUE APARECER UN JLABEL DE FEEDBACK EN LA VENTANA
             }
