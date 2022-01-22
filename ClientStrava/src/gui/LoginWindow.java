@@ -63,7 +63,7 @@ public class LoginWindow extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 if (!tEmail.getText().equals("") && !tPassword.equals("")) {
-
+                    lFeedback.setText("Write a mail and a password");
                 } else {
                     Thread tLogin = new Thread(new Runnable() {
                         @Override

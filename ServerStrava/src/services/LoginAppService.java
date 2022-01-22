@@ -34,7 +34,14 @@ public class LoginAppService {
             }
         }
 
-        System.out.println("El login llega hasta aqui");
+        try {
+            System.out.println("googleOrfacebook: " + googleOrFacebook);
+            System.out.println("email: " + email);
+            System.out.println("password: " + password);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        System.out.println("El login llega hasta aqui, Dio");
 
         if (googleOrFacebook.equals("google")) {
             if (email != null) {

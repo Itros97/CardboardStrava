@@ -10,12 +10,13 @@ public class LoginController {
     private ServiceLocator serviceLocator = new ServiceLocator();
     //This attribute stores the token when login success
     private boolean token = false;
+    private String mail = "";
 
     public LoginController(ServiceLocator serviceLocator) { this.serviceLocator = serviceLocator; }
 
     public boolean login(String email, String password) {
-        //Se realiza el proceso de login si un usuario no se ha logeado ya
         try {
+            mail = email;
             token = this.serviceLocator.getService().loginUser(email, password);
             return token;
         } catch (RemoteException e) {
@@ -30,5 +31,9 @@ public class LoginController {
 
     public boolean getToken() {
         return token;
+    }
+
+    public String getMail() {
+        return mail;
     }
 }

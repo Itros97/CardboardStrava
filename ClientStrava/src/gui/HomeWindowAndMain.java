@@ -53,7 +53,7 @@ public class HomeWindowAndMain extends JFrame {
         TrainingSessionController trainingSessionController = new TrainingSessionController(serviceLocator);
 
         //EMAIL DEL LOGEADO: POR IMPLEMENTAR
-        String email = "nulo@gmail.com";
+        final String[] email = {"nulo@gmail.com"};
 
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setBounds(100, 100, 739, 468);
@@ -159,11 +159,12 @@ public class HomeWindowAndMain extends JFrame {
         bChallenges.addActionListener(new ActionListener(){
             @Override
             public void actionPerformed(ActionEvent e) {
+                email[0] = loginController.getMail();
                 Thread tChallenge = new Thread(new Runnable() {
                     @Override
                     public void run() {
                         try {
-                            ChallengeWindow frame = new ChallengeWindow(challengeController, email);
+                            ChallengeWindow frame = new ChallengeWindow(challengeController, email[0]);
                             frame.setVisible(true);
                         } catch (Exception e) {
                             e.printStackTrace();
@@ -184,8 +185,9 @@ public class HomeWindowAndMain extends JFrame {
                 Thread tTrainingSession = new Thread(new Runnable() {
                     @Override
                     public void run() {
+                        email[0] = loginController.getMail();
                         try {
-                            TrainingSessionWindow frame = new TrainingSessionWindow(trainingSessionController, email);
+                            TrainingSessionWindow frame = new TrainingSessionWindow(trainingSessionController, email[0]);
                             frame.setVisible(true);
                         } catch (Exception e) {
                             e.printStackTrace();
