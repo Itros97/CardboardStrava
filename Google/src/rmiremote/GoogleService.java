@@ -62,6 +62,7 @@ public class GoogleService extends UnicastRemoteObject implements IGoogle {
                 }
             }
         }
+        System.out.println("Email not found. Login with Google failed.");
         return false;
     }
 

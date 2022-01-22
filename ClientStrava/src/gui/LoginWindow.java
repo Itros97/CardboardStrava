@@ -25,10 +25,10 @@ public class LoginWindow extends JFrame {
         setBounds(100, 100, 500, 385);
         getContentPane().setLayout(null);
 
-        JLabel lEmail = new JLabel("User e-mail");
+        JLabel lEmail = new JLabel("Email");
         lEmail.setHorizontalAlignment(SwingConstants.CENTER);
         lEmail.setFont(new Font("Calibri", Font.PLAIN, 30));
-        lEmail.setBounds(70, 50, 150, 30);
+        lEmail.setBounds(30, 50, 150, 30);
         getContentPane().add(lEmail);
 
         tEmail = new JTextField("");
@@ -37,7 +37,7 @@ public class LoginWindow extends JFrame {
         tEmail.setBounds(40, 100, 400, 25);
         getContentPane().add(tEmail);
 
-        JLabel lPassword = new JLabel("User e-mail password");
+        JLabel lPassword = new JLabel("Password");
         lPassword.setFont(new Font("Calibri", Font.PLAIN, 30));
         lPassword.setBounds(70, 170, 300, 30);
         getContentPane().add(lPassword);
@@ -61,7 +61,7 @@ public class LoginWindow extends JFrame {
         bLogin.addActionListener(new ActionListener(){
             @Override
             public void actionPerformed(ActionEvent e) {
-                if (tEmail.getText().equals("") && tPassword.getText().equals("")) {
+                if (tEmail.getText().equals("") || tPassword.getText().equals("")) {
                     lFeedback.setText("Write a mail and a password");
                 } else {
                     Thread tLogin = new Thread(new Runnable() {
@@ -76,16 +76,9 @@ public class LoginWindow extends JFrame {
                             } catch (Exception e) {
                                 e.printStackTrace();
                             }
-                            lFeedback.setText("Log in OK");
                         }
                     });
                     tLogin.start();
-                /*try {
-                    Thread.sleep(2000);
-                } catch (InterruptedException ex) {
-                    Thread.currentThread().interrupt();
-                }
-                tLogin.stop();*/
                 }
             }
         });

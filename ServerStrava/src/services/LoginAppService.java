@@ -34,15 +34,6 @@ public class LoginAppService {
             }
         }
 
-        try {
-            System.out.println("googleOrfacebook: " + googleOrFacebook);
-            System.out.println("email: " + email);
-            System.out.println("password: " + password);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        System.out.println("El login llega hasta aqui, Dio");
-
         if (googleOrFacebook.equals("google")) {
             if (email != null) {
                 return GoogleGateway.getInstance().login(email, password);
@@ -54,10 +45,12 @@ public class LoginAppService {
         } else {
             for (PasswordProfile pro : profiles) {
                 if (pro.getEmail().equals(email) && pro.getPassword().equals(password)) {
+                    System.out.println("You are logged in STRAVA Server");
                     //El token que tiene que devolverse (es un boolean)
                     return true;
                 }
             }
+            System.out.println("Email or password not found in database.");
         }
         return false;
     }

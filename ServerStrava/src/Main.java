@@ -120,7 +120,7 @@ public class Main {
             pp2.setHeightCm(170);
             pp2.setMaximumHeartRate(175);
             pp2.setReposeHeartRate(80);
-            pp2.setRegisterType("google");
+            pp2.setRegisterType("facebook");
             pp2.setPassword("qwerty");
 
             PasswordProfile pp3 = new PasswordProfile();
@@ -153,7 +153,7 @@ public class Main {
             pp5.setHeightCm(162);
             pp5.setMaximumHeartRate(175);
             pp5.setReposeHeartRate(80);
-            pp5.setRegisterType("google");
+            pp5.setRegisterType("");
             pp5.setPassword("electricboogaloo");
 
             PasswordProfile pp6 = new PasswordProfile();
