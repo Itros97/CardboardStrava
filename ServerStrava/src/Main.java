@@ -37,65 +37,6 @@ public class Main {
         try {
             GregorianCalendar calendar = new GregorianCalendar();
 
-            /* DATOS ANTIGUOS
-            //Create Profiles
-            Profile p1 = new Profile();
-            p1.setEmail("primerprofile@opendeusto.es");
-            p1.setNickname("profile");
-            p1.setBirthdate(calendar);
-            p1.setWeightKg(75.6);
-            p1.setHeightCm(172);
-            p1.setMaximumHeartRate(175);
-            p1.setReposeHeartRate(80);
-            p1.setRegisterType("google");
-
-            Profile p2 = new Profile();
-            p2.setEmail("terrazasygeranios@gmail.com");
-            p2.setNickname("Rama");
-            p2.setBirthdate(calendar);
-            p2.setWeightKg(68.8);
-            p2.setHeightCm(163);
-            p2.setMaximumHeartRate(175);
-            p2.setReposeHeartRate(80);
-            p2.setRegisterType("facebook");
-
-            Profile p3 = new Profile();
-            p3.setEmail("usuarioUsario@gmail.com");
-            p3.setNickname("usuario");
-            p3.setBirthdate(calendar);
-            p3.setWeightKg(90.5);
-            p3.setHeightCm(200);
-            p3.setMaximumHeartRate(175);
-            p3.setReposeHeartRate(80);
-            p3.setRegisterType("");
-
-            Profile p4 = new Profile();
-            p4.setEmail("maildelbujas@gmail.com");
-            p4.setNickname("El rapido");
-            p4.setBirthdate(calendar);
-            p4.setWeightKg(72.4);
-            p4.setHeightCm(170);
-            p4.setMaximumHeartRate(175);
-            p4.setReposeHeartRate(80);
-            p4.setRegisterType("google");
-
-            Profile p5 = new Profile();
-            p5.setEmail("ameliasili@gmail.com");
-            p5.setNickname("Amelia");
-            p5.setBirthdate(calendar);
-            p5.setWeightKg(80.1);
-            p5.setHeightCm(178);
-            p5.setMaximumHeartRate(175);
-            p5.setReposeHeartRate(80);
-            p5.setRegisterType("");
-
-            //Save Users in the DB
-            ProfileDAO.getInstance().save(p1);
-            ProfileDAO.getInstance().save(p2);
-            ProfileDAO.getInstance().save(p3);
-            ProfileDAO.getInstance().save(p4);
-            ProfileDAO.getInstance().save(p5);*/
-
             PasswordProfile pp1 = new PasswordProfile();
             pp1.setEmail("denna@gmail.com");
             pp1.setNickname("Chand");
@@ -108,7 +49,7 @@ public class Main {
             pp1.setPassword("password");
 
             PasswordProfile pp2 = new PasswordProfile();
-            pp2.setEmail("ambrose@gmail.com");
+            pp2.setEmail("ambrose@facebook.com");
             pp2.setNickname("Jackass");
             pp2.setBirthdate(calendar);
             pp2.setWeightKg(140.4);
@@ -119,7 +60,7 @@ public class Main {
             pp2.setPassword("qwerty");
 
             PasswordProfile pp3 = new PasswordProfile();
-            pp3.setEmail("bredon@gmail.com");
+            pp3.setEmail("bredon@facebook.com");
             pp3.setNickname("Ceniza");
             pp3.setBirthdate(calendar);
             pp3.setWeightKg(68.3);
@@ -179,6 +120,13 @@ public class Main {
             pp9.setRegisterType("google");
             pp9.setPassword("zxcvbnm.");
 
+            PasswordProfile pp10 = new PasswordProfile();
+            pp10.setEmail("usuario@facebook.com");
+            pp10.setNickname("");
+            pp10.setBirthdate(calendar);
+            pp10.setRegisterType("facebook");
+            pp10.setPassword("12345678");
+
             //Save Users in the DB
             PasswordProfileDAO.getInstance().save(pp1);
             PasswordProfileDAO.getInstance().save(pp2);
@@ -189,6 +137,7 @@ public class Main {
             PasswordProfileDAO.getInstance().save(pp7);
             PasswordProfileDAO.getInstance().save(pp8);
             PasswordProfileDAO.getInstance().save(pp9);
+            PasswordProfileDAO.getInstance().save(pp10);
 
             TrainingSession ts1 = new TrainingSession();
             ts1.setTitle("Running");
@@ -372,6 +321,65 @@ public class Main {
             ChallengeWithTimeDAO.getInstance().save(cht3);
             ChallengeWithTimeDAO.getInstance().save(cht4);
             ChallengeWithTimeDAO.getInstance().save(cht5);
+
+            /* DATOS ANTIGUOS
+            //Create Profiles
+            Profile p1 = new Profile();
+            p1.setEmail("primerprofile@opendeusto.es");
+            p1.setNickname("profile");
+            p1.setBirthdate(calendar);
+            p1.setWeightKg(75.6);
+            p1.setHeightCm(172);
+            p1.setMaximumHeartRate(175);
+            p1.setReposeHeartRate(80);
+            p1.setRegisterType("google");
+
+            Profile p2 = new Profile();
+            p2.setEmail("terrazasygeranios@gmail.com");
+            p2.setNickname("Rama");
+            p2.setBirthdate(calendar);
+            p2.setWeightKg(68.8);
+            p2.setHeightCm(163);
+            p2.setMaximumHeartRate(175);
+            p2.setReposeHeartRate(80);
+            p2.setRegisterType("facebook");
+
+            Profile p3 = new Profile();
+            p3.setEmail("usuarioUsario@gmail.com");
+            p3.setNickname("usuario");
+            p3.setBirthdate(calendar);
+            p3.setWeightKg(90.5);
+            p3.setHeightCm(200);
+            p3.setMaximumHeartRate(175);
+            p3.setReposeHeartRate(80);
+            p3.setRegisterType("");
+
+            Profile p4 = new Profile();
+            p4.setEmail("maildelbujas@gmail.com");
+            p4.setNickname("El rapido");
+            p4.setBirthdate(calendar);
+            p4.setWeightKg(72.4);
+            p4.setHeightCm(170);
+            p4.setMaximumHeartRate(175);
+            p4.setReposeHeartRate(80);
+            p4.setRegisterType("google");
+
+            Profile p5 = new Profile();
+            p5.setEmail("ameliasili@gmail.com");
+            p5.setNickname("Amelia");
+            p5.setBirthdate(calendar);
+            p5.setWeightKg(80.1);
+            p5.setHeightCm(178);
+            p5.setMaximumHeartRate(175);
+            p5.setReposeHeartRate(80);
+            p5.setRegisterType("");
+
+            //Save Users in the DB
+            ProfileDAO.getInstance().save(p1);
+            ProfileDAO.getInstance().save(p2);
+            ProfileDAO.getInstance().save(p3);
+            ProfileDAO.getInstance().save(p4);
+            ProfileDAO.getInstance().save(p5);*/
         } catch (Exception ex) {
             System.out.println(" $ Error initializing data base:" + ex.getMessage());
         }

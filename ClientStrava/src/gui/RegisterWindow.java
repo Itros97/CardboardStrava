@@ -182,21 +182,25 @@ public class RegisterWindow extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 PasswordProfile p = new PasswordProfile();
+                boolean puedeRegistrar = true;
 
                 if (!tEmail.getText().equals("")) {
                     p.setEmail(tEmail.getText());
                 } else {
+                    puedeRegistrar = false;
                     //MENSAJE POR PANTALLA DICIENDO QUE SE PONGA EL EMAIL
                 }
                 if (!tNickname.getText().equals("")) {
                     p.setNickname(tNickname.getText());
                 } else {
+                    puedeRegistrar = false;
                     //MENSAJE POR PANTALLA DICIENDO QUE SE PONGA EL NICKNAME
                 }
                 GregorianCalendar calendar = new GregorianCalendar();
                 if (isNumeric(tYear.getText()) && isNumeric(tMonth.getText()) && isNumeric(tDay.getText())) {
                     calendar.set(Integer.parseInt(tYear.getText()), Integer.parseInt(tMonth.getText()), Integer.parseInt(tDay.getText()));
                 } else {
+                    puedeRegistrar = false;
                     //MENSAJE POR PANTALLA DICIENDO QUE SE PONGA EL ANYO, EL MES Y EL DIA EN NUMEROS
                 }
                 p.setBirthdate(calendar);
@@ -222,9 +226,15 @@ public class RegisterWindow extends JFrame {
                 }
                 p.setRegisterType(registerType);
 
-                p.setPassword(tPassword.getText());
+                if (!tNickname.getText().equals("")) {
+                    p.setPassword(tPassword.getText());
+                } else {
+                    puedeRegistrar = false;
+                }
 
-                controller.register(p);
+                if (puedeRegistrar) {
+                    controller.register(p);
+                }
             }
         });
 

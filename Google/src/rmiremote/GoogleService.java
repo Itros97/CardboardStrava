@@ -32,21 +32,25 @@ public class GoogleService extends UnicastRemoteObject implements IGoogle {
         String e2 = "m.lopez.gutierrez@opendeusto.es";
         String e3 = "inigo.tarrino@opendeusto.es";
         String e4 = "mikel.huidobro@opendeusto.es";
+        String e5 = "revision@opendeusto.es";
 
         emails.add(e1);
         emails.add(e2);
         emails.add(e3);
         emails.add(e4);
+        emails.add(e5);
 
         String p1 = "12345678";
         String p2 = "qwertyui";
         String p3 = "asdfghjk";
         String p4 = "zxcvbnm.";
+        String p5 = "password";
 
         passwords.add(p1);
         passwords.add(p2);
         passwords.add(p3);
         passwords.add(p4);
+        passwords.add(p5);
     }
 
     public boolean login(String email, String password) throws RemoteException {

@@ -25,17 +25,21 @@ public class FacebookService extends Thread {
     }
 
     public void run() {
-        String e1 = "ambrose@gmail.com";
-        String e2 = "bredon@gmail.com";
+        String e1 = "ambrose@facebook.com";
+        String e2 = "bredon@facebook.com";
+        String e3 = "usuario@facebook.com";
 
         emails.add(e1);
         emails.add(e2);
+        emails.add(e3);
 
         String p1 = "qwerty";
         String p2 = "asdfg";
+        String p3 = "12345678";
 
         passwords.add(p1);
         passwords.add(p2);
+        passwords.add(p3);
 
         //Facebook server
         try {
