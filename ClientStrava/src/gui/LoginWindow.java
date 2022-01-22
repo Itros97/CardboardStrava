@@ -36,7 +36,6 @@ public class LoginWindow extends JFrame {
         tEmail.setFont(new Font("Arial", Font.PLAIN, 15));
         tEmail.setBounds(40, 100, 400, 25);
         getContentPane().add(tEmail);
-        tEmail.setColumns(10);
 
         JLabel lPassword = new JLabel("User e-mail password");
         lPassword.setFont(new Font("Calibri", Font.PLAIN, 30));
@@ -53,7 +52,7 @@ public class LoginWindow extends JFrame {
         lFeedback.setBackground(Color.GRAY);
         lFeedback.setFont(new Font("Calibri", Font.PLAIN, 13));
         lFeedback.setHorizontalAlignment(SwingConstants.CENTER);
-        lFeedback.setBounds(140, 270, 88, 25);
+        lFeedback.setBounds(34, 270, 300, 25);
         getContentPane().add(lFeedback);
 
         JButton bLogin = new JButton("Login");
@@ -62,7 +61,7 @@ public class LoginWindow extends JFrame {
         bLogin.addActionListener(new ActionListener(){
             @Override
             public void actionPerformed(ActionEvent e) {
-                if (!tEmail.getText().equals("") && !tPassword.equals("")) {
+                if (tEmail.getText().equals("") && tPassword.getText().equals("")) {
                     lFeedback.setText("Write a mail and a password");
                 } else {
                     Thread tLogin = new Thread(new Runnable() {
