@@ -1,7 +1,7 @@
 package controller;
 
-import data.DTO.ChallengeDTO;
 import ServiceLocator.ServiceLocator;
+import data.DTO.GreatChallengeDTO;
 
 import java.rmi.RemoteException;
 import java.util.GregorianCalendar;
@@ -17,12 +17,13 @@ public class ChallengeController {
     public void acceptChallenge(String name, String email) {
         try {
             this.serviceLocator.getService().acceptChallenge(name, email);
+            System.out.println("Accepted");
         } catch (RemoteException e) {
             System.out.println("# Error accepting challenge: " + e);
         }
     }
 
-    public List<ChallengeDTO> getChallenges() {
+    public List<GreatChallengeDTO> getChallenges() {
         try {
             return this.serviceLocator.getService().getChallenges();
         } catch (RemoteException e) {
@@ -31,7 +32,7 @@ public class ChallengeController {
         }
     }
 
-    public List<ChallengeDTO> getUnfinishedChallenges() {
+    public List<GreatChallengeDTO> getUnfinishedChallenges() {
         try {
             return this.serviceLocator.getService().getUnfinishedChallenges();
         } catch (RemoteException e) {
@@ -40,7 +41,7 @@ public class ChallengeController {
         }
     }
 
-    public List<ChallengeDTO> getAcceptedChallenges(String email) {
+    public List<GreatChallengeDTO> getAcceptedChallenges(String email) {
         try {
             return this.serviceLocator.getService().getAcceptedChallenges(email);
         } catch (RemoteException e) {

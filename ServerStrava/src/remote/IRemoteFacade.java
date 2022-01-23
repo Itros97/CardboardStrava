@@ -1,6 +1,6 @@
 package remote;
 
-import data.DTO.ChallengeDTO;
+import data.DTO.GreatChallengeDTO;
 import data.DTO.TrainingSessionDTO;
 import data.domain.PasswordProfile;
 
@@ -22,11 +22,11 @@ public interface IRemoteFacade extends Remote {
 
     List<TrainingSessionDTO> getOwnTrainingSessions(String email) throws RemoteException;
 
-    List<ChallengeDTO> getChallenges() throws RemoteException;
+    List<GreatChallengeDTO> getChallenges() throws RemoteException;
 
-    List<ChallengeDTO> getUnfinishedChallenges() throws RemoteException;
+    List<GreatChallengeDTO> getUnfinishedChallenges() throws RemoteException;
 
-    List<ChallengeDTO> getAcceptedChallenges(String email) throws RemoteException;
+    List<GreatChallengeDTO> getAcceptedChallenges(String email) throws RemoteException;
 
     void createTrainingSession(String title, String sport, double distance, GregorianCalendar dateOfStart, double duration, String creatorEmail) throws RemoteException;
 

@@ -1,7 +1,7 @@
 package remote;
 
-import data.DTO.ChallengeAssembler;
-import data.DTO.ChallengeDTO;
+import data.DTO.GreatChallengeAssembler;
+import data.DTO.GreatChallengeDTO;
 import data.DTO.TrainingSessionDTO;
 import data.DTO.TraininigSessionAssembler;
 import data.domain.*;
@@ -12,9 +12,7 @@ import java.rmi.server.UnicastRemoteObject;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.GregorianCalendar;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 public class RemoteFacade extends UnicastRemoteObject implements IRemoteFacade {
     private static final long serialVersionUID = 1L;
@@ -95,50 +93,104 @@ public class RemoteFacade extends UnicastRemoteObject implements IRemoteFacade {
         }
     }
 
-    public List<ChallengeDTO> getChallenges() throws RemoteException {
+    public List<GreatChallengeDTO> getChallenges() throws RemoteException {
         System.out.println(" * RemoteFacade getChallenges: ");
 
-        List<Challenge> ch = GetChallengesAppService.getInstance().getChallenges();
+        List<Challenge> chs = GetChallengesAppService.getInstance().getChallenges();
+        List<ChallengeWithDistance> chds = GetChallengesAppService.getInstance().getChallengesWithDistance();
+        List<ChallengeWithTime> chts = GetChallengesAppService.getInstance().getChallengesWithTime();
 
-        if (ch != null) {
+        //Hacer algo con la condicion de este if
+        if (chs != null) {
             //Convert domain object to DTO
-            return ChallengeAssembler.getInstance().challengeToDTO(ch);
+            return GreatChallengeAssembler.getInstance().challengeToDTO(chs, chds, chts);
         } else {
             throw new RemoteException("getChallenges() fails!");
         }
     }
 
-    public List<ChallengeDTO> getUnfinishedChallenges() throws RemoteException {
+    public List<GreatChallengeDTO> getUnfinishedChallenges() throws RemoteException {
         System.out.println(" * RemoteFacade getUnfinishedChallenges: ");
 
         List<Challenge> chs = GetChallengesAppService.getInstance().getChallenges();
+        List<ChallengeWithDistance> chds = GetChallengesAppService.getInstance().getChallengesWithDistance();
+        List<ChallengeWithTime> chts = GetChallengesAppService.getInstance().getChallengesWithTime();
 
         LocalDate todaysDate = LocalDate.now();
+        //Hacer algo con la condicion de este if
         if (chs != null) {
-            chs.removeIf(ch -> ch.getDateOfEnd().after(todaysDate));
+            for (Challenge c : chs) {
+                if (c.getDateOfEnd().after(todaysDate)) {
+                    chs.remove(c);
+                }
+            }
+
+            for (ChallengeWithDistance cd : chds) {
+                if (cd.getDateOfEnd().after(todaysDate)) {
+                    chds.remove(cd);
+                }
+            }
+
+            for (ChallengeWithTime ct : chts) {
+                if (ct.getDateOfEnd().after(todaysDate)) {
+                    chts.remove(ct);
+                }
+            }
 
             //Convert domain object to DTO
-            return ChallengeAssembler.getInstance().challengeToDTO(chs);
+            return GreatChallengeAssembler.getInstance().challengeToDTO(chs, chds, chts);
         } else {
             throw new RemoteException("getUnfinishedChallenges() fails!");
         }
     }
 
-    public List<ChallengeDTO> getAcceptedChallenges(String email) throws RemoteException {
+    public List<GreatChallengeDTO> getAcceptedChallenges(String email) throws RemoteException {
         System.out.println(" * RemoteFacade getAcceptedChallenges: ");
 
         //Get Challenges using GetTrainingSessionsAppService
-        List<Challenge> ch = GetChallengesAppService.getInstance().getChallenges();
+        List<Challenge> chs = GetChallengesAppService.getInstance().getChallenges();
+        List<ChallengeWithDistance> chds = GetChallengesAppService.getInstance().getChallengesWithDistance();
+        List<ChallengeWithTime> chts = GetChallengesAppService.getInstance().getChallengesWithTime();
 
-        for (Challenge c : ch) {
+        List<Challenge> listChallenges = new ArrayList<Challenge>();
+        List<ChallengeWithDistance> listChallengesWithDistance = new ArrayList<ChallengeWithDistance>();
+        List<ChallengeWithTime> listChallengesWithTime = new ArrayList<ChallengeWithTime>();
+
+        //Estos for para filtrar tan aparatosos son asi para evitar una excepcion
+        for (Challenge c : chs) {
             if (!c.getEmailAceptante().equals(email)) {
-                ch.remove(c);
+                listChallenges.add(c);
             }
         }
 
-        if (!ch.isEmpty()) {
+        for (Challenge c2 : listChallenges) {
+            chs.remove(c2);
+        }
+
+        for (ChallengeWithDistance cd : chds) {
+            if (!cd.getEmailAceptante().equals(email)) {
+                listChallengesWithDistance.add(cd);
+            }
+        }
+
+        for (ChallengeWithDistance cd2 : listChallengesWithDistance) {
+            chs.remove(cd2);
+        }
+
+        for (ChallengeWithTime ct : chts) {
+            if (!ct.getEmailAceptante().equals(email)) {
+                listChallengesWithTime.add(ct);
+            }
+        }
+
+        for (ChallengeWithTime ct2 : listChallengesWithTime) {
+            chts.remove(ct2);
+        }
+
+        //Hacer algo con la condicion de este if
+        if (!chs.isEmpty()) {
             //Convert domain object to DTO
-            return ChallengeAssembler.getInstance().challengeToDTO(ch);
+            return GreatChallengeAssembler.getInstance().challengeToDTO(chs, chds, chts);
         } else {
             throw new RemoteException("getAcceptedChallenges() fails!");
         }

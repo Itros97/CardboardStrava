@@ -2,13 +2,14 @@ package gui;
 
 import controller.ChallengeController;
 import controller.LoginController;
-import data.DTO.ChallengeDTO;
+import data.DTO.GreatChallengeDTO;
 
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 import java.util.GregorianCalendar;
 import java.util.List;
 
@@ -120,6 +121,11 @@ public class ChallengeWindow extends JFrame {
         tSport.setBounds(600, 326, 207, 28);
         contentPane.add(tSport);
 
+        JLabel lAccept = new JLabel("");
+        lAccept.setFont(new Font("Tahoma", Font.PLAIN, 10));
+        lAccept.setBounds(336, 373, 500, 28);
+        contentPane.add(lAccept);
+
         list = new JList();
         list.setSelectionMode(ListSelectionModel.SINGLE_SELECTION );
         model = new DefaultListModel();
@@ -180,19 +186,35 @@ public class ChallengeWindow extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 System.out.println(" - Getting all active challenges...");
-                List<ChallengeDTO> activeChallenges = controller.getUnfinishedChallenges();
-                if (activeChallenges != null) {
-                    Thread tActiveChallenges = new Thread(new Runnable() {
-                        @Override
-                        public void run() {
-                            model.removeAllElements();
-                            for (ChallengeDTO ch : activeChallenges) {
-                                model.addElement(ch.getName() + ": " + ch.getSport() + " ");
+
+                Thread tActiveChallenges = new Thread(new Runnable() {
+                    @Override
+                    public void run() {
+                        model.removeAllElements();
+                        List<GreatChallengeDTO> activeChallenges = new ArrayList<GreatChallengeDTO>();
+                        activeChallenges = controller.getUnfinishedChallenges();
+                        List<GreatChallengeDTO> listChallenges = new ArrayList<GreatChallengeDTO>();
+
+                        //Bucles que filtran challenges repetidos en la lista
+                        for (GreatChallengeDTO c : activeChallenges) {
+                            for (GreatChallengeDTO c2 : activeChallenges) {
+                                if (c.getName().equals(c2.getName())) {
+                                    listChallenges.add(c);
+                                }
                             }
                         }
-                    });
-                    tActiveChallenges.start();
-                }
+                        for (GreatChallengeDTO c3 : listChallenges) {
+                            if (c3.getObjectiveDistance() != 0 || c3.getObjectiveTime() != 0) {
+                                activeChallenges.remove(c3);
+                            }
+                        }
+
+                        for (GreatChallengeDTO ch : activeChallenges) {
+                            model.addElement(ch.getName() + ": " + ch.getSport() + " ");
+                        }
+                    }
+                });
+                tActiveChallenges.start();
             }
         });
 
@@ -204,21 +226,38 @@ public class ChallengeWindow extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 System.out.println(" - Getting accepted challenges...");
-                List<ChallengeDTO> acceptedChallenges = controller.getAcceptedChallenges(loginController.getMail());
-                if (acceptedChallenges != null) {
                     Thread tAcceptedChallenges = new Thread(new Runnable() {
                         @Override
                         public void run() {
                             model.removeAllElements();
-                            for (ChallengeDTO ch : acceptedChallenges) {
+                            List<GreatChallengeDTO> acceptedChallenges = new ArrayList<GreatChallengeDTO>();
+                            acceptedChallenges = controller.getAcceptedChallenges(loginController.getMail());
+                            List<GreatChallengeDTO> listChallenges = new ArrayList<GreatChallengeDTO>();
+
+                            //Bucles que filtran challenges repetidos en la lista
+                            for (GreatChallengeDTO c : acceptedChallenges) {
+                                for (GreatChallengeDTO c2 : acceptedChallenges) {
+                                    if (c.getName().equals(c2.getName())) {
+                                        listChallenges.add(c);
+                                    }
+                                }
+                            }
+                            for (GreatChallengeDTO c3 : listChallenges) {
+                                if (c3.getObjectiveDistance() != 0 || c3.getObjectiveTime() != 0) {
+                                    acceptedChallenges.remove(c3);
+                                }
+                            }
+
+                            for (GreatChallengeDTO ch : acceptedChallenges) {
                                 model.addElement(ch.getName() + ": " + ch.getSport());
                             }
                         }
                     });
                     tAcceptedChallenges.start();
-                }
             }
         });
+
+
 
         JButton bAcceptChallenge = new JButton("Accept Challenge");
         bAcceptChallenge.setFont(new Font("Tahoma", Font.PLAIN, 10));
@@ -227,9 +266,28 @@ public class ChallengeWindow extends JFrame {
         bAcceptChallenge.addActionListener(new ActionListener(){
             @Override
             public void actionPerformed(ActionEvent e) {
-                controller.acceptChallenge(tName.getText(), loginController.getMail());
-
-                //TIENE QUE APARECER UN JLABEL DE FEEDBACK EN LA VENTANA
+                Thread tAccept = new Thread(new Runnable() {
+                    @Override
+                    public void run() {
+                        if (loginController.getMail().equals("")) {
+                            lAccept.setText("You need to be logged in to accept a Challenge");
+                        } else {
+                            String acceptedChallengeName = "";
+                            int n = 0;
+                            if (list.getSelectedIndex() != -1) {
+                                n = list.getSelectedIndex();
+                                List<GreatChallengeDTO> challenges = new ArrayList<GreatChallengeDTO>();
+                                challenges = controller.getChallenges();
+                                acceptedChallengeName = challenges.get(n).getName();
+                                controller.acceptChallenge(acceptedChallengeName, loginController.getMail());
+                                lAccept.setText("Accepted");
+                            } else {
+                                lAccept.setText("First select a challenge");
+                            }
+                        }
+                    }
+                });
+                tAccept.start();
             }
         });
     }
