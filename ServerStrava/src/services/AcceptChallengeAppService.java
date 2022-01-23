@@ -1,6 +1,8 @@
 package services;
 
 import data.dao.ChallengeDAO;
+import data.dao.ChallengeWithDistanceDAO;
+import data.dao.ChallengeWithTimeDAO;
 import data.domain.Challenge;
 import data.domain.ChallengeWithDistance;
 import data.domain.ChallengeWithTime;
@@ -30,25 +32,27 @@ public class AcceptChallengeAppService {
         List<ChallengeWithTime> chts = new ArrayList<ChallengeWithTime>();
         chts = GetChallengesAppService.getInstance().getChallengesWithTime();
 
+        System.out.println("Guardar");
+
         for (Challenge ch : chs) {
             if (name.equals(ch.getName())) {
-                ChallengeDAO.getInstance().delete(ch);
                 ch.setEmailAceptante(email);
                 ChallengeDAO.getInstance().save(ch);
+                System.out.println("Guardar Challenge normal");
             }
         }
         for (ChallengeWithDistance chd : chds) {
             if (name.equals(chd.getName())) {
-                ChallengeDAO.getInstance().delete(chd);
                 chd.setEmailAceptante(email);
-                ChallengeDAO.getInstance().save(chd);
+                ChallengeWithDistanceDAO.getInstance().save(chd);
+                System.out.println("Guardar Distance");
             }
         }
         for (ChallengeWithTime cht : chts) {
             if (name.equals(cht.getName())) {
-                ChallengeDAO.getInstance().delete(cht);
                 cht.setEmailAceptante(email);
-                ChallengeDAO.getInstance().save(cht);
+                ChallengeWithTimeDAO.getInstance().save(cht);
+                System.out.println("Guardar Time");
             }
         }
     }

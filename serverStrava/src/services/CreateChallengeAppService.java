@@ -18,7 +18,7 @@ public class CreateChallengeAppService {
     }
 
     public void createChallenge(Challenge ch) {
-            //Save the challenge in the DB using DAO Pattern
-            ChallengeDAO.getInstance().save(ch);
+        //Save the challenge in the DB using DAO Pattern
+        ChallengeDAO.getInstance().save(ch);
     }
 }

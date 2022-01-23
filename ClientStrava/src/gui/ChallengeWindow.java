@@ -257,8 +257,6 @@ public class ChallengeWindow extends JFrame {
             }
         });
 
-
-
         JButton bAcceptChallenge = new JButton("Accept Challenge");
         bAcceptChallenge.setFont(new Font("Tahoma", Font.PLAIN, 10));
         bAcceptChallenge.setBounds(336, 393, 110, 49);
