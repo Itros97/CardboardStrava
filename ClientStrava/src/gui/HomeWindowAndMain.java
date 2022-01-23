@@ -18,6 +18,7 @@ public class HomeWindowAndMain extends JFrame {
     private final JPanel contentPane;
     private final JLabel lWelcomeToStrava;
     private final JLabel lLogout;
+    private final JLabel lLogin;
 
     /**
      * Launch the application.
@@ -52,9 +53,6 @@ public class HomeWindowAndMain extends JFrame {
         ChallengeController challengeController = new ChallengeController(serviceLocator);
         TrainingSessionController trainingSessionController = new TrainingSessionController(serviceLocator);
 
-        //EMAIL DEL LOGEADO: POR IMPLEMENTAR
-        final String[] email = {"nulo@gmail.com"};
-
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setBounds(100, 100, 739, 468);
         contentPane = new JPanel();
@@ -87,26 +85,28 @@ public class HomeWindowAndMain extends JFrame {
                 Thread tLogout = new Thread(new Runnable() {
                     @Override
                     public void run() {
-                        /*try {
-                            if (controller.logout()) {
+                        try {
+                            if (!loginController.logout()) {
                                 lLogout.setText("Log out OK");
                             } else {
                                 lLogout.setText("Error in log out");
                             }
                         } catch (Exception e) {
                             e.printStackTrace();
-                        }*/
-                        lLogout.setText("Log out OK");
+                        }
+                        //lLogout.setText("Log out OK");
                     }
                 });
                 tLogout.start();
-                /*try {
-                    Thread.sleep(1000);
-                } catch (InterruptedException ex) {
-                    Thread.currentThread().interrupt();
-                }*/
             }
         });
+
+        lLogin = new JLabel("");
+        lLogin.setBackground(Color.GRAY);
+        lLogin.setFont(new Font("Tahoma", Font.PLAIN, 14));
+        lLogin.setHorizontalAlignment(SwingConstants.CENTER);
+        lLogin.setBounds(500, 30, 324, 88);
+        lLogin.add(lLogout);
 
         JButton bLogin = new JButton("Login");
         bLogin.setFont(new Font("Tahoma", Font.PLAIN, 13));
@@ -115,18 +115,22 @@ public class HomeWindowAndMain extends JFrame {
         bLogin.addActionListener(new ActionListener(){
             @Override
             public void actionPerformed(ActionEvent e) {
-                Thread tLogin = new Thread(new Runnable() {
-                    @Override
-                    public void run() {
-                        try {
-                            LoginWindow frame = new LoginWindow(loginController);
-                            frame.setVisible(true);
-                        } catch (Exception e) {
-                            e.printStackTrace();
+                    Thread tLogin = new Thread(new Runnable() {
+                        @Override
+                        public void run() {
+                            if (!loginController.getToken()) {
+                                try {
+                                    LoginWindow frame = new LoginWindow(loginController);
+                                    frame.setVisible(true);
+                                } catch (Exception e) {
+                                    e.printStackTrace();
+                                }
+                            } else {
+                                lLogin.setText("Welcome, " + loginController.getMail());
+                            }
                         }
-                    }
-                });
-                tLogin.start();
+                    });
+                    tLogin.start();
             }
         });
 
@@ -159,12 +163,11 @@ public class HomeWindowAndMain extends JFrame {
         bChallenges.addActionListener(new ActionListener(){
             @Override
             public void actionPerformed(ActionEvent e) {
-                email[0] = loginController.getMail();
                 Thread tChallenge = new Thread(new Runnable() {
                     @Override
                     public void run() {
                         try {
-                            ChallengeWindow frame = new ChallengeWindow(challengeController, email[0]);
+                            ChallengeWindow frame = new ChallengeWindow(challengeController, loginController);
                             frame.setVisible(true);
                         } catch (Exception e) {
                             e.printStackTrace();
@@ -185,9 +188,8 @@ public class HomeWindowAndMain extends JFrame {
                 Thread tTrainingSession = new Thread(new Runnable() {
                     @Override
                     public void run() {
-                        email[0] = loginController.getMail();
                         try {
-                            TrainingSessionWindow frame = new TrainingSessionWindow(trainingSessionController, email[0]);
+                            TrainingSessionWindow frame = new TrainingSessionWindow(trainingSessionController, loginController);
                             frame.setVisible(true);
                         } catch (Exception e) {
                             e.printStackTrace();

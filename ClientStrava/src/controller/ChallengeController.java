@@ -51,7 +51,6 @@ public class ChallengeController {
 
     public void createChallenge(String typeOfChallenge, String name, GregorianCalendar dateOfStart, GregorianCalendar dateOfEnd, String sport, double objectiveDistance, int objectiveTime) {
         try {
-            System.out.println("name: " + name + ", typeOfChallenge: " + typeOfChallenge);
             if (typeOfChallenge.equals("distance")) {
                 this.serviceLocator.getService().createChallenge(typeOfChallenge, name, dateOfStart, dateOfEnd, sport, objectiveDistance, objectiveTime);
             } else if (typeOfChallenge.equals("time")) {

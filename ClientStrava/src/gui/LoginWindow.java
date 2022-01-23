@@ -70,6 +70,7 @@ public class LoginWindow extends JFrame {
                             try {
                                 if (controller.login(tEmail.getText(), tPassword.getText())) {
                                     lFeedback.setText("Log in OK");
+                                    dispose();
                                 } else {
                                     lFeedback.setText("Error in log in");
                                 }

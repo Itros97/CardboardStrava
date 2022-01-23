@@ -28,12 +28,11 @@ public class ChallengeWindow extends JFrame {
     private final JTextField tSport;
     private final JList list;//declaramos La Lista
     private final DefaultListModel model;//declaramos el Modelo
-    private final JScrollPane scrollList;
 
     /**
      * Create the frame.
      */
-    public ChallengeWindow(ChallengeController challengeController, String email) {
+    public ChallengeWindow(ChallengeController challengeController, LoginController loginController) {
         this.controller = challengeController;
 
         final String[] typeOfChallenge = {""};
@@ -125,9 +124,7 @@ public class ChallengeWindow extends JFrame {
         list.setSelectionMode(ListSelectionModel.SINGLE_SELECTION );
         model = new DefaultListModel();
         list.setModel(model);
-        scrollList = new JScrollPane();
-        scrollList.setBounds(20, 120,220, 80);
-        list.setBounds(20, 20,220, 435);
+        list.setBounds(20, 20,430, 335);
         contentPane.add(list);
 
         JButton bBack = new JButton("Back");
@@ -175,15 +172,39 @@ public class ChallengeWindow extends JFrame {
             }
         });
 
+        JButton bObtainActiveChallenges = new JButton("Obtain active challenges");
+        bObtainActiveChallenges.setFont(new Font("Tahoma", Font.PLAIN, 10));
+        bObtainActiveChallenges.setBounds(24, 393, 140, 49);
+        contentPane.add(bObtainActiveChallenges);
+        bObtainActiveChallenges.addActionListener(new ActionListener(){
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                System.out.println(" - Getting all active challenges...");
+                List<ChallengeDTO> activeChallenges = controller.getUnfinishedChallenges();
+                if (activeChallenges != null) {
+                    Thread tActiveChallenges = new Thread(new Runnable() {
+                        @Override
+                        public void run() {
+                            model.removeAllElements();
+                            for (ChallengeDTO ch : activeChallenges) {
+                                model.addElement(ch.getName() + ": " + ch.getSport() + " ");
+                            }
+                        }
+                    });
+                    tActiveChallenges.start();
+                }
+            }
+        });
+
         JButton bCheckAcceptedChallenges = new JButton("Check accepted challenges");
-        bCheckAcceptedChallenges.setFont(new Font("Tahoma", Font.PLAIN, 14));
-        bCheckAcceptedChallenges.setBounds(253, 170, 205, 49);
+        bCheckAcceptedChallenges.setFont(new Font("Tahoma", Font.PLAIN, 10));
+        bCheckAcceptedChallenges.setBounds(172, 393, 155, 49);
         contentPane.add(bCheckAcceptedChallenges);
         bCheckAcceptedChallenges.addActionListener(new ActionListener(){
             @Override
             public void actionPerformed(ActionEvent e) {
-                System.out.println(" - Getting all the challenges...");
-                List<ChallengeDTO> acceptedChallenges = controller.getAcceptedChallenges(email);
+                System.out.println(" - Getting accepted challenges...");
+                List<ChallengeDTO> acceptedChallenges = controller.getAcceptedChallenges(loginController.getMail());
                 if (acceptedChallenges != null) {
                     Thread tAcceptedChallenges = new Thread(new Runnable() {
                         @Override
@@ -199,38 +220,14 @@ public class ChallengeWindow extends JFrame {
             }
         });
 
-        JButton bObtainActiveChallenges = new JButton("Obtain active challenges");
-        bObtainActiveChallenges.setFont(new Font("Tahoma", Font.PLAIN, 14));
-        bObtainActiveChallenges.setBounds(253, 82, 205, 49);
-        contentPane.add(bObtainActiveChallenges);
-        bObtainActiveChallenges.addActionListener(new ActionListener(){
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                System.out.println(" - Getting all active challenges...");
-                List<ChallengeDTO> activeChallenges = controller.getUnfinishedChallenges();
-                if (activeChallenges != null) {
-                    Thread tActiveChallenges = new Thread(new Runnable() {
-                        @Override
-                        public void run() {
-                            model.removeAllElements();
-                            for (ChallengeDTO ch : activeChallenges) {
-                                model.addElement(ch.getName() + ": " + ch.getSport());
-                            }
-                        }
-                    });
-                    tActiveChallenges.start();
-                }
-            }
-        });
-
         JButton bAcceptChallenge = new JButton("Accept Challenge");
-        bAcceptChallenge.setFont(new Font("Tahoma", Font.PLAIN, 14));
-        bAcceptChallenge.setBounds(253, 256, 205, 49);
+        bAcceptChallenge.setFont(new Font("Tahoma", Font.PLAIN, 10));
+        bAcceptChallenge.setBounds(336, 393, 110, 49);
         contentPane.add(bAcceptChallenge);
         bAcceptChallenge.addActionListener(new ActionListener(){
             @Override
             public void actionPerformed(ActionEvent e) {
-                controller.acceptChallenge(tName.getText(), email);
+                controller.acceptChallenge(tName.getText(), loginController.getMail());
 
                 //TIENE QUE APARECER UN JLABEL DE FEEDBACK EN LA VENTANA
             }

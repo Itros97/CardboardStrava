@@ -1,5 +1,6 @@
 package gui;
 
+import controller.LoginController;
 import controller.TrainingSessionController;
 import data.DTO.TrainingSessionDTO;
 
@@ -8,6 +9,7 @@ import javax.swing.border.EmptyBorder;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.Calendar;
 import java.util.GregorianCalendar;
 import java.util.List;
 
@@ -25,12 +27,11 @@ public class TrainingSessionWindow extends JFrame {
     private final JTextField tDuration;
     private final JList list;//declaramos La Lista
     private final DefaultListModel model;//declaramos el Modelo
-    private final JScrollPane scrollList;
 
     /**
      * Create the frame.
      */
-    public TrainingSessionWindow(TrainingSessionController trainingSessionController, String email) {
+    public TrainingSessionWindow(TrainingSessionController trainingSessionController, LoginController loginController) {
         this.controller = trainingSessionController;
 
         setTitle("Training Session Window");
@@ -110,9 +111,7 @@ public class TrainingSessionWindow extends JFrame {
         list.setSelectionMode(ListSelectionModel.SINGLE_SELECTION );
         model = new DefaultListModel();
         list.setModel(model);
-        scrollList = new JScrollPane();
-        scrollList.setBounds(20, 120,220, 80);
-        list.setBounds(20, 20,220, 435);
+        list.setBounds(20, 20,420, 335);
         contentPane.add(list);
 
         JButton bBack = new JButton("Back");
@@ -138,13 +137,13 @@ public class TrainingSessionWindow extends JFrame {
                 java.time.LocalDateTime.now();
                 controller.createTrainingSession(tTitle.getText(),
                         tSport.getText(), Double.parseDouble(tDistanceInKm.getText()),
-                        timeOfStart, Double.parseDouble(tDuration.getText()), email);
+                        timeOfStart, Double.parseDouble(tDuration.getText()), loginController.getMail());
             }
         });
 
         JButton bConsultSessions = new JButton("Consult all sessions");
         bConsultSessions.setFont(new Font("Tahoma", Font.PLAIN, 14));
-        bConsultSessions.setBounds(258, 82, 181, 49);
+        bConsultSessions.setBounds(41, 393, 181, 49);
         contentPane.add(bConsultSessions);
         bConsultSessions.addActionListener(new ActionListener(){
             @Override
@@ -157,7 +156,9 @@ public class TrainingSessionWindow extends JFrame {
                         public void run() {
                             model.removeAllElements();
                             for (TrainingSessionDTO session : sessions) {
-                                model.addElement(session.getTitle());
+                                model.addElement(session.getTitle() + ": " + session.getSport() + " "
+                                + session.getDistante() + " km. " + session.getDuration() + " mins. "
+                                        + "Date of start: " + session.getDateOfStart().get(Calendar.YEAR) + "/" + session.getDateOfStart().get(Calendar.MONTH) + "/" + session.getDateOfStart().get(Calendar.DAY_OF_MONTH));
                             }
                         }
                     });
@@ -168,20 +169,22 @@ public class TrainingSessionWindow extends JFrame {
 
         JButton bConsultOwnSessions = new JButton("Consult own sessions");
         bConsultOwnSessions.setFont(new Font("Tahoma", Font.PLAIN, 14));
-        bConsultOwnSessions.setBounds(258, 256, 181, 49);
+        bConsultOwnSessions.setBounds(241, 393, 181, 49);
         contentPane.add(bConsultOwnSessions);
         bConsultOwnSessions.addActionListener(new ActionListener(){
             @Override
             public void actionPerformed(ActionEvent e) {
                 System.out.println(" - Getting own training sessions...");
-                List<TrainingSessionDTO> ownSessions = controller.getOwnTrainingSessions(email);
+                List<TrainingSessionDTO> ownSessions = controller.getOwnTrainingSessions(loginController.getMail());
                 if (ownSessions != null) {
                     Thread tAcceptedSessions = new Thread(new Runnable() {
                         @Override
                         public void run() {
                             model.removeAllElements();
                             for (TrainingSessionDTO session : ownSessions) {
-                                model.addElement(session.getTitle());
+                                model.addElement(session.getTitle() + ": " + session.getSport() + " "
+                                        + session.getDistante() + " km. " + session.getDuration() + " mins. "
+                                        + "Date of start: " + session.getDateOfStart().get(Calendar.YEAR) + "/" + session.getDateOfStart().get(Calendar.MONTH) + "/" + session.getDateOfStart().get(Calendar.DAY_OF_MONTH));
                             }
                         }
                     });

@@ -26,7 +26,14 @@ public class LoginController {
     }
 
     public boolean logout() {
-        token = false; return false;
+        if (!mail.equals("")) {
+            token = false;
+            mail = "";
+            return token;
+        } else {
+            //Aunque se devuelve true, se da error a un intento de logout sin haber iniciado sesion
+            return true;
+        }
     }
 
     public boolean getToken() {
