@@ -29,8 +29,10 @@ public class LoginController {
         if (!mail.equals("")) {
             token = false;
             mail = "";
+            System.out.println("You logged out successfully from STRAVA Server");
             return token;
         } else {
+            System.out.println("You are not even logged in!");
             //Aunque se devuelve true, se da error a un intento de logout sin haber iniciado sesion
             return true;
         }

@@ -5,14 +5,12 @@ import controller.LoginController;
 import controller.RegisterController;
 import controller.TrainingSessionController;
 import ServiceLocator.ServiceLocator;
-import data.DTO.TrainingSessionDTO;
 
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.List;
 
 public class HomeWindowAndMain extends JFrame {
     private final JPanel contentPane;
@@ -60,11 +58,10 @@ public class HomeWindowAndMain extends JFrame {
         setContentPane(contentPane);
         contentPane.setLayout(null);
 
-        lWelcomeToStrava = new JLabel();
+        lWelcomeToStrava = new JLabel("WELCOME TO STRAVA");
         lWelcomeToStrava.setBackground(Color.GRAY);
         lWelcomeToStrava.setFont(new Font("Tahoma", Font.PLAIN, 17));
         lWelcomeToStrava.setHorizontalAlignment(SwingConstants.CENTER);
-        lWelcomeToStrava.setText("WELCOME TO STRAVA");
         lWelcomeToStrava.setBounds(10, 10, 324, 88);
         contentPane.add(lWelcomeToStrava);
 
@@ -74,6 +71,12 @@ public class HomeWindowAndMain extends JFrame {
         lLogout.setHorizontalAlignment(SwingConstants.CENTER);
         lLogout.setBounds(500, 30, 324, 88);
         contentPane.add(lLogout);
+
+        lLogin = new JLabel("Welcome, user");
+        lLogin.setBackground(Color.GRAY);
+        lLogin.setFont(new Font("Tahoma", Font.PLAIN, 14));
+        lLogin.setBounds(37, 265, 800, 88);
+        contentPane.add(lLogin);
 
         JButton bLogout = new JButton("Log out");
         bLogout.setFont(new Font("Tahoma", Font.PLAIN, 14));
@@ -88,6 +91,7 @@ public class HomeWindowAndMain extends JFrame {
                         try {
                             if (!loginController.logout()) {
                                 lLogout.setText("Log out OK");
+                                lLogin.setText("You can now login again");
                             } else {
                                 lLogout.setText("Error in log out");
                             }
@@ -100,13 +104,6 @@ public class HomeWindowAndMain extends JFrame {
                 tLogout.start();
             }
         });
-
-        lLogin = new JLabel("");
-        lLogin.setBackground(Color.GRAY);
-        lLogin.setFont(new Font("Tahoma", Font.PLAIN, 14));
-        lLogin.setHorizontalAlignment(SwingConstants.CENTER);
-        lLogin.setBounds(500, 30, 324, 88);
-        lLogin.add(lLogout);
 
         JButton bLogin = new JButton("Login");
         bLogin.setFont(new Font("Tahoma", Font.PLAIN, 13));
@@ -126,7 +123,7 @@ public class HomeWindowAndMain extends JFrame {
                                     e.printStackTrace();
                                 }
                             } else {
-                                lLogin.setText("Welcome, " + loginController.getMail());
+                                lLogin.setText(loginController.getMail() + ", if you wish to log in with a different account, please logout first");
                             }
                         }
                     });
@@ -138,7 +135,7 @@ public class HomeWindowAndMain extends JFrame {
         bRegister.setFont(new Font("Tahoma", Font.PLAIN, 13));
         bRegister.setBounds(203, 327, 104, 40);
         contentPane.add(bRegister);
-        bRegister.addActionListener(new ActionListener(){
+        bRegister.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 Thread tRegister = new Thread(new Runnable() {
