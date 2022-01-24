@@ -1,11 +1,14 @@
 package data.domain;
 
 import javax.jdo.annotations.PersistenceCapable;
+import javax.jdo.annotations.Persistent;
 import javax.jdo.annotations.PrimaryKey;
 import java.util.GregorianCalendar;
 
 @PersistenceCapable
 public class TrainingSession {
+@PersistenceCapable(detachable="true")
+public class TrainingSession implements Serializable {
 
 	@PrimaryKey
 	private String title;
@@ -16,6 +19,10 @@ public class TrainingSession {
 	private GregorianCalendar dateOfStart;
 	private double duration;
 	private boolean accepted;
+	
+	@Persistent(defaultFetchGroup="true")
+	private PasswordProfile passprof;
+	  
 	
 	public String getTitle() {
 		return title;
