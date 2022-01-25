@@ -41,15 +41,6 @@ public class ChallengeController {
         }
     }
 
-    public List<GreatChallengeDTO> getAcceptedChallenges(String email) {
-        try {
-            return this.serviceLocator.getService().getAcceptedChallenges(email);
-        } catch (RemoteException e) {
-            System.out.println("# Error getting accepted challenges: " + e);
-            return null;
-        }
-    }
-
     public void createChallenge(String typeOfChallenge, String name, GregorianCalendar dateOfStart, GregorianCalendar dateOfEnd, String sport, double objectiveDistance, int objectiveTime) {
         try {
             if (typeOfChallenge.equals("distance")) {

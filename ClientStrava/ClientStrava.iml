@@ -9,5 +9,11 @@
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="library" name="lib1" level="project" />
     <orderEntry type="module" module-name="Facebook" />
+    <orderEntry type="library" name="stravaserver" level="project" />
+    <orderEntry type="library" name="stravaserver (2)" level="project" />
+    <orderEntry type="library" name="stravaserver (3)" level="project" />
+    <orderEntry type="library" name="stravaserver (4)" level="project" />
+    <orderEntry type="library" name="stravaserver (5)" level="project" />
+    <orderEntry type="library" name="stravaserver (6)" level="project" />
   </component>
 </module>

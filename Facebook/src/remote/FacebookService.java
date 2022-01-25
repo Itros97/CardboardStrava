@@ -25,6 +25,8 @@ public class FacebookService extends Thread {
     }
 
     public void run() {
+        System.out.println("Run funciona");
+
         String e1 = "ambrose@facebook.com";
         String e2 = "bredon@facebook.com";
         String e3 = "usuario@facebook.com";
@@ -63,7 +65,7 @@ public class FacebookService extends Thread {
                 }
             }
             if (!found) {
-                System.out.println("Email not found. Login with Google failed.");
+                System.out.println("Email not found. Login with Facebook failed.");
             }
         } catch (Exception e) {
             System.out.println("   # FacebookService error" + e.getMessage());

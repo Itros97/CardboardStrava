@@ -98,7 +98,6 @@ public class HomeWindowAndMain extends JFrame {
                         } catch (Exception e) {
                             e.printStackTrace();
                         }
-                        //lLogout.setText("Log out OK");
                     }
                 });
                 tLogout.start();
@@ -123,7 +122,7 @@ public class HomeWindowAndMain extends JFrame {
                                     e.printStackTrace();
                                 }
                             } else {
-                                lLogin.setText(loginController.getMail() + ", if you wish to log in with a different account, please logout first");
+                                lLogin.setText(loginController.getProfile().getEmail() + ", if you wish to log in with a different account, please logout first");
                             }
                         }
                     });
@@ -142,8 +141,12 @@ public class HomeWindowAndMain extends JFrame {
                     @Override
                     public void run() {
                         try {
-                            RegisterWindow frame = new RegisterWindow(registerController);
-                            frame.setVisible(true);
+                            if (!loginController.getToken()) {
+                                RegisterWindow frame = new RegisterWindow(registerController);
+                                frame.setVisible(true);
+                            } else {
+                                lLogout.setText("User already logged in");
+                            }
                         } catch (Exception e) {
                             e.printStackTrace();
                         }
@@ -164,8 +167,12 @@ public class HomeWindowAndMain extends JFrame {
                     @Override
                     public void run() {
                         try {
+                            if (loginController.getToken()) {
                             ChallengeWindow frame = new ChallengeWindow(challengeController, loginController);
                             frame.setVisible(true);
+                        } else {
+                            lLogout.setText("Log in first");
+                        }
                         } catch (Exception e) {
                             e.printStackTrace();
                         }
@@ -186,8 +193,12 @@ public class HomeWindowAndMain extends JFrame {
                     @Override
                     public void run() {
                         try {
-                            TrainingSessionWindow frame = new TrainingSessionWindow(trainingSessionController, loginController);
-                            frame.setVisible(true);
+                            if (loginController.getToken()) {
+                                TrainingSessionWindow frame = new TrainingSessionWindow(trainingSessionController, loginController);
+                                frame.setVisible(true);
+                            } else {
+                                lLogout.setText("Log in first");
+                            }
                         } catch (Exception e) {
                             e.printStackTrace();
                         }

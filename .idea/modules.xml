@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/.idea/CardboardStrava.iml" filepath="$PROJECT_DIR$/.idea/CardboardStrava.iml" />
+      <module fileurl="file://$PROJECT_DIR$/ClientStrava/ClientStrava.iml" filepath="$PROJECT_DIR$/ClientStrava/ClientStrava.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Facebook/Facebook.iml" filepath="$PROJECT_DIR$/Facebook/Facebook.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Google/Google.iml" filepath="$PROJECT_DIR$/Google/Google.iml" />
+      <module fileurl="file://$PROJECT_DIR$/ServerStrava3/ServerStrava2.iml" filepath="$PROJECT_DIR$/ServerStrava3/ServerStrava2.iml" />
+      <module fileurl="file://$PROJECT_DIR$/StravaServer2/StravaServer2.iml" filepath="$PROJECT_DIR$/StravaServer2/StravaServer2.iml" />
+    </modules>
+  </component>
+</project>

@@ -1,6 +1,8 @@
 package controller;
 
 import ServiceLocator.ServiceLocator;
+import data.domain.PasswordProfile;
+
 import java.rmi.RemoteException;
 
 //This class implements Controller pattern.
@@ -10,14 +12,14 @@ public class LoginController {
     private ServiceLocator serviceLocator = new ServiceLocator();
     //This attribute stores the token when login success
     private boolean token = false;
-    private String mail = "";
+    private PasswordProfile pp = new PasswordProfile();
 
-    public LoginController(ServiceLocator serviceLocator) { this.serviceLocator = serviceLocator; }
+    public LoginController(ServiceLocator serviceLocator) { this.serviceLocator = serviceLocator; pp.setEmail("");}
 
     public boolean login(String email, String password) {
         try {
-            mail = email;
-            token = this.serviceLocator.getService().loginUser(email, password);
+            pp = this.serviceLocator.getService().loginUser(email, password);
+            token = true;
             return token;
         } catch (RemoteException e) {
             System.out.println("# Error during login: " + e);
@@ -26,9 +28,9 @@ public class LoginController {
     }
 
     public boolean logout() {
-        if (!mail.equals("")) {
+        if (!pp.getEmail().equals("")) {
             token = false;
-            mail = "";
+            pp = new PasswordProfile();
             System.out.println("You logged out successfully from STRAVA Server");
             return token;
         } else {
@@ -42,7 +44,7 @@ public class LoginController {
         return token;
     }
 
-    public String getMail() {
-        return mail;
+    public PasswordProfile getProfile() {
+        return pp;
     }
 }

@@ -9,8 +9,7 @@ import javax.swing.border.EmptyBorder;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.ArrayList;
-import java.util.GregorianCalendar;
+import java.util.*;
 import java.util.List;
 
 public class ChallengeWindow extends JFrame {
@@ -130,7 +129,7 @@ public class ChallengeWindow extends JFrame {
         list.setSelectionMode(ListSelectionModel.SINGLE_SELECTION );
         model = new DefaultListModel();
         list.setModel(model);
-        list.setBounds(20, 20,430, 335);
+        list.setBounds(20, 20,440, 335);
         contentPane.add(list);
 
         JButton bBack = new JButton("Back");
@@ -198,19 +197,25 @@ public class ChallengeWindow extends JFrame {
                         //Bucles que filtran challenges repetidos en la lista
                         for (GreatChallengeDTO c : activeChallenges) {
                             for (GreatChallengeDTO c2 : activeChallenges) {
-                                if (c.getName().equals(c2.getName())) {
+                                if (c.getName().equals(c2.getName()) && !c2.equals(c)) {
                                     listChallenges.add(c);
                                 }
                             }
                         }
                         for (GreatChallengeDTO c3 : listChallenges) {
-                            if (c3.getObjectiveDistance() != 0 || c3.getObjectiveTime() != 0) {
+                            if (c3.getObjectiveDistance() == 0 && c3.getObjectiveTime() == 0) {
                                 activeChallenges.remove(c3);
                             }
                         }
 
                         for (GreatChallengeDTO ch : activeChallenges) {
-                            model.addElement(ch.getName() + ": " + ch.getSport() + " ");
+                            if (ch.getObjectiveTime() == 0 && ch.getObjectiveDistance() != 0) {
+                                model.addElement(ch.getName() + ": " + ch.getSport() + " " + ch.getObjectiveDistance() + " km. Start: " + ch.getDateOfStart().get(Calendar.YEAR) + "/" + ch.getDateOfStart().get(Calendar.MONTH) + "/" + ch.getDateOfStart().get(Calendar.DAY_OF_MONTH) + ". End: " + ch.getDateOfEnd().get(Calendar.YEAR) + "/" + ch.getDateOfEnd().get(Calendar.MONTH) + "/" + ch.getDateOfEnd().get(Calendar.DAY_OF_MONTH));
+                            } else if (ch.getObjectiveDistance() == 0 && ch.getObjectiveTime() != 0) {
+                                model.addElement(ch.getName() + ": " + ch.getSport() + " " + ch.getObjectiveTime() + " min. Start: " + ch.getDateOfStart().get(Calendar.YEAR) + "/" + ch.getDateOfStart().get(Calendar.MONTH) + "/" + ch.getDateOfStart().get(Calendar.DAY_OF_MONTH) + ". End: " + ch.getDateOfEnd().get(Calendar.YEAR) + "/" + ch.getDateOfEnd().get(Calendar.MONTH) + "/" + ch.getDateOfEnd().get(Calendar.DAY_OF_MONTH));
+                            } else {
+                                model.addElement(ch.getName() + ": " + ch.getSport() + ". Start: " + ch.getDateOfStart().get(Calendar.YEAR) + "/" + ch.getDateOfStart().get(Calendar.MONTH) + "/" + ch.getDateOfStart().get(Calendar.DAY_OF_MONTH) + ". End: " + ch.getDateOfEnd().get(Calendar.YEAR) + "/" + ch.getDateOfEnd().get(Calendar.MONTH) + "/" + ch.getDateOfEnd().get(Calendar.DAY_OF_MONTH));
+                            }
                         }
                     }
                 });
@@ -231,25 +236,27 @@ public class ChallengeWindow extends JFrame {
                         public void run() {
                             model.removeAllElements();
                             List<GreatChallengeDTO> acceptedChallenges = new ArrayList<GreatChallengeDTO>();
-                            acceptedChallenges = controller.getAcceptedChallenges(loginController.getMail());
+                            acceptedChallenges = controller.getChallenges();
                             List<GreatChallengeDTO> listChallenges = new ArrayList<GreatChallengeDTO>();
 
                             //Bucles que filtran challenges repetidos en la lista
                             for (GreatChallengeDTO c : acceptedChallenges) {
                                 for (GreatChallengeDTO c2 : acceptedChallenges) {
-                                    if (c.getName().equals(c2.getName())) {
+                                    if (c.getName().equals(c2.getName()) && !c2.equals(c)) {
                                         listChallenges.add(c);
                                     }
                                 }
                             }
                             for (GreatChallengeDTO c3 : listChallenges) {
-                                if (c3.getObjectiveDistance() != 0 || c3.getObjectiveTime() != 0) {
+                                if (c3.getObjectiveDistance() == 0 && c3.getObjectiveTime() == 0) {
                                     acceptedChallenges.remove(c3);
                                 }
                             }
 
                             for (GreatChallengeDTO ch : acceptedChallenges) {
-                                model.addElement(ch.getName() + ": " + ch.getSport());
+                                if (loginController.getProfile().equals(ch.getAcceptant())) {
+                                    model.addElement(ch.getName() + ": " + ch.getSport());
+                                }
                             }
                         }
                     });
@@ -267,21 +274,18 @@ public class ChallengeWindow extends JFrame {
                 Thread tAccept = new Thread(new Runnable() {
                     @Override
                     public void run() {
-                        if (loginController.getMail().equals("")) {
-                            lAccept.setText("You need to be logged in to accept a Challenge");
+                        lAccept.setText("You need to be logged in to accept a Challenge");
+                        String acceptedChallengeName = "";
+                        int n = 0;
+                        if (list.getSelectedIndex() != -1) {
+                            n = list.getSelectedIndex();
+                            List<GreatChallengeDTO> challenges = new ArrayList<GreatChallengeDTO>();
+                            challenges = controller.getChallenges();
+                            acceptedChallengeName = challenges.get(n).getName();
+                            controller.acceptChallenge(acceptedChallengeName, loginController.getProfile().getEmail());
+                            lAccept.setText("Accepted");
                         } else {
-                            String acceptedChallengeName = "";
-                            int n = 0;
-                            if (list.getSelectedIndex() != -1) {
-                                n = list.getSelectedIndex();
-                                List<GreatChallengeDTO> challenges = new ArrayList<GreatChallengeDTO>();
-                                challenges = controller.getChallenges();
-                                acceptedChallengeName = challenges.get(n).getName();
-                                controller.acceptChallenge(acceptedChallengeName, loginController.getMail());
-                                lAccept.setText("Accepted");
-                            } else {
-                                lAccept.setText("First select a challenge");
-                            }
+                            lAccept.setText("First select a challenge");
                         }
                     }
                 });

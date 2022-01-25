@@ -137,7 +137,7 @@ public class TrainingSessionWindow extends JFrame {
                 java.time.LocalDateTime.now();
                 controller.createTrainingSession(tTitle.getText(),
                         tSport.getText(), Double.parseDouble(tDistanceInKm.getText()),
-                        timeOfStart, Double.parseDouble(tDuration.getText()), loginController.getMail());
+                        timeOfStart, Double.parseDouble(tDuration.getText()), loginController.getProfile());
             }
         });
 
@@ -175,16 +175,20 @@ public class TrainingSessionWindow extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 System.out.println(" - Getting own training sessions...");
-                List<TrainingSessionDTO> ownSessions = controller.getOwnTrainingSessions(loginController.getMail());
+                List<TrainingSessionDTO> ownSessions = controller.getTrainingSessions();
                 if (ownSessions != null) {
                     Thread tAcceptedSessions = new Thread(new Runnable() {
                         @Override
                         public void run() {
                             model.removeAllElements();
                             for (TrainingSessionDTO session : ownSessions) {
-                                model.addElement(session.getTitle() + ": " + session.getSport() + " "
-                                        + session.getDistante() + " km. " + session.getDuration() + " mins. "
-                                        + "Date of start: " + session.getDateOfStart().get(Calendar.YEAR) + "/" + session.getDateOfStart().get(Calendar.MONTH) + "/" + session.getDateOfStart().get(Calendar.DAY_OF_MONTH));
+                                if (session.getCreator() != null) {
+                                    if (loginController.getProfile().equals(session.getCreator())) {
+                                        model.addElement(session.getTitle() + ": " + session.getSport() + " "
+                                                + session.getDistante() + " km. " + session.getDuration() + " mins. "
+                                                + "Date of start: " + session.getDateOfStart().get(Calendar.YEAR) + "/" + session.getDateOfStart().get(Calendar.MONTH) + "/" + session.getDateOfStart().get(Calendar.DAY_OF_MONTH));
+                                    }
+                                }
                             }
                         }
                     });

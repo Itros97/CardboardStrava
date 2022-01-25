@@ -2,6 +2,7 @@ package controller;
 
 import data.DTO.TrainingSessionDTO;
 import ServiceLocator.ServiceLocator;
+import data.domain.PasswordProfile;
 
 import java.rmi.RemoteException;
 import java.util.GregorianCalendar;
@@ -23,18 +24,9 @@ public class TrainingSessionController {
         }
     }
 
-    public List<TrainingSessionDTO> getOwnTrainingSessions(String email) {
+    public void createTrainingSession(String title, String sport, double distance, GregorianCalendar dateOfStart, double duration, PasswordProfile pp) {
         try {
-            return this.serviceLocator.getService().getOwnTrainingSessions(email);
-        } catch (RemoteException e) {
-            System.out.println("# Error getting accepted training sessions: " + e);
-            return null;
-        }
-    }
-
-    public void createTrainingSession(String title, String sport, double distance, GregorianCalendar dateOfStart, double duration, String creatorEmail) {
-        try {
-            this.serviceLocator.getService().createTrainingSession(title, sport, distance, dateOfStart, duration, creatorEmail);
+            this.serviceLocator.getService().createTrainingSession(title, sport, distance, dateOfStart, duration, pp);
         } catch (RemoteException e) {
             System.out.println("# Error creating a training session: " + e);
         }
